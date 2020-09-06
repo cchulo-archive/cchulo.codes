@@ -11,20 +11,32 @@ $custom-typography: mat-typography-config(
 
 @include mat-core($custom-typography);
 
-$ClientApp-primary: mat-palette($mat-blue-grey);
-$ClientApp-accent: mat-palette($mat-light-blue, A200, A100, A400);
-$ClientApp-warn: mat-palette($mat-red);
+$light-primary: mat-palette($mat-blue-grey);
+$light-accent: mat-palette($mat-light-blue, A200, A100, A400);
+$light-warn: mat-palette($mat-red);
 
 
-$ClientApp-theme: mat-dark-theme((
+$light-theme: mat-light-theme((
   color: (
-    primary: $ClientApp-primary,
-    accent: $ClientApp-accent,
-    warn: $ClientApp-warn,
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $light-warn,
   )
 ));
 
-@include angular-material-theme($ClientApp-theme);
+$dark-theme: mat-dark-theme((
+  color: (
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $light-warn,
+  )
+));
+
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+}
+
+@include angular-material-theme($light-theme);
 
 /* You can add global styles to this file, and also import other style files */
 

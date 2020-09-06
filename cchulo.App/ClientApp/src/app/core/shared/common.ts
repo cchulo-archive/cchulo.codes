@@ -9,3 +9,8 @@ export enum EWindow {
     lg,
     xl
 }
+
+export enum ETheme {
+    dark,
+    light
+}
