@@ -27,8 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private readonly _darkThemeClass = 'dark-theme';
   
-  mobileSize = false;
-  darkTheme = false;
+  isMobileSize = false;
+  isDarkTheme = false;
 
   constructor(
     private clientWindowService: ClientWindowService,
@@ -39,22 +39,22 @@ export class AppComponent implements OnInit, OnDestroy {
     this._clientSettingSub = this.clientSettingService.theme
       .subscribe(theme => {
         if (theme === ETheme.dark) {
-          this.darkTheme = true;
+          this.isDarkTheme = true;
           this._element.nativeElement.classList.add(this._darkThemeClass);
         } else {
-          this.darkTheme = false;
+          this.isDarkTheme = false;
           this._element.nativeElement.classList.remove(this._darkThemeClass);
         }
 
-        console.log(this.darkTheme);
+        console.log(this.isDarkTheme);
       });
 
     this._clientWindowSub = this.clientWindowService.windowResizeEvent
       .subscribe(state => {
         if (state <= EWindow.sm) {
-          this.mobileSize = true;
+          this.isMobileSize = true;
         } else {
-          this.mobileSize = false;
+          this.isMobileSize = false;
         }
       });
   }
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   toggleTheme() {
-    if (this.darkTheme) {
+    if (this.isDarkTheme) {
       this.clientSettingService.setTheme(ETheme.light);
     } else {
       this.clientSettingService.setTheme(ETheme.dark);

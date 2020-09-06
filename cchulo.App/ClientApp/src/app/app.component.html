@@ -4,20 +4,20 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="main">
-      <button mat-icon-button *ngIf="mobileSize" (click)="sidenav.toggle()">
+      <button mat-icon-button *ngIf="isMobileSize" (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
 
       <div>cchulo logo placeholder</div>
 
-      <nav mat-tab-nav-bar *ngIf="!mobileSize">
+      <nav mat-tab-nav-bar *ngIf="!isMobileSize">
         <a mat-tab-link
             *ngFor="let link of links"
             [routerLink]="link.path"
         >{{link.label}}</a>
       </nav>
       
-      <button mat-icon-button (click)="toggleTheme()">
+      <button mat-icon-button (click)="toggleTheme()" [color]="!isDarkTheme ? undefined : 'accent'">
         <mat-icon>bedtime</mat-icon>
       </button>
     </div>
