@@ -1,13 +1,12 @@
 <div class="main">
   <div>cchulo logo placeholder</div>
 
-  <div class="nav-bar">
-    <nav mat-tab-nav-bar>
-      <a mat-tab-link
+  <nav mat-tab-nav-bar *ngIf="!mobileSize">
+    <a mat-tab-link
         *ngFor="let link of links"
         [routerLink]="link.path"
-      >{{link.label}}</a>
-    </nav>
-  </div>
+    >{{link.label}}</a>
+  </nav>
+  
 
 </div>
