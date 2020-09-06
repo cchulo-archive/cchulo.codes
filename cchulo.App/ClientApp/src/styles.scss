@@ -1,26 +1,22 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
+@import '~normalize.css';
 @import '~@angular/material/theming';
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$ClientApp-primary: mat-palette($mat-indigo);
-$ClientApp-accent: mat-palette($mat-pink, A200, A100, A400);
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(36px, 52px, 700),
+  $body-1: mat-typography-level(20px, 28px, 500)
+);
 
-// The warn palette is optional (defaults to red).
+@include mat-core($custom-typography);
+
+$ClientApp-primary: mat-palette($mat-blue-grey);
+$ClientApp-accent: mat-palette($mat-light-blue, A200, A100, A400);
 $ClientApp-warn: mat-palette($mat-red);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$ClientApp-theme: mat-light-theme((
+
+$ClientApp-theme: mat-dark-theme((
   color: (
     primary: $ClientApp-primary,
     accent: $ClientApp-accent,
@@ -28,12 +24,9 @@ $ClientApp-theme: mat-light-theme((
   )
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include angular-material-theme($ClientApp-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
