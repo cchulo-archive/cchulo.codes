@@ -1,5 +1,15 @@
-<div class="terminal">
-    <div class="terminal-text">
-        carlos@cchulo:~ $> {{ commandToShow }}
+<div class="home-container">
+    <div class="terminal-container">
+        <div [ngClass]="{'terminal': true, 'terminal-dark': isDarkMode, 'terminal-light': !isDarkMode }">
+            <div class="terminal-text" [ngStyle]="{'font': font, 'height': height + 'px'}">
+                <p style="display:flex">
+                    <span class="username">carlos</span>
+                    <span class="token">@</span>
+                    <span class="host">cchulo</span>
+                    <span class="token">{{ ':~ $> ' }}</span>
+                    <span> {{ commandToShow }}</span>
+                </p>
+            </div>
+        </div>
     </div>
 </div>

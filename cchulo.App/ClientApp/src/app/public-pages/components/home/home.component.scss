@@ -1,25 +1,50 @@
-$terminal-width: 700px;
-$terminal-height: 50px;
+.home-container {
+    margin-top: 10%;
+}
+
+.terminal-container {
+    max-width: 800px;
+    margin: auto;
+}
 
 .terminal {
     text-align: left;
-    background: rgba(0, 0, 0, .9);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -($terminal-height/2);
-    margin-left: -($terminal-width/2);
-    width: $terminal-width;
-    height: $terminal-height;
-    
     border-style: solid;
-    border-color: white;
+    border-width: 2px;
     border-radius: 16px;
     display: flex;
     align-items: center;
 
     .terminal-text {
         margin-left: 10px;
-        font: 24px Inconsolata, monospace;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.terminal-dark {
+    border-color: white;
+    background: rgba(0, 0, 0, .9);
+
+    .username { color: rgb(30, 118, 190); }
+    .token { color: rgb(17, 192, 183); }
+    .host { color: rgb(49, 165, 26); }
+}
+
+.terminal-light {
+    border-color: black;
+    background: rgba(214, 214, 214, 0.9);
+
+    .username {
+        color: rgb(15, 68, 112);
+        font-weight: bold;
+    }
+    .token {
+        color: rgb(126, 34, 27);
+        font-weight: bold;
+    }
+    .host {
+        color: rgb(25, 92, 11);
+        font-weight: bold;
     }
 }
