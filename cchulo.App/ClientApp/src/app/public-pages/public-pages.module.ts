@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { ResumeComponent } from './components/resume/resume.component';
 
 
 /**
@@ -7,7 +10,11 @@ import { CommonModule } from '@angular/common';
  * and do not contain any sensitive information, or any scripts that will modify contents of the site
  */
 @NgModule({
-  declarations: [],
+  declarations: [
+    HomeComponent,
+    AboutComponent,
+    ResumeComponent
+  ],
   imports: [
     CommonModule
   ]
