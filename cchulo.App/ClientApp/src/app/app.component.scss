@@ -14,3 +14,12 @@
 .sidenav-container {
     height: 100%;
 }
+
+.nav-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    nav {
+        margin-right: 10px;
+    }
+}

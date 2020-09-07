@@ -31,14 +31,15 @@ export class AppComponent implements OnInit, OnDestroy {
   isDarkTheme = false;
 
   constructor(
-    private clientWindowService: ClientWindowService,
-    private clientSettingService: ClientSettingsService,
+    private _clientWindowService: ClientWindowService,
+    private _clientSettingService: ClientSettingsService,
     private _element: ElementRef<HTMLElement>) { }
 
   ngOnInit(): void {
-    this._clientSettingSub = this.clientSettingService.theme
+    this._clientSettingSub = this._clientSettingService.theme
       .subscribe(theme => {
-        if (theme === ETheme.dark) {
+        
+        if (theme == ETheme.dark) {
           this.isDarkTheme = true;
           this._element.nativeElement.classList.add(this._darkThemeClass);
         } else {
@@ -46,10 +47,15 @@ export class AppComponent implements OnInit, OnDestroy {
           this._element.nativeElement.classList.remove(this._darkThemeClass);
         }
 
-        console.log(this.isDarkTheme);
+        console.log(`
+          lhs is ${theme}
+          rhs is ${ETheme.dark}
+          lhs === rhs: ${theme === ETheme.dark}, lhs == rhs ${theme == ETheme.dark}
+          typeof lhs ${typeof(theme)}, typeof rhs ${typeof(ETheme.dark)}
+          `);
       });
 
-    this._clientWindowSub = this.clientWindowService.windowResizeEvent
+    this._clientWindowSub = this._clientWindowService.windowResizeEvent
       .subscribe(state => {
         if (state <= EWindow.sm) {
           this.isMobileSize = true;
@@ -71,9 +77,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   toggleTheme() {
     if (this.isDarkTheme) {
-      this.clientSettingService.setTheme(ETheme.light);
+      this._clientSettingService.setTheme(ETheme.light);
     } else {
-      this.clientSettingService.setTheme(ETheme.dark);
+      this._clientSettingService.setTheme(ETheme.dark);
     }
   }
 }

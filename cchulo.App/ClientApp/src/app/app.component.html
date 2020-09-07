@@ -10,16 +10,18 @@
 
       <div>cchulo logo placeholder</div>
 
-      <nav mat-tab-nav-bar *ngIf="!isMobileSize">
-        <a mat-tab-link
-            *ngFor="let link of links"
-            [routerLink]="link.path"
-        >{{link.label}}</a>
-      </nav>
-      
-      <button mat-icon-button (click)="toggleTheme()" [color]="!isDarkTheme ? undefined : 'accent'">
-        <mat-icon>bedtime</mat-icon>
-      </button>
+      <div class="nav-container">
+        <nav mat-tab-nav-bar *ngIf="!isMobileSize">
+          <a mat-tab-link
+              *ngFor="let link of links"
+              [routerLink]="link.path"
+          >{{link.label}}</a>
+        </nav>
+
+        <button mat-icon-button (click)="toggleTheme()" [color]="!isDarkTheme ? undefined : 'accent'">
+          <mat-icon>bedtime</mat-icon>
+        </button>
+      </div>
     </div>
 
     <router-outlet></router-outlet>

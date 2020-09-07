@@ -3,14 +3,14 @@
  * notify the UI what the current window width is
  */
 export enum EWindow {
-    xs,
-    sm,
-    md,
-    lg,
-    xl
+    xs = 0,
+    sm = 1,
+    md = 2,
+    lg = 3,
+    xl = 4
 }
 
 export enum ETheme {
-    dark,
-    light
+    dark = 'dark',
+    light = 'light'
 }
