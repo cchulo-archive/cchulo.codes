@@ -8,7 +8,7 @@
 
   <mat-sidenav-content>
 
-    <div class="main">
+    <div class="main mat-elevation-z4">
       <div class="inner-main">
         <button mat-icon-button *ngIf="isMobileSize" (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
@@ -25,12 +25,15 @@
           <button mat-icon-button (click)="toggleTheme()" [color]="!isDarkTheme ? undefined : 'accent'">
             <mat-icon>bedtime</mat-icon>
           </button>
-
         </div>
       </div>
-    </div>
 
-    <router-outlet></router-outlet>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+      
+      
+    </div>
 
   </mat-sidenav-content>
 

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CoreModule } from '../core/core.module';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -16,7 +17,8 @@ import { ResumeComponent } from './components/resume/resume.component';
     ResumeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreModule
   ]
 })
 export class PublicPagesModule { }
