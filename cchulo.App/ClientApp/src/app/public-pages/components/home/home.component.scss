@@ -1,0 +1,25 @@
+$terminal-width: 700px;
+$terminal-height: 50px;
+
+.terminal {
+    text-align: left;
+    background: rgba(0, 0, 0, .9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -($terminal-height/2);
+    margin-left: -($terminal-width/2);
+    width: $terminal-width;
+    height: $terminal-height;
+    
+    border-style: solid;
+    border-color: white;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+
+    .terminal-text {
+        margin-left: 10px;
+        font: 24px Inconsolata, monospace;
+    }
+}
