@@ -17,9 +17,12 @@ interface ILink {
 export class AppComponent implements OnInit, OnDestroy {
 
   links: Array<ILink> = [
-    { label: 'Home', path: '/' },
+    { label: 'Home', path: '' },
     { label: 'About', path: '/about' },
-    { label: 'Resume', path: '/resume' }
+    { label: 'Experience', path: '/experience' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'Contact', path: '/contact' },
+    { label: 'Blog', path: '/blog' }
   ]
 
   private _clientWindowSub: Unsubscribable;
@@ -50,7 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._clientWindowSub = this._clientWindowService.windowResizeEvent
       .subscribe(state => {
-        if (state <= EWindow.sm) {
+        if (state <= EWindow.md) {
           this.isMobileSize = true;
         } else {
           this.isMobileSize = false;

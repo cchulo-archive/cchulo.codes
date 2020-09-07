@@ -56,10 +56,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this._clientWindowSub = this._clientWindowService.windowResizeEvent.subscribe(state => {
-      if (state <= EWindow.md) {
+      if (state <= EWindow.sm) {
         this.font = '12px Inconsolata, monospace';
         this.height = 36;
-      } else {
+      }
+      else if (state === EWindow.md) {
+        this.font = '18px Inconsolata, monospace';
+        this.height = 54;
+      }
+      else {
         this.font = '24px Inconsolata, monospace';
         this.height = 72;
       }
