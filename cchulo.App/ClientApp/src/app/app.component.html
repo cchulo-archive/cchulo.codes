@@ -1,6 +1,8 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav [mode]="'over'">
-    <p>stuff here</p>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let link of links" [routerLink]="link.path">{{link.label}}</a>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="main">
