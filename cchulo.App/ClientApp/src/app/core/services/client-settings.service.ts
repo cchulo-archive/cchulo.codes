@@ -48,7 +48,6 @@ export class ClientSettingsService {
    * @param theme the color theme, if undefined or null then theme is set to light
    */
   setTheme(theme: ETheme) {
-    console.log(theme);
     if (theme === null || theme === undefined) {
       localStorage[this._themeStore] = ETheme.light;
     } else {

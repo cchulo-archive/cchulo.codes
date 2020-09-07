@@ -46,13 +46,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isDarkTheme = false;
           this._element.nativeElement.classList.remove(this._darkThemeClass);
         }
-
-        console.log(`
-          lhs is ${theme}
-          rhs is ${ETheme.dark}
-          lhs === rhs: ${theme === ETheme.dark}, lhs == rhs ${theme == ETheme.dark}
-          typeof lhs ${typeof(theme)}, typeof rhs ${typeof(ETheme.dark)}
-          `);
       });
 
     this._clientWindowSub = this._clientWindowService.windowResizeEvent
