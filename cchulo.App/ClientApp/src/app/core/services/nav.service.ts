@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { routes } from 'src/app/app-routing.module';
 import { ILink } from '../shared/common';
-import { Route } from '@angular/router';
+import { Route, Router, RouteConfigLoadStart, RouteConfigLoadEnd, NavigationStart, NavigationEnd } from '@angular/router';
+import { Subscribable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,13 @@ export class NavService {
     return this._links;
   }
 
-  constructor() {
+  private _navSubj = new BehaviorSubject<boolean>(false);
+
+  get navSubscription(): Subscribable<boolean> {
+    return this._navSubj;
+  }
+
+  constructor(private _router: Router) {
 
     for(let routeIndex = 0; routeIndex < routes.length; routeIndex++) {
       const curr = routes[routeIndex];
@@ -24,6 +31,15 @@ export class NavService {
       link.path = `/${route.path}`;
       this._links.push(link);
     }
+
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this._navSubj.next(true);
+      }
+      if (event instanceof NavigationEnd) {
+        this._navSubj.next(false);
+      }
+    })
   }
 
   

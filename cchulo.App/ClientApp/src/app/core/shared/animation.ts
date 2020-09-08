@@ -1,4 +1,4 @@
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import { trigger, transition, style, animate, state, query } from '@angular/animations';
 
 export const slideRightLeft = trigger('slideRightLeft', [
     transition(':enter', [
@@ -20,3 +20,14 @@ export const fadeIn = trigger('fadeIn', [
         animate('600ms ease-in')
     ])
 ]);
+
+export const fadeInOut = trigger('fadeInOut', [
+    transition(':enter', [
+      style({ opacity: 0 }),
+      animate('100ms', style({ opacity: 1 })),
+    ]),
+    transition(':leave', [
+      animate('100ms', style({ opacity: 0 }))
+    ])
+  ])
+;

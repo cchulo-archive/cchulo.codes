@@ -4,14 +4,16 @@ import { ClientSettingsService } from 'src/app/core/services/client-settings.ser
 import { Unsubscribable } from 'rxjs';
 import { EWindow, ETheme, ILink } from './core/shared/common';
 import { NavService } from './core/services/nav.service';
-import { slideRightLeft, slideLeftRight, fadeIn } from './core/shared/animation';
+import { fadeIn, fadeInOut } from './core/shared/animation';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    fadeIn
+    fadeIn,
+    fadeInOut
   ]
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -25,6 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
   
   isMobileSize = false;
   isDarkTheme = false;
+
+  loading = false;
 
   constructor(
     private _clientWindowService: ClientWindowService,
@@ -52,6 +56,10 @@ export class AppComponent implements OnInit, OnDestroy {
         } else {
           this.isMobileSize = false;
         }
+      });
+
+      this._navService.navSubscription.subscribe(isLoading => {
+        this.loading = isLoading;
       });
   }
 
