@@ -3,6 +3,7 @@ import { ClientWindowService } from 'src/app/core/services/client-window.service
 import { ClientSettingsService } from 'src/app/core/services/client-settings.service';
 import { Unsubscribable } from 'rxjs';
 import { EWindow, ETheme, ILink } from './core/shared/common';
+import { NavService } from './core/services/nav.service';
 import { slideRightLeft, slideLeftRight, fadeIn } from './core/shared/animation';
 
 @Component({
@@ -15,14 +16,7 @@ import { slideRightLeft, slideLeftRight, fadeIn } from './core/shared/animation'
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  links: Array<ILink> = [
-    { label: 'Home', path: '' },
-    { label: 'About', path: '/about' },
-    { label: 'Experience', path: '/experience' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Contact', path: '/contact' },
-    { label: 'Blog', path: '/blog' }
-  ]
+  links = this._navService.links;
 
   private _clientWindowSub: Unsubscribable;
   private _clientSettingSub: Unsubscribable;
@@ -35,7 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private _clientWindowService: ClientWindowService,
     private _clientSettingService: ClientSettingsService,
-    private _element: ElementRef<HTMLElement>) { }
+    private _element: ElementRef<HTMLElement>,
+    private _navService: NavService) { }
 
   ngOnInit(): void {
     this._clientSettingSub = this._clientSettingService.theme

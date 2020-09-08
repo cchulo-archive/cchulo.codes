@@ -17,7 +17,7 @@ class ExtRoute {
  * so we create a new type that is the union of the original Route,
  * and new ExtRoute that defines data to be type of ILink
  */
-type ExtRoutes = Array<ExtRoute | Route>;
+type ExtRoutes = Array<Route | ExtRoute>;
 
 export const routes: ExtRoutes = [
   {
