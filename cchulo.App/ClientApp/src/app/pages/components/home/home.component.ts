@@ -3,11 +3,13 @@ import { Unsubscribable, timer } from 'rxjs';
 import { ClientSettingsService } from 'src/app/core/services/client-settings.service';
 import { ETheme, EWindow } from 'src/app/core/shared/common';
 import { ClientWindowService } from 'src/app/core/services/client-window.service';
+import { fadeInOut, slideRightLeft, slideLeftRight } from 'src/app/core/shared/animation';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [ fadeInOut, slideRightLeft, slideLeftRight ]
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 

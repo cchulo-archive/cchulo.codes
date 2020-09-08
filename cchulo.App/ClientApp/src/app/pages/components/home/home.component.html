@@ -1,4 +1,5 @@
-<div class="home-container">
+<div class="home-container" [@slideLeftRight]>
+    <div>Greetings</div>
     <div class="terminal-container">
         <div [ngClass]="{'terminal': true, 'terminal-dark': isDarkMode, 'terminal-light': !isDarkMode }">
             <div class="terminal-text" [ngStyle]="{'font': font, 'height': height + 'px'}">

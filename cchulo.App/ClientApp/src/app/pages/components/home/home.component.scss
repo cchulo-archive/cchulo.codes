@@ -1,10 +1,23 @@
 .home-container {
-    margin-top: 10%;
+    // margin-top: 10%;
+    // width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    // 
+    // flex-direction: row;
+    // align-self: center;
+    // background: red;
 }
 
 .terminal-container {
+    width: 100%;
     max-width: 800px;
+    align-self: center;
     margin: auto;
+    // flex: 1;
 }
 
 .terminal {
@@ -12,8 +25,8 @@
     border-style: solid;
     border-width: 2px;
     border-radius: 16px;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
 
     .terminal-text {
         margin-left: 10px;

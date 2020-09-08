@@ -36,7 +36,7 @@ export class NavService {
       if (event instanceof NavigationStart) {
         this._navSubj.next(true);
       }
-      if (event instanceof NavigationEnd) {
+      else if (event instanceof NavigationEnd) {
         this._navSubj.next(false);
       }
     })

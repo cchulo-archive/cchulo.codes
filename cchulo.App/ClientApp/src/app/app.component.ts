@@ -4,7 +4,7 @@ import { ClientSettingsService } from 'src/app/core/services/client-settings.ser
 import { Unsubscribable } from 'rxjs';
 import { EWindow, ETheme, ILink } from './core/shared/common';
 import { NavService } from './core/services/nav.service';
-import { fadeIn, fadeInOut } from './core/shared/animation';
+import { fadeIn, fadeInOut, fadeAnimation, slideLeftRight } from './core/shared/animation';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -13,7 +13,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.scss'],
   animations: [
     fadeIn,
-    fadeInOut
+    fadeInOut,
+    fadeAnimation,
+    slideLeftRight
   ]
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -27,8 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
   
   isMobileSize = false;
   isDarkTheme = false;
-
-  loading = false;
 
   constructor(
     private _clientWindowService: ClientWindowService,
@@ -57,10 +57,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this.isMobileSize = false;
         }
       });
-
-      this._navService.navSubscription.subscribe(isLoading => {
-        this.loading = isLoading;
-      });
   }
 
   ngOnDestroy(): void {
@@ -79,5 +75,13 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this._clientSettingService.setTheme(ETheme.dark);
     }
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['label'];
+  }
+
+  debug(event) {
+    console.log(event);
   }
 }

@@ -8,6 +8,8 @@
     margin: auto;
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 
     .inner-main {
         display: flex;
@@ -28,6 +30,7 @@
         margin-left: 15px;
         margin-right: 15px;
         margin-top: 30px;
+        flex: 1;
     }
 }
 
