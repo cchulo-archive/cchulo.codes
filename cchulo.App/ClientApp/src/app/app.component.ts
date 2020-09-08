@@ -2,17 +2,16 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ClientWindowService } from 'src/app/core/services/client-window.service';
 import { ClientSettingsService } from 'src/app/core/services/client-settings.service';
 import { Unsubscribable } from 'rxjs';
-import { EWindow, ETheme } from './core/shared/common';
-
-interface ILink {
-  label: string;
-  path: string;
-}
+import { EWindow, ETheme, ILink } from './core/shared/common';
+import { slideRightLeft, slideLeftRight, fadeIn } from './core/shared/animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    fadeIn
+  ]
 })
 export class AppComponent implements OnInit, OnDestroy {
 

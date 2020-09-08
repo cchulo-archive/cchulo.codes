@@ -14,3 +14,8 @@ export enum ETheme {
     dark = 'dark',
     light = 'light'
 }
+
+export interface ILink {
+    label: string;
+    path?: string;
+}

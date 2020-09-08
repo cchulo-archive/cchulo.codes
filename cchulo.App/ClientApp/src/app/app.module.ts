@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
-import { PublicPagesModule } from './public-pages/public-pages.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { PublicPagesModule } from './public-pages/public-pages.module';
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     CoreModule,
-    PublicPagesModule
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

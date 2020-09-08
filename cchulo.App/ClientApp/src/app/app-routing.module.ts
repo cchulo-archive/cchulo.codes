@@ -1,13 +1,49 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './public-pages/components/home/home.component';
-import { AboutComponent } from './public-pages/components/about/about.component';
-import { ResumeComponent } from './public-pages/components/resume/resume.component';
+import { RouterModule, Route } from '@angular/router';
+import { HomeComponent } from './pages/components/home/home.component';
+import { AboutComponent } from './pages/components/about/about.component';
+import { ILink } from './core/shared/common';
+import { ExperienceComponent } from './pages/components/experience/experience.component';
+import { ProjectsComponent } from './pages/components/projects/projects.component';
+import { ContactComponent } from './pages/components/contact/contact.component';
+import { BlogComponent } from './pages/components/blog/blog.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'resume', component: ResumeComponent }
+class ExtRoute {
+  data?: ILink;
+}
+
+/**
+ * In angular, Routes is a type for Route[],
+ * so we create a new type that is the union of the original Route,
+ * and new ExtRoute that defines data to be type of ILink
+ */
+type ExtRoutes = Array<ExtRoute | Route>;
+
+export const routes: ExtRoutes = [
+  {
+    path: '', component: HomeComponent,
+    data: { label: 'Home' }
+  },
+  {
+    path: 'about', component: AboutComponent,
+    data: { label: 'About' }
+  },
+  {
+    path: 'experience', component: ExperienceComponent,
+    data: { label: 'Experience' }
+  },
+  {
+    path: 'projects', component: ProjectsComponent,
+    data: { label: 'Projects' }
+  },
+  {
+    path: 'contact', component: ContactComponent,
+    data: { label: 'Contact' }
+  },
+  {
+    path: 'blog', component: BlogComponent,
+    data: { label: 'Blog' }
+  }
 ];
 
 @NgModule({
