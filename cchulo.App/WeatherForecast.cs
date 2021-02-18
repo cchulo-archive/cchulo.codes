@@ -1,7 +1,9 @@
 using System;
 
-namespace cchulo.App {
-    public class WeatherForecast {
+namespace cchulo.App.PortfolioBlog
+{
+    public class WeatherForecast
+    {
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }
