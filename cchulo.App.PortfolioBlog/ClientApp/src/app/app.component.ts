@@ -5,6 +5,8 @@ import { Unsubscribable } from 'rxjs';
 import { EWindow, ETheme, ILink } from './core/shared/common';
 import { NavService } from './core/services/nav.service';
 import { RouterOutlet } from '@angular/router';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private _clientWindowSub: Unsubscribable;
   private _clientSettingSub: Unsubscribable;
 
+  private readonly _svgIcons: Array<string> = [
+    'assets/svg-icons/logo-styled.svg'
+  ];
+
   private readonly _darkThemeClass = 'dark-theme';
   private readonly _lightThemeClass = 'light-theme';
   
@@ -28,9 +34,14 @@ export class AppComponent implements OnInit, OnDestroy {
     private _clientWindowService: ClientWindowService,
     private _clientSettingService: ClientSettingsService,
     private _element: ElementRef<HTMLElement>,
-    private _navService: NavService) { }
+    private _navService: NavService,
+    private _iconRegistry: MatIconRegistry,
+    private _sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
+    
+    this.initIcons();
+
     this._clientSettingSub = this._clientSettingService.theme
       .subscribe(theme => {
         
@@ -62,6 +73,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (this._clientSettingSub) {
       this._clientSettingSub.unsubscribe();
+    }
+  }
+
+  private initIcons() {
+    for (let index = 0; index < this._svgIcons.length; index++) {
+      const rawUrl = this._svgIcons[index];
+      if (!rawUrl) { continue; }
+      const sanitizedUrl = this._sanitizer.bypassSecurityTrustResourceUrl(rawUrl);
+      this._iconRegistry.addSvgIcon('logo', sanitizedUrl);
     }
   }
 

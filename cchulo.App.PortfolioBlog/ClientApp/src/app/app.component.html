@@ -12,30 +12,33 @@
 
       <div class="inner-main primaryColorBG">
 
-        <button mat-icon-button *ngIf="isMobileSize" (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-
-        <div routerLink="" class="link">cchulo logo placeholder</div>
-
-        <div class="nav-container">
-
-          <nav mat-tab-nav-bar *ngIf="!isMobileSize">
-            <a mat-tab-link *ngFor="let link of links" [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
-          </nav>
-
-          <button mat-icon-button (click)="toggleTheme()" [color]="!isDarkTheme ? undefined : 'accent'">
-            <mat-icon>bedtime</mat-icon>
+        <div class="toolbar">
+          <button mat-icon-button *ngIf="isMobileSize" (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
           </button>
 
-        </div>
+          <div routerLink="" class="link">
+            <mat-icon [svgIcon]="'logo'"></mat-icon>
+          </div>
 
+          <div class="nav-container">
+
+            <nav mat-tab-nav-bar *ngIf="!isMobileSize">
+              <a mat-tab-link *ngFor="let link of links" [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+            </nav>
+
+            <button mat-icon-button (click)="toggleTheme()" [color]="!isDarkTheme ? undefined : 'accent'">
+              <mat-icon>bedtime</mat-icon>
+            </button>
+
+          </div>
+        </div>
       </div>
 
       <div class="content">
         <router-outlet></router-outlet>
       </div>
-      
+
     </div>
 
   </mat-sidenav-content>
