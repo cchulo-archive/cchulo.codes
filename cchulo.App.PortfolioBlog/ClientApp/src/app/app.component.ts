@@ -4,19 +4,12 @@ import { ClientSettingsService } from 'src/app/core/services/client-settings.ser
 import { Unsubscribable } from 'rxjs';
 import { EWindow, ETheme, ILink } from './core/shared/common';
 import { NavService } from './core/services/nav.service';
-import { fadeIn, fadeInOut, fadeAnimation, slideLeftRight } from './core/shared/animation';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  animations: [
-    fadeIn,
-    fadeInOut,
-    fadeAnimation,
-    slideLeftRight
-  ]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
 

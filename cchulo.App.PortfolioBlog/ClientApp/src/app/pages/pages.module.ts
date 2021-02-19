@@ -6,6 +6,7 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { BlogComponent } from './components/blog/blog.component';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -19,7 +20,8 @@ import { BlogComponent } from './components/blog/blog.component';
     BlogComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreModule
   ]
 })
 export class PagesModule { }
