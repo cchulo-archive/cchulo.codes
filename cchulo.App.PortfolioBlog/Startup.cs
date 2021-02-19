@@ -19,6 +19,11 @@ namespace cchulo.App.PortfolioBlog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSingleton(Configuration);
+
+            services.AddHttpClient();
+
             services.AddControllers();
 
             services.AddSpaStaticFiles(configuration =>
@@ -51,6 +56,7 @@ namespace cchulo.App.PortfolioBlog
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
+            
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
