@@ -1,5 +1,8 @@
 @import '~normalize.css';
 @import '~@angular/material/theming';
+@import 'themes/theme-color-grabber.scss';
+@import 'themes/dark-theme.scss';
+@import 'themes/light-theme.scss';
 
 @include mat-core();
 
@@ -11,32 +14,15 @@ $custom-typography: mat-typography-config(
 
 @include mat-core($custom-typography);
 
-$light-primary: mat-palette($mat-blue-grey);
-$light-accent: mat-palette($mat-light-blue, A200, A100, A400);
-$light-warn: mat-palette($mat-red);
-
-
-$light-theme: mat-light-theme((
-  color: (
-    primary: $light-primary,
-    accent: $light-accent,
-    warn: $light-warn,
-  )
-));
-
-$dark-theme: mat-dark-theme((
-  color: (
-    primary: $light-primary,
-    accent: $light-accent,
-    warn: $light-warn,
-  )
-));
-
 .dark-theme {
+  @include theme-color-grabber($dark-theme);
   @include angular-material-theme($dark-theme);
 }
 
-@include angular-material-theme($light-theme);
+.light-theme {
+  @include theme-color-grabber($light-theme);
+  @include angular-material-theme($light-theme);
+}
 
 /* You can add global styles to this file, and also import other style files */
 
