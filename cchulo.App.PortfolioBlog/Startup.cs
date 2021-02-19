@@ -55,6 +55,8 @@ namespace cchulo.App.PortfolioBlog
             {
                 spa.Options.SourcePath = "ClientApp";
 
+                spa.Options.StartupTimeout = System.TimeSpan.FromMinutes(5);
+
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
