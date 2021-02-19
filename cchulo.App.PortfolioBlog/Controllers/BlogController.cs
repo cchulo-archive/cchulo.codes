@@ -43,11 +43,15 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     query {
                         articles {
                             id
+                            tags {
+                                id
+                                name
+                            }
                         }
                     }
                 ");
 
-                // var response = await client.SendQueryAsync<ResponseOwnerCollectionType>(query);
+                var response = await client.SendQueryAsync<ArticlesType>(query);
 
                 return Ok();
 
