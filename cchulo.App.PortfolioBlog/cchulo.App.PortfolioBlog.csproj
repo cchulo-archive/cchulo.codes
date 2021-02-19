@@ -12,6 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GraphQL.Client" Version="3.2.1" />
+    <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.12" />
   </ItemGroup>
 
