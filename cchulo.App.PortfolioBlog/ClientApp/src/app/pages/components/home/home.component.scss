@@ -1,1 +1,30 @@
+.home-container {
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    height: 60%;
+    width: 100%;
+
+    
+}
+
+.home-container-mobile {
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    padding-top: 50px;
+
+}
+
+.logo-icon {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+}
+
+.logo-icon-mobile {
+    height: 150px;
+    width: 150px;
+    text-align: center;
+}

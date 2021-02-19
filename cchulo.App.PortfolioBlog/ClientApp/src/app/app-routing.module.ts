@@ -3,7 +3,6 @@ import { RouterModule, Route } from '@angular/router';
 import { HomeComponent } from './pages/components/home/home.component';
 import { AboutComponent } from './pages/components/about/about.component';
 import { ILink } from './core/shared/common';
-import { ExperienceComponent } from './pages/components/experience/experience.component';
 import { ProjectsComponent } from './pages/components/projects/projects.component';
 import { ContactComponent } from './pages/components/contact/contact.component';
 import { BlogComponent } from './pages/components/blog/blog.component';
@@ -25,24 +24,20 @@ export const routes: ExtRoutes = [
     data: { label: 'Home' }
   },
   {
-    path: 'about', component: AboutComponent,
-    data: { label: 'About' }
-  },
-  {
-    path: 'experience', component: ExperienceComponent,
-    data: { label: 'Experience' }
+    path: 'blog', component: BlogComponent,
+    data: { label: 'Blog' }
   },
   {
     path: 'projects', component: ProjectsComponent,
     data: { label: 'Projects' }
   },
   {
-    path: 'contact', component: ContactComponent,
-    data: { label: 'Contact' }
+    path: 'about', component: AboutComponent,
+    data: { label: 'About' }
   },
   {
-    path: 'blog', component: BlogComponent,
-    data: { label: 'Blog' }
+    path: 'contact', component: ContactComponent,
+    data: { label: 'Contact' }
   }
 ];
 

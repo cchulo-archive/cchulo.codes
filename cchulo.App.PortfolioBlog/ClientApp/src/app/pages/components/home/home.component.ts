@@ -3,6 +3,13 @@ import { Unsubscribable } from 'rxjs';
 import { ClientSettingsService } from 'src/app/core/services/client-settings.service';
 import { EWindow } from 'src/app/core/shared/common';
 import { ClientWindowService } from 'src/app/core/services/client-window.service';
+import * as _ from 'lodash-es';
+
+interface ITileOrdering {
+  label: string;
+  order: number;
+}
+
 
 @Component({
   selector: 'app-home',
@@ -10,9 +17,14 @@ import { ClientWindowService } from 'src/app/core/services/client-window.service
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  
-  isDarkMode = false;
 
+  isMobileSize = false;
+
+
+  orderTiles: Array<ITileOrdering> = [
+    { label: 'greeting', order: 0 },
+    { label: 'logo', order: 1 }
+  ]
 
   private _clientSettingsSub: Unsubscribable;
   private _clientWindowSub: Unsubscribable;
@@ -27,14 +39,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     this._clientWindowSub = this._clientWindowService.windowResizeEvent.subscribe(state => {
-      if (state <= EWindow.sm) {
-        
-      }
-      else if (state === EWindow.md) {
-        
-      }
-      else {
-        
+      
+      if (state <= EWindow.md) {
+        this.isMobileSize = true;
+      } else {
+        this.isMobileSize = false;
       }
     });
   }

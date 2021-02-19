@@ -1,3 +1,12 @@
-<div class="home-container">
-    <div>Greetings</div>
+<div class="home-container" [ngClass]="{'home-container-mobile': isMobileSize}">
+        <div>
+            <h1 class="mat-h1 greeting">Hi! I'm Carlos, Software Engineer</h1>
+            <p>
+                Based in San Diego, I am specialize in full stack development
+                building highly scalable applications.
+            </p>
+        </div>
+        <div [ngClass]="{'logo-icon': !isMobileSize, 'logo-icon-mobile': isMobileSize}">
+            <mat-icon [svgIcon]="'logo'" [inline]="true"></mat-icon>
+        </div>
 </div>

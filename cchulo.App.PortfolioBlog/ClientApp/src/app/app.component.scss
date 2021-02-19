@@ -1,4 +1,4 @@
-$max-width-value: 1920px;
+$max-width-value: 1200px;
 $toolbar-padding-bottom: 10px;
 
 .mat-tab-link {
@@ -17,6 +17,7 @@ $toolbar-padding-bottom: 10px;
         justify-content: center;
         align-items: center;
         text-align: center;
+
         .toolbar {
             display: flex;
             justify-content: space-between;
@@ -50,9 +51,6 @@ $toolbar-padding-bottom: 10px;
         margin: auto;
         height: 100%;
         width: 100%;
-        // margin-left: 15px;
-        // margin-right: 15px;
-        // margin-top: 30px;
         flex: 1;
     }
 }
