@@ -1,7 +1,7 @@
-<div [ngClass]="{ 'home-container': !isMobileSize, 'home-container-mobile': isMobileSize}" >
-        <div [@fadeIn]>
+<div [ngClass]="{ 'home-container': !isMobileSize, 'home-container-mobile': isMobileSize}" *ngIf="screenCheckComplete">
+        <div>
             <div style="max-width: 500px">
-                <h1 class="mat-h1 greeting">Hi! I'm Carlos, Software Engineer</h1>
+                <h1 class="mat-h1 greeting" [@fadeIn]>Hi! I'm Carlos, Software Engineer</h1>
                 <p>
                     Based in San Diego, I am specialize in full stack development 
                     building highly scalable applications. 
