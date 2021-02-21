@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using GraphQL;
+using GraphQL.Client.Abstractions;
 
 namespace cchulo.App.PortfolioBlog.Controllers
 {
@@ -16,19 +17,15 @@ namespace cchulo.App.PortfolioBlog.Controllers
     public class BlogController : ControllerBase
     {
 
-        IConfiguration _serverConfigRef;
-        IHttpClientFactory _httpClientFactoryRef;
+        IGraphQLClient _graphQLClientRef;
         ILogger<BlogController> _logger;
 
-        private int port = 0;
-
-        public BlogController(IConfiguration serverConfig, IHttpClientFactory clientFactory, ILogger<BlogController> logger)
+        public BlogController(IGraphQLClient graphQLClient, ILogger<BlogController> logger)
         {
-            _serverConfigRef = serverConfig;
-            _httpClientFactoryRef = clientFactory;
-            _logger = logger;
 
-            port = _serverConfigRef.GetValue<int>("StrapiPort");
+            _graphQLClientRef = graphQLClient;
+            
+            _logger = logger;
         }
 
         [HttpGet]
@@ -36,9 +33,6 @@ namespace cchulo.App.PortfolioBlog.Controllers
         {
             try
             {
-                // HttpClient client = _httpClientFactoryRef.CreateClient();
-                GraphQLHttpClient client = new GraphQLHttpClient($"http://localhost:{port}/graphql", new NewtonsoftJsonSerializer());
-
                 GraphQLRequest query = new GraphQLRequest(@"
                     query {
                         articles {
@@ -51,7 +45,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                var response = await client.SendQueryAsync<ArticlesType>(query);
+                var response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
 
                 return Ok();
 

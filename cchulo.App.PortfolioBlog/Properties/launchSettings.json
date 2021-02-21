@@ -12,6 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "environmentVariables": {
+        "STRAPI_PORT": "1337",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "ancmHostingModel": "OutOfProcess"

@@ -1,3 +1,6 @@
+using GraphQL.Client.Abstractions;
+using GraphQL.Client.Http;
+using GraphQL.Client.Serializer.Newtonsoft;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -21,6 +24,12 @@ namespace cchulo.App.PortfolioBlog
         {
 
             services.AddSingleton(Configuration);
+
+            string port = System.Environment.GetEnvironmentVariable("STRAPI_PORT");
+
+            services.AddScoped<IGraphQLClient>(_ =>
+                new GraphQLHttpClient($"http://localhost:{port}/graphql", new NewtonsoftJsonSerializer())
+            );
 
             services.AddHttpClient();
 
