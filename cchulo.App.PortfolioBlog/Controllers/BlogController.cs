@@ -125,18 +125,8 @@ namespace cchulo.App.PortfolioBlog.Controllers
         }
 
         [HttpGet("article/{id}")]
-        public async Task<IActionResult> FullArticle([FromRoute] string id)
+        public async Task<IActionResult> FullArticle([FromRoute] int id)
         {
-
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                return BadRequest("id must have a value");
-            }
-
-            if (!int.TryParse(id, out _))
-            {
-                return BadRequest("Invalid Id");
-            }
             try
             {
                 HttpClient httpClient = _httpClientFactoryRef.CreateClient();
