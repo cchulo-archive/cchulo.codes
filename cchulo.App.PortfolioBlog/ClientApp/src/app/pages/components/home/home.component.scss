@@ -6,8 +6,12 @@
     margin: auto;
     height: 60%;
     width: 100%;
+}
 
-    
+.blog-update-container {
+    mat-card {
+        padding-bottom: 10px;
+    }
 }
 
 .home-container-mobile {

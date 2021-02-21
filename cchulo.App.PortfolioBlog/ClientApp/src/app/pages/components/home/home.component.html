@@ -10,3 +10,13 @@
             <mat-icon [svgIcon]="'logo'" [inline]="true"></mat-icon>
         </div>
 </div>
+
+<div class="blog-update-container">
+
+    <div *ngFor="let blogUpdate of blogUpdates">
+        <mat-card>
+            <mat-card-title>{{blogUpdate.title}}</mat-card-title>
+        </mat-card>
+    </div>
+
+</div>

@@ -28,7 +28,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
             _logger = logger;
         }
 
-        [HttpGet("lastest")]
+        [HttpGet("latest")]
         public async Task<IActionResult> LatestArticles()
         {
             try
