@@ -30,7 +30,10 @@ interface ITileOrdering {
         
       ])
     ]),
-    trigger('bounce', [transition('* => *', useAnimation(bounceIn))])
+    trigger('bounce', [
+      transition(':enter', useAnimation(bounceIn)),
+    ]),
+    trigger('test', [transition(':leave', useAnimation(bounceOut))])
   ]
 })
 export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
