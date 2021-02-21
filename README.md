@@ -30,6 +30,8 @@ You will then need to launch both .NET Core app (which is set up to compile and 
 
 `dotnet run --project cchulo.App.PortfolioBlog` from the root of the project
 
+navigate to https://localhost:44301 to visit the page
+
 You will also need to run strapi server:
 
 `npm start` from within the cchulo.App.StrapiCMS folder
@@ -41,6 +43,8 @@ Login to strapi at http://localhost:1337/admin, create an account. It will be lo
 Create articles using the "Articles" collection type.
 
 Create tags in "Tags" collection type to associate with articles.
+
+You will need to refresh 
 
 ---
 
