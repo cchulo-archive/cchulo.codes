@@ -1,9 +1,9 @@
-<p style="text-align: center">
+<p align="center">
   <img src="cchulo.App.PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100" />
 </p>
 
 <center>
- <h1>CCHulo's Portfolio/Blog App</h1>
+ <h1>CChulo's Portfolio/Blog App</h1>
 </center>
 
 ---
