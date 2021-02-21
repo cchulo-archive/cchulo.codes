@@ -21,7 +21,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private _clientSettingSub: Unsubscribable;
 
   private readonly _svgIcons: Array<string> = [
-    'assets/svg-icons/logo-styled.svg'
+    'logo-styled',
+    'logo-styled-gradient'
   ];
 
   private readonly _darkThemeClass = 'dark-theme';
@@ -78,10 +79,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private initIcons() {
     for (let index = 0; index < this._svgIcons.length; index++) {
-      const rawUrl = this._svgIcons[index];
-      if (!rawUrl) { continue; }
-      const sanitizedUrl = this._sanitizer.bypassSecurityTrustResourceUrl(rawUrl);
-      this._iconRegistry.addSvgIcon('logo', sanitizedUrl);
+      const name = this._svgIcons[index];
+      if (!name) { continue; }
+      const sanitizedUrl = this._sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-icons/${name}.svg`);
+      this._iconRegistry.addSvgIcon(name, sanitizedUrl);
     }
   }
 

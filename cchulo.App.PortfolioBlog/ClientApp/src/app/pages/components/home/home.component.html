@@ -7,7 +7,7 @@
             </p>
         </div>
         <div [ngClass]="{'logo-icon': !isMobileSize, 'logo-icon-mobile': isMobileSize}">
-            <mat-icon [svgIcon]="'logo'" [inline]="true"></mat-icon>
+            <mat-icon [svgIcon]="'logo-styled-gradient'" [inline]="true"></mat-icon>
         </div>
 </div>
 
@@ -17,7 +17,7 @@
         <mat-card>
             <mat-card-header>
                 <mat-card-title>{{blogUpdate.title}}</mat-card-title>
-                <mat-card-subtitle>{{blogUpdate.published_at}}</mat-card-subtitle>
+                <mat-card-subtitle>{{blogUpdate.publishedAt}}</mat-card-subtitle>
             </mat-card-header>
         </mat-card>
     </div>
