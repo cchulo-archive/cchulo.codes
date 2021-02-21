@@ -6,6 +6,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { CoreModule } from '../core/core.module';
+import { BlogEntryComponent } from './components/shared/blog-entry/blog-entry.component';
 
 
 
@@ -15,7 +16,8 @@ import { CoreModule } from '../core/core.module';
     AboutComponent,
     ProjectsComponent,
     ContactComponent,
-    BlogComponent
+    BlogComponent,
+    BlogEntryComponent
   ],
   imports: [
     CommonModule,

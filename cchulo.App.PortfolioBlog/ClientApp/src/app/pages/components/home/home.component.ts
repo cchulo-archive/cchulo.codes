@@ -86,7 +86,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   async getBlogUpdates() {
     try {
       this.blogUpdates = await this._blogService.latestArticles();
-      console.log(this.blogUpdates);
     } catch (err) {
       console.error(err);
       this.blogUpdates = [];

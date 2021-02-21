@@ -89,7 +89,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
 
                 GraphQLResponse<ArticlesType> response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
 
-                return Ok();
+                return Ok(response.Data.Articles);
 
             } catch (Exception ex)
             {

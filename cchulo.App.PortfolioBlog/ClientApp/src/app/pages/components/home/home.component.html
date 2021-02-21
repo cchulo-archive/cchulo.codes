@@ -21,15 +21,8 @@
 
     <h2 class="mat-h3">Latest Blog Entries</h2>
     <ng-container *ngIf="blogEntriesComplete">
-        <div class="blog-entry" *ngFor="let blogUpdate of blogUpdates" [@fadeInUp]="fadeInUp">
-            <mat-card class="blog-card">
-                <mat-card-header>
-                    <mat-card-title>{{blogUpdate.title}}</mat-card-title>
-                    <mat-card-subtitle>{{blogUpdate.description}}</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-footer>{{blogUpdate.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</mat-card-footer>
-                
-            </mat-card>
+        <div *ngFor="let blogUpdate of blogUpdates" [@fadeInUp]="fadeInUp">
+            <app-blog-entry [blogEntry]="blogUpdate"></app-blog-entry>
         </div>
     </ng-container>
 </div>
