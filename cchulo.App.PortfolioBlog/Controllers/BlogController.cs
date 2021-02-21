@@ -19,13 +19,20 @@ namespace cchulo.App.PortfolioBlog.Controllers
 
         IGraphQLClient _graphQLClientRef;
         ILogger<BlogController> _logger;
+        IHttpClientFactory _httpClientFactoryRef;
+        IServerConfig _serverConfigRef;
 
-        public BlogController(IGraphQLClient graphQLClient, ILogger<BlogController> logger)
+        public BlogController(IGraphQLClient graphQLClient, ILogger<BlogController> logger,
+            IHttpClientFactory httpClientFactory, IServerConfig serverConfig)
         {
 
             _graphQLClientRef = graphQLClient;
             
             _logger = logger;
+
+            _httpClientFactoryRef = httpClientFactory;
+
+            _serverConfigRef = serverConfig;
         }
 
         [HttpGet("latest")]
@@ -67,7 +74,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
             {
                 GraphQLRequest query = new GraphQLRequest(@"
                     query {
-                        articles {
+                        articles(sort: ""published_at:desc"") {
                             id
                             title
                             published_at
@@ -111,6 +118,33 @@ namespace cchulo.App.PortfolioBlog.Controllers
                 return Ok(response.Data.Tags);
             }
             catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("article/{id}")]
+        public async Task<IActionResult> FullArticle([FromRoute] string id)
+        {
+
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("id must have a value");
+            }
+
+            if (!int.TryParse(id, out _))
+            {
+                return BadRequest("Invalid Id");
+            }
+            try
+            {
+                HttpClient httpClient = _httpClientFactoryRef.CreateClient();
+
+                HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/articles/{id}");
+
+                return Ok();
+            } catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
                 return BadRequest();

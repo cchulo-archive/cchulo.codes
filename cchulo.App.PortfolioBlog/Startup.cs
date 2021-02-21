@@ -1,3 +1,4 @@
+using cchulo.App.PortfolioBlog.Models;
 using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
@@ -31,9 +32,16 @@ namespace cchulo.App.PortfolioBlog
 
             string port = System.Environment.GetEnvironmentVariable("STRAPI_PORT");
 
+            IServerConfig config = new ServerConfig
+            {
+                StrapiUrl = $"http://localhost:{port}"
+            };
+
             services.AddScoped<IGraphQLClient>(_ =>
-                new GraphQLHttpClient($"http://localhost:{port}/graphql", new NewtonsoftJsonSerializer())
+                new GraphQLHttpClient($"{config.StrapiUrl}/graphql", new NewtonsoftJsonSerializer())
             );
+
+            services.AddSingleton(config);
 
             services.AddHttpClient();
 
