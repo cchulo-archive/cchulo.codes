@@ -32,7 +32,15 @@ You will then need to launch both .NET Core app (which is set up to compile and 
 
 You will also need to run strapi server:
 
-`npm run develop` from within the cchulo.App.StrapiCMS folder
+`npm start` from within the cchulo.App.StrapiCMS folder
+
+### About Strapi
+
+Login to strapi at http://localhost:1337/admin, create an account. It will be local to your project only.
+
+Create articles using the "Articles" collection type.
+
+Create tags in "Tags" collection type to associate with articles.
 
 ---
 
