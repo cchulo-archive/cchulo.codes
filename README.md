@@ -14,9 +14,9 @@ This is a .NET Core 3.1 based Web App with Angular 11 frontend. The blog is powe
 
 ---
 
-## Instructions
+## Instructions to run
 
-To compile you will need:
+To compile you will need at minimum:
 
 - .NET Core SDK 3.1 +
 - NodeJS 14+ LTS
@@ -33,3 +33,11 @@ You will then need to launch both .NET Core app (which is set up to compile and 
 You will also need to run strapi server:
 
 `npm run develop` from within the cchulo.App.StrapiCMS folder
+
+---
+
+## Recommended for development
+
+- Visual Studio 2019
+- Visual Code
+- Angular CLI
