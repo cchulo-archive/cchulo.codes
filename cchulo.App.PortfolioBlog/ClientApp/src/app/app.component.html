@@ -7,7 +7,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <ng-scrollbar visibility="hover">
+    <ng-scrollbar [visibility]="!isMobileSize ? 'hover' : 'native'">
       <div class="main">
 
         <div class="inner-main primaryColorBG">
