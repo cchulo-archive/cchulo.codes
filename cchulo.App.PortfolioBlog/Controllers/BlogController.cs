@@ -29,7 +29,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
         }
 
         [HttpGet("lastest")]
-        public async Task<IActionResult> LatestArticles(int n)
+        public async Task<IActionResult> LatestArticles()
         {
             try
             {
