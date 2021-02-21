@@ -8,7 +8,7 @@ import { Tag } from "./tag";
 export class Article {
     id: number;
     title: string;
-    publishedAt: string;
+    published_at: string;
     description: string;
     contents: string;
     banner: string;

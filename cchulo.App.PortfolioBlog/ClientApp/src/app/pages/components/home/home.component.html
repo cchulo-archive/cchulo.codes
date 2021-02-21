@@ -13,9 +13,12 @@
 
 <div class="blog-update-container">
 
-    <div *ngFor="let blogUpdate of blogUpdates">
+    <div class="blog-entry" *ngFor="let blogUpdate of blogUpdates">
         <mat-card>
-            <mat-card-title>{{blogUpdate.title}}</mat-card-title>
+            <mat-card-header>
+                <mat-card-title>{{blogUpdate.title}}</mat-card-title>
+                <mat-card-subtitle>{{blogUpdate.published_at}}</mat-card-subtitle>
+            </mat-card-header>
         </mat-card>
     </div>
 

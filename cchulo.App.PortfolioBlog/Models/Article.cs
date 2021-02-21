@@ -13,6 +13,7 @@ namespace cchulo.App.PortfolioBlog.Models
         public string Title { get; set; }
 
         [JsonProperty(PropertyName = "published_at")]
+        [TsMemberName("published_at")]
         public string PublishedAt { get; set; }
 
         public string Description { get; set; }
