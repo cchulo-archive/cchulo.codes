@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, AfterContentInit } from '@angular/core';
 import { Unsubscribable } from 'rxjs';
 import { ClientSettingsService } from 'src/app/core/services/client-settings.service';
 import { EWindow } from 'src/app/core/shared/common';
@@ -6,8 +6,8 @@ import { ClientWindowService } from 'src/app/core/services/client-window.service
 import * as _ from 'lodash-es';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { Article } from 'src/models/article';
-import { fadeInUp, fadeIn } from 'ng-animate'
-import { transition, trigger, useAnimation } from '@angular/animations';
+import { fadeInUp, fadeIn, fadeOutUp, fadeOut, bounceIn, bounceOut, bounce } from 'ng-animate'
+import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
 
 interface ITileOrdering {
   label: string;
@@ -20,16 +20,23 @@ interface ITileOrdering {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
-    trigger('fadeIn', [transition('* => *', useAnimation(fadeIn))]),
-    trigger('fadeInUp', [transition('* => *', useAnimation(fadeInUp))])
+    trigger('fadeIn', [transition(':enter', useAnimation(fadeIn)), transition(':leave', useAnimation(fadeOut))]),
+    trigger('fadeInUp', [
+      transition(':enter', [
+        query(':enter', [
+          style({opacity: 0 }),
+          stagger('50ms', [useAnimation(fadeInUp)])
+        ], { optional: true })
+        
+      ])
+    ]),
+    trigger('bounce', [transition('* => *', useAnimation(bounceIn))])
   ]
 })
-export class HomeComponent implements OnInit, OnDestroy {
-
-  fadeIn: any;
-  fadeInUp: any;
+export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
 
   isMobileSize = false;
+  isReady = false;
 
   screenCheckComplete = false;
   blogEntriesComplete = false;
@@ -51,8 +58,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     ) { }
 
   async ngOnInit() {
-    
-    
 
     this._clientSettingsSub = this._clientSettingsService.theme.subscribe(theme => {
     });
@@ -70,6 +75,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     await this.getBlogUpdates();
     this.blogEntriesComplete = true;
+  }
+
+  ngAfterContentInit() {
+    this.isReady = true;
   }
 
   ngOnDestroy() {

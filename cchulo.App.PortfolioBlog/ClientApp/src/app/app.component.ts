@@ -7,11 +7,13 @@ import { NavService } from './core/services/nav.service';
 import { RouterOutlet } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { fadeAnimation } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeAnimation]
 })
 export class AppComponent implements OnInit, OnDestroy {
 

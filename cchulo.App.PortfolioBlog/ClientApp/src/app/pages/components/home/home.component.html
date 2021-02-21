@@ -1,7 +1,7 @@
-<div [ngClass]="{ 'home-container': !isMobileSize, 'home-container-mobile': isMobileSize}" *ngIf="screenCheckComplete">
+<div [@bounce]="{value: screenCheckComplete}" [ngClass]="{ 'home-container': !isMobileSize, 'home-container-mobile': isMobileSize}">
         <div>
             <div style="max-width: 500px">
-                <h1 class="mat-h1 greeting" [@fadeIn]>Hi! I'm Carlos, Software Engineer</h1>
+                <h1 class="mat-h1 greeting">Hi! I'm Carlos, Software Engineer</h1>
                 <p>
                     Based in San Diego, I am specialize in full stack development 
                     building highly scalable applications. 
@@ -10,7 +10,7 @@
                 </p>
             </div>
         </div>
-        <div [@fadeIn] [ngClass]="{'logo-icon': !isMobileSize, 'logo-icon-mobile': isMobileSize}" style="width: 50%; text-align: center;">
+        <div [ngClass]="{'logo-icon': !isMobileSize, 'logo-icon-mobile': isMobileSize}" style="width: 50%; text-align: center;">
             <mat-icon [svgIcon]="'logo-styled-gradient'" [inline]="true"></mat-icon>
         </div>
 </div>
@@ -21,8 +21,10 @@
 
     <h2 class="mat-h3">Latest Blog Entries</h2>
     <ng-container *ngIf="blogEntriesComplete">
-        <div *ngFor="let blogUpdate of blogUpdates" [@fadeInUp]="fadeInUp">
-            <app-blog-entry [blogEntry]="blogUpdate"></app-blog-entry>
+        <div @fadeInUp>
+            <div *ngFor="let blogUpdate of blogUpdates">
+                <app-blog-entry [blogEntry]="blogUpdate"></app-blog-entry>
+            </div>
         </div>
     </ng-container>
 </div>
