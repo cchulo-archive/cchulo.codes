@@ -44,7 +44,7 @@ Create articles using the "Articles" collection type.
 
 Create tags in "Tags" collection type to associate with articles.
 
-You will need to refresh 
+You will need to refresh the client app (.NET/Angular) by hitting F5 on web browser for it to pull latest blog posts
 
 ---
 
