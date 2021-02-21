@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using TypeGen.Core.SpecGeneration;
 using TypeGen.Core.TypeAnnotations;
 
 namespace cchulo.App.PortfolioBlog.Models
 {
+    
     [ExportTsClass]
     public class Article
     {
