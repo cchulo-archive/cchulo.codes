@@ -24,6 +24,15 @@
     .blog-entry {
         padding: 10px;
     }
+    
+    mat-card-content {
+        margin-left: 16px;
+    }
+
+    mat-card-footer {
+        font-size: small;
+        margin-left: 16px;
+    }
 }
 
 .logo-icon {
