@@ -52,7 +52,8 @@ namespace cchulo.App.PortfolioBlog.Controllers
 
                 return Ok(response.Data.Articles);
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
                 return BadRequest();
@@ -60,7 +61,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> QueryBlogs()
+        public async Task<IActionResult> AllArticles()
         {
             try
             {
@@ -68,9 +69,12 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     query {
                         articles {
                             id
+                            title
+                            published_at
+                            description
                             tags {
-                                id
-                                name
+                              id
+                              name
                             }
                         }
                     }
@@ -84,6 +88,31 @@ namespace cchulo.App.PortfolioBlog.Controllers
             {
                 _logger.LogError(ex.ToString());
 
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("tags")]
+        public async Task<IActionResult> Tags()
+        {
+            try
+            {
+                GraphQLRequest query = new GraphQLRequest(@"
+                    query {
+                      tags {
+                        id
+                        name
+                      }
+                    }
+                ");
+
+                GraphQLResponse<TagsType> response = await _graphQLClientRef.SendQueryAsync<TagsType>(query);
+
+                return Ok(response.Data.Tags);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
                 return BadRequest();
             }
         }

@@ -13,4 +13,9 @@ namespace cchulo.App.PortfolioBlog.Models
 
         public List<Article> Articles { get; set; }
     }
+
+    public class TagsType
+    {
+        public List<Tag> Tags { get; set; }
+    }
 }
