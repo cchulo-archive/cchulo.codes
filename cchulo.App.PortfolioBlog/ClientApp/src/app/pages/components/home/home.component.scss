@@ -6,19 +6,24 @@
     margin: auto;
     height: 60%;
     width: 100%;
+    
+}
+
+.home-container-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 50px;
+    margin: auto;
+    height: 60%;
+    width: 100%;
 }
 
 .blog-update-container {
     .blog-entry {
-        padding-bottom: 10px;
+        padding: 10px;
     }
-}
-
-.home-container-mobile {
-    flex-direction: column-reverse;
-    justify-content: space-around;
-    padding-top: 50px;
-
 }
 
 .logo-icon {
@@ -28,7 +33,7 @@
 }
 
 .logo-icon-mobile {
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
     text-align: center;
 }

@@ -1,25 +1,39 @@
-<div class="home-container" [ngClass]="{'home-container-mobile': isMobileSize}">
-        <div>
-            <h1 class="mat-h1 greeting">Hi! I'm Carlos, Software Engineer</h1>
-            <p>
-                Based in San Diego, I am specialize in full stack development
-                building highly scalable applications.
-            </p>
+<div [ngClass]="{ 'home-container': !isMobileSize, 'home-container-mobile': isMobileSize}" >
+        <div [@fadeIn]>
+            <div style="max-width: 500px">
+                <h1 class="mat-h1 greeting">Hi! I'm Carlos, Software Engineer</h1>
+                <p>
+                    Based in San Diego, I am specialize in full stack development 
+                    building highly scalable applications. 
+                    Welcome to my techblog, I will post my latest projects, tutorials, 
+                    and thoughts on current events.
+                </p>
+            </div>
         </div>
-        <div [ngClass]="{'logo-icon': !isMobileSize, 'logo-icon-mobile': isMobileSize}">
+        <div [@fadeIn]="fadeIn" [ngClass]="{'logo-icon': !isMobileSize, 'logo-icon-mobile': isMobileSize}" style="width: 50%; text-align: center;">
             <mat-icon [svgIcon]="'logo-styled-gradient'" [inline]="true"></mat-icon>
         </div>
 </div>
 
+<mat-divider></mat-divider>
+
 <div class="blog-update-container">
 
-    <div class="blog-entry" *ngFor="let blogUpdate of blogUpdates">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>{{blogUpdate.title}}</mat-card-title>
-                <mat-card-subtitle>{{blogUpdate.publishedAt}}</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
-    </div>
-
+    <h2 class="mat-h3">Latest Blog Entries</h2>
+    <ng-container *ngIf="blogEntriesComplete">
+        <div class="blog-entry" *ngFor="let blogUpdate of blogUpdates" [@fadeInUp]="fadeInUp">
+            <mat-card class="blog-card">
+                <mat-card-header>
+                    <mat-card-title>{{blogUpdate.title}}</mat-card-title>
+                    <mat-card-subtitle>{{blogUpdate.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss' }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{blogUpdate.description}}
+                    </p>
+                </mat-card-content>
+                
+            </mat-card>
+        </div>
+    </ng-container>
 </div>

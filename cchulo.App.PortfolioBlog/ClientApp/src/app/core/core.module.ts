@@ -3,10 +3,14 @@ import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { ToStringPipe } from './pipes/to-string.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { UtcToLocalPipe } from './pipes/utc-to-local.pipe';
 
 
 @NgModule({
-  declarations: [ToStringPipe],
+  declarations: [
+    ToStringPipe,
+    UtcToLocalPipe
+  ],
   imports: [
     CommonModule,
     AngularMaterialModule,
@@ -14,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   exports: [
     AngularMaterialModule,
-    ToStringPipe
+    ToStringPipe,
+    UtcToLocalPipe
   ]
 })
 export class CoreModule { }

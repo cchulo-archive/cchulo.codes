@@ -6,6 +6,8 @@ import { ClientWindowService } from 'src/app/core/services/client-window.service
 import * as _ from 'lodash-es';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { Article } from 'src/models/article';
+import { fadeInUp, fadeIn } from 'ng-animate'
+import { transition, trigger, useAnimation } from '@angular/animations';
 
 interface ITileOrdering {
   label: string;
@@ -16,11 +18,21 @@ interface ITileOrdering {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('fadeIn', [transition('* => *', useAnimation(fadeIn))]),
+    trigger('fadeInUp', [transition('* => *', useAnimation(fadeInUp))])
+  ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  fadeIn: any;
+  fadeInUp: any;
+
   isMobileSize = false;
+
+  screenCheckComplete = false;
+  blogEntriesComplete = false;
 
   blogUpdates: Array<Article> = [];
 
@@ -40,7 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     
-    await this.getBlogUpdates();
+    
 
     this._clientSettingsSub = this._clientSettingsService.theme.subscribe(theme => {
     });
@@ -52,7 +64,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       } else {
         this.isMobileSize = false;
       }
+
+      this.screenCheckComplete = true;
     });
+
+    await this.getBlogUpdates();
+    this.blogEntriesComplete = true;
   }
 
   ngOnDestroy() {
