@@ -21,11 +21,6 @@
       "required": true,
       "maxLength": 280
     },
-    "date": {
-      "type": "date",
-      "required": true,
-      "unique": true
-    },
     "resources": {
       "collection": "file",
       "via": "related",

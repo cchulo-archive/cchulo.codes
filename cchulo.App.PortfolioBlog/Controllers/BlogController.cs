@@ -28,6 +28,37 @@ namespace cchulo.App.PortfolioBlog.Controllers
             _logger = logger;
         }
 
+        [HttpGet("lastest")]
+        public async Task<IActionResult> LatestArticles(int n)
+        {
+            try
+            {
+                GraphQLRequest query = new GraphQLRequest(@"
+                    query {
+                      articles(limit: 10, sort: ""published_at:desc"") {
+                        id
+                        title
+                        published_at
+                        description
+                        tags {
+                          id
+                          name
+                        }
+                      }
+                    }
+                ");
+
+                GraphQLResponse<ArticlesType> response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
+
+                return Ok(response.Data.Articles);
+
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> QueryBlogs()
         {
@@ -45,7 +76,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                var response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
+                GraphQLResponse<ArticlesType> response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
 
                 return Ok();
 
