@@ -25,19 +25,11 @@ namespace cchulo.App.PortfolioBlog.Models
 
         public List<string> Downloadable { get; set; }
 
-        public List<Tag> tags { get; set; }
+        public List<Tag> Tags { get; set; }
     }
 
     public class ArticlesType
     {
         public List<Article> Articles { get; set; }
-    }
-
-    public class ArticleGenerationSpec: GenerationSpec
-    {
-        public ArticleGenerationSpec()
-        {
-            AddClass<Article>();
-        }
     }
 }
