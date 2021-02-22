@@ -14,12 +14,12 @@ let animation = [
     query(':enter', [ // the new view that is entering should be invisible
         style({ opacity: 0 })
     ]),
-    query(':leave', animateChild(), { optional: true }), // play leave animations for view that is being removed
+    query(':leave', query('@*', animateChild(), { optional: true }), { optional: true }), // play leave animations for view that is being removed
     group([
         query(':leave', useAnimation(zoomOut), { optional: true }), // fade out the view that is leaving
         query(':enter', useAnimation(bounceIn)) // fade in the new view
     ]),
-    query(':enter', animateChild()) // play animations for the new view
+    query(':enter', query('@*', animateChild(), { optional: true }),) // play animations for the new view
 ];
 
 export const fadeAnimation = 

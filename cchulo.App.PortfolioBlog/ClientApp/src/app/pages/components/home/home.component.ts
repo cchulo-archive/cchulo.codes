@@ -20,20 +20,24 @@ interface ITileOrdering {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
-    trigger('fadeIn', [transition(':enter', useAnimation(fadeIn)), transition(':leave', useAnimation(fadeOut))]),
     trigger('fadeInUp', [
       transition(':enter', [
         query(':enter', [
           style({opacity: 0 }),
           stagger('50ms', [useAnimation(fadeInUp)])
         ], { optional: true })
-        
-      ])
+      ]),
+      // transition(':leave', [
+      //   query(':leave', [
+      //     style({opacity: 1 }),
+      //     stagger('50ms', [useAnimation(fadeOutUp)])
+      //   ], { optional: true })
+      // ]),
     ]),
     trigger('bounce', [
-      transition(':enter', useAnimation(bounceIn)),
-    ]),
-    trigger('test', [transition(':leave', useAnimation(bounceOut))])
+      // transition(':enter', useAnimation(bounceIn, { params: { timing: 0.5, delay: 0 } })),
+      // transition(':leave', useAnimation(bounceOut))
+    ])
   ]
 })
 export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
