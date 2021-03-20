@@ -14,7 +14,6 @@
             @fadeInTags
             [selectable]="true"
             [multiple]="true"
-            (change)="debug($event)"
         >
             <mat-chip
                 class="no-select"
@@ -25,6 +24,7 @@
                 [selected]="filterTags[tag.name] ? filterTags[tag.name] : false"
             >{{tag.name}}</mat-chip>
         </mat-chip-list>
+
     </ng-container>
     <ng-template #notReady>
         <mat-spinner style="margin: auto;"></mat-spinner>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { Article } from 'src/models/article';
 import { Tag } from 'src/models/tag';
-import { fadeIn } from 'ng-animate'
+import { fadeIn, fadeInUp } from 'ng-animate'
 import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
 
 @Component({
@@ -18,6 +18,14 @@ import { query, stagger, style, transition, trigger, useAnimation } from '@angul
         query(':enter', [
           style({opacity: 0}),
           stagger('50ms', [useAnimation(fadeIn)])
+        ], {optional: true})
+      ])
+    ]),
+    trigger('fadeInUpBlogs', [
+      transition(':enter', [
+        query(':enter', [
+          style({opacity: 0}),
+          stagger('50ms', [useAnimation(fadeInUp)])
         ], {optional: true})
       ])
     ])
@@ -55,10 +63,6 @@ export class BlogComponent implements OnInit {
     } else {
       this.filterTags[name] = !this.filterTags[name];
     }
-  }
-
-  debug(what: any) {
-    console.log(what);
   }
 
 }
