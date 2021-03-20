@@ -21,8 +21,9 @@
 }
 
 .blog-update-container {
-    .blog-entry {
-        padding: 10px;
+    padding-bottom: 100px;
+    .blog-entry:hover  {
+        cursor: pointer;
     }
     
     mat-card-content {

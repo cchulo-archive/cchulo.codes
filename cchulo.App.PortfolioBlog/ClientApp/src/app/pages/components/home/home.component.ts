@@ -33,10 +33,6 @@ interface ITileOrdering {
       //     stagger('50ms', [useAnimation(fadeOutUp)])
       //   ], { optional: true })
       // ]),
-    ]),
-    trigger('bounce', [
-      // transition(':enter', useAnimation(bounceIn, { params: { timing: 0.5, delay: 0 } })),
-      // transition(':leave', useAnimation(bounceOut))
     ])
   ]
 })
@@ -110,6 +106,10 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
       console.error(err);
       this.blogUpdates = [];
     }
+  }
+
+  goToBlogArticle(article: Article) {
+    console.log('going to blog', article);
   }
 
 }
