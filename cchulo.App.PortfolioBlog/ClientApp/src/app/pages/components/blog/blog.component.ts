@@ -28,6 +28,8 @@ export class BlogComponent implements OnInit {
   tags: Array<Tag> = [];
   articles: Array<Article> = [];
 
+  filterTags: { [name: string]: boolean } = {}
+
   ready = false;
 
   constructor(private _blogService: BlogService) { }
@@ -43,6 +45,20 @@ export class BlogComponent implements OnInit {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  select(name: string) {
+    console.log(`${name} clicked`);
+    if (!name) { return; }
+    if (!this.filterTags[name]) {
+      this.filterTags[name] = true;
+    } else {
+      this.filterTags[name] = !this.filterTags[name];
+    }
+  }
+
+  debug(what: any) {
+    console.log(what);
   }
 
 }
