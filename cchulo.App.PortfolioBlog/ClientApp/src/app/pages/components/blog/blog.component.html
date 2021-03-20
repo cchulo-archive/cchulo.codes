@@ -28,8 +28,8 @@
             </mat-chip>
         </mat-chip-list>
 
-        <div @fadeInUpBlogs *ngIf="articles.length !== 0">
-            <div *ngFor="let article of articles">
+        <div @fadeInUpBlogs>
+            <div  *ngFor="let article of articlesToShow; let i = index">
                 <app-blog-entry
                     [blogEntry]="article"
                 ></app-blog-entry>

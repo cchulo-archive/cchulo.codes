@@ -7,6 +7,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { CoreModule } from '../core/core.module';
 import { BlogEntryComponent } from './components/shared/blog-entry/blog-entry.component';
+import { BlogFilterPipe } from './components/blog/pipes/blog-filter.pipe';
 
 
 
@@ -17,7 +18,8 @@ import { BlogEntryComponent } from './components/shared/blog-entry/blog-entry.co
     ProjectsComponent,
     ContactComponent,
     BlogComponent,
-    BlogEntryComponent
+    BlogEntryComponent,
+    BlogFilterPipe
   ],
   imports: [
     CommonModule,

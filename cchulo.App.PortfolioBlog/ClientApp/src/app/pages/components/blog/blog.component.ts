@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { Article } from 'src/models/article';
 import { Tag } from 'src/models/tag';
-import { fadeIn, fadeInUp } from 'ng-animate'
+import { fadeIn, fadeInDown, fadeInUp, fadeOutUp } from 'ng-animate'
 import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
+import * as _ from 'lodash-es';
 
 @Component({
   selector: 'app-blog',
@@ -26,7 +27,7 @@ import { query, stagger, style, transition, trigger, useAnimation } from '@angul
         query(':enter', [
           style({opacity: 0}),
           stagger('50ms', [useAnimation(fadeInUp)])
-        ], {optional: true})
+        ], {optional: true}),
       ])
     ])
   ]
@@ -35,8 +36,9 @@ export class BlogComponent implements OnInit {
 
   tags: Array<Tag> = [];
   articles: Array<Article> = [];
+  articlesToShow: Array<Article> = [];
 
-  filterTags: { [name: string]: boolean } = {}
+  filterTags: { [name: string]: boolean } = {};
 
   ready = false;
 
@@ -48,6 +50,7 @@ export class BlogComponent implements OnInit {
       this.tags = await this._blogService.tags();
       
       this.articles = await this._blogService.allArticles();
+      this.articlesToShow = _.cloneDeep(this.articles);
 
       this.ready = true;
     } catch (err) {
@@ -63,6 +66,31 @@ export class BlogComponent implements OnInit {
     } else {
       this.filterTags[name] = !this.filterTags[name];
     }
+
+    this.articlesToShow = this.filterArticles();
+  }
+
+  filterArticles(): Array<Article> {
+
+    // match article with selected tag(s)
+
+    // if only one tag selected, article needs to have at least that one match
+
+    if (!this.filterTags) {
+      return this.articles;
+    }
+    
+    const keys = _.keys(this.filterTags);
+    
+    if (keys.length === 0 || _.every(keys, key => this.filterTags[key] === false)) {
+      return this.articles;
+    }
+
+    const filtered = _.filter(
+      this.articles, article => _.some(
+        article.tags, tag => !!this.filterTags[tag.name]));
+
+    return filtered;
   }
 
 }
