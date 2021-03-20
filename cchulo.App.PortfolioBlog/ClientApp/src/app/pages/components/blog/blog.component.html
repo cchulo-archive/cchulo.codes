@@ -1,6 +1,7 @@
 
-<div style="padding-top: 50px; text-align: center; width: 100%; margin: auto;">
+<div style="padding-top: 50px; width: 100%; margin: auto;">
     <h1 class="mat-h1">Blog Entries</h1>
+    <mat-divider></mat-divider>
 
     <ng-container *ngIf="ready; else notReady">
         <mat-form-field style="width: 100%; margin: 10px;" @fadeIn>
@@ -22,8 +23,18 @@
                 [selectable]="true"
                 (click)="select(tag.name)"
                 [selected]="filterTags[tag.name] ? filterTags[tag.name] : false"
-            >{{tag.name}}</mat-chip>
+            >
+                {{tag.name}}
+            </mat-chip>
         </mat-chip-list>
+
+        <div @fadeInUpBlogs *ngIf="articles.length !== 0">
+            <div *ngFor="let article of articles">
+                <app-blog-entry
+                    [blogEntry]="article"
+                ></app-blog-entry>
+            </div>
+        </div>
 
     </ng-container>
     <ng-template #notReady>

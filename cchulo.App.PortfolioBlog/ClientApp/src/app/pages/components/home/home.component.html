@@ -23,7 +23,7 @@
 
     <h2 class="mat-h3">Latest Blog Entries</h2>
     <ng-container *ngIf="blogEntriesComplete; else waitingForBlogs">
-        <div @fadeInUp *ngIf="blogUpdates.length != 0; else noBlogs">
+        <div @fadeInUp *ngIf="blogUpdates.length !== 0; else noBlogs">
             <div *ngFor="let blogUpdate of blogUpdates">
                 <app-blog-entry
                     class="blog-entry"
