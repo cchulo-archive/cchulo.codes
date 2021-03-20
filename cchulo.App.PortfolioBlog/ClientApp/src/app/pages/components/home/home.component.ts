@@ -80,8 +80,12 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
       this.screenCheckComplete = true;
     });
 
-    await this.getBlogUpdates();
-    this.blogEntriesComplete = true;
+    try {
+      await this.getBlogUpdates();
+      this.blogEntriesComplete = true;
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   ngAfterContentInit() {

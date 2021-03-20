@@ -23,11 +23,14 @@
 <div class="blog-update-container">
 
     <h2 class="mat-h3">Latest Blog Entries</h2>
-    <ng-container *ngIf="blogEntriesComplete">
+    <ng-container *ngIf="blogEntriesComplete; else waitingForBlogs">
         <div @fadeInUp>
             <div *ngFor="let blogUpdate of blogUpdates">
                 <app-blog-entry [blogEntry]="blogUpdate"></app-blog-entry>
             </div>
         </div>
     </ng-container>
+    <ng-template #waitingForBlogs>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
 </div>
