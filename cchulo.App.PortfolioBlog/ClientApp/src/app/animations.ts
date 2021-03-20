@@ -26,6 +26,7 @@ export const fadeAnimation =
 trigger('routeAnimation', [
     transition('Home <=> *', animation),
     transition('Blog <=> *', animation),
+    transition('BlogDetail <=> *', animation),
     transition('Projects <=> *', animation),
     transition('Abount <=> *', animation),
     transition('Contact <=> *', animation),
