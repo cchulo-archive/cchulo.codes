@@ -53,9 +53,9 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                GraphQLResponse<ArticlesType> response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
+                GraphQLResponse<PostsType> response = await _graphQLClientRef.SendQueryAsync<PostsType>(query);
 
-                return Ok(response.Data.Articles ?? new List<BlogPost>());
+                return Ok(response.Data.Posts ?? new List<Post>());
 
             }
             catch (Exception ex)
@@ -85,9 +85,9 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                GraphQLResponse<ArticlesType> response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
+                GraphQLResponse<PostsType> response = await _graphQLClientRef.SendQueryAsync<PostsType>(query);
 
-                return Ok(response.Data.Articles);
+                return Ok(response.Data.Posts);
 
             } catch (Exception ex)
             {

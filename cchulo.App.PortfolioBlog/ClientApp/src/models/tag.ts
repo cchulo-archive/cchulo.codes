@@ -3,10 +3,10 @@
  * Any changes made to this file can be lost when this file is regenerated.
  */
 
-import { Article } from "./article";
+import { Post } from "./post";
 
 export class Tag {
     id: number;
     name: string;
-    articles: Article[];
+    posts: Post[];
 }
