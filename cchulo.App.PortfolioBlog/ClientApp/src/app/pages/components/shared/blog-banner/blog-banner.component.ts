@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Article } from 'src/models/article';
+import { BlogPost } from 'src/models/blog-post';
 
 @Component({
   selector: 'app-blog-banner',
@@ -9,11 +9,12 @@ import { Article } from 'src/models/article';
 })
 export class BlogBannerComponent implements OnInit {
 
-  @Input() blogPost: Article;
+  @Input() blogPost: BlogPost;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.blogPost);
   }
 
   async redirect() {

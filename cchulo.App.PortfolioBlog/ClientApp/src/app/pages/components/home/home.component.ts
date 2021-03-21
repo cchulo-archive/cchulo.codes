@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterContentInit } from '@angular/core';
 import { Unsubscribable } from 'rxjs';
 import { ClientSettingsService } from 'src/app/core/services/client-settings.service';
 import { EWindow } from 'src/app/core/shared/common';
 import { ClientWindowService } from 'src/app/core/services/client-window.service';
 import * as _ from 'lodash-es';
 import { BlogService } from 'src/app/core/services/blog.service';
-import { Article } from 'src/models/article';
+import { BlogPost } from 'src/models/blog-post';
 import { fadeInUp, fadeIn, fadeOutUp, fadeOut, bounceIn, bounceOut, bounce } from 'ng-animate'
 import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
 
@@ -26,13 +26,7 @@ interface ITileOrdering {
           style({opacity: 0 }),
           stagger('50ms', [useAnimation(fadeInUp)])
         ], { optional: true })
-      ]),
-      // transition(':leave', [
-      //   query(':leave', [
-      //     style({opacity: 1 }),
-      //     stagger('50ms', [useAnimation(fadeOutUp)])
-      //   ], { optional: true })
-      // ]),
+      ])
     ])
   ]
 })
@@ -44,7 +38,7 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
   screenCheckComplete = false;
   blogEntriesComplete = false;
 
-  blogUpdates: Array<Article> = [];
+  blogUpdates: Array<BlogPost> = [];
 
   orderTiles: Array<ITileOrdering> = [
     { label: 'greeting', order: 0 },
@@ -101,7 +95,7 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
 
   private async _getBlogUpdates() {
     try {
-      this.blogUpdates = await this._blogService.latestArticles();
+      this.blogUpdates = await this._blogService.latestBlogPosts();
     } catch (err) {
       console.error(err);
       this.blogUpdates = null;

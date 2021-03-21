@@ -12,11 +12,11 @@ export class BlogService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  public async latestArticles() {
+  public async latestBlogPosts() {
     return this._httpClient.get<Array<BlogPost>>(`${this._url}/latest`).toPromise();
   }
 
-  public async allArticles() {
+  public async allBlogPosts() {
     return this._httpClient.get<Array<BlogPost>>(this._url).toPromise();
   }
 
@@ -24,7 +24,7 @@ export class BlogService {
     return this._httpClient.get<Array<Tag>>(`${this._url}/tags`).toPromise();
   }
 
-  public async fullArticle(id: number) {
-    return this._httpClient.get<BlogPost>(`${this._url}/article/${id}}`).toPromise();
+  public async fullBlogPost(id: number) {
+    return this._httpClient.get<BlogPost>(`${this._url}/full-blog-post/${id}}`).toPromise();
   }
 }

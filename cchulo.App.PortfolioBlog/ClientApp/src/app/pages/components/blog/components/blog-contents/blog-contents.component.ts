@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { fadeIn, fadeInUp } from 'ng-animate';
 import { BlogService } from 'src/app/core/services/blog.service';
-import { Article } from 'src/models/article';
+import { BlogPost } from 'src/models/blog-post';
 import { Tag } from 'src/models/tag';
 
 @Component({
@@ -35,8 +35,8 @@ import { Tag } from 'src/models/tag';
 export class BlogContentsComponent implements OnInit {
 
   tags: Array<Tag> = [];
-  articles: Array<Article> = [];
-  articlesToShow: Array<Article> = [];
+  articles: Array<BlogPost> = [];
+  articlesToShow: Array<BlogPost> = [];
 
   filterTags: { [name: string]: boolean } = {};
 
@@ -49,7 +49,7 @@ export class BlogContentsComponent implements OnInit {
     try {
       this.tags = await this._blogService.tags();
       
-      this.articles = await this._blogService.allArticles();
+      this.articles = await this._blogService.allBlogPosts();
       this.articlesToShow = _.cloneDeep(this.articles);
 
       this.ready = true;
@@ -70,7 +70,7 @@ export class BlogContentsComponent implements OnInit {
     this.articlesToShow = this.filterArticles();
   }
 
-  filterArticles(): Array<Article> {
+  filterArticles(): Array<BlogPost> {
 
     // match article with selected tag(s)
 

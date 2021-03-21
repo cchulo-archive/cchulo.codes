@@ -34,7 +34,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
         }
 
         [HttpGet("latest")]
-        public async Task<IActionResult> LatestArticles()
+        public async Task<IActionResult> LatestBlogPosts()
         {
             try
             {
@@ -45,6 +45,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
                         title
                         published_at
                         description
+                        banner
                         tags {
                           id
                           name
@@ -66,7 +67,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllArticles()
+        public async Task<IActionResult> AllBlogPosts()
         {
             try
             {
@@ -77,6 +78,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
                             title
                             published_at
                             description
+                            banner
                             tags {
                               id
                               name
@@ -122,8 +124,8 @@ namespace cchulo.App.PortfolioBlog.Controllers
             }
         }
 
-        [HttpGet("article/{id}")]
-        public async Task<IActionResult> FullArticle([FromRoute] int id)
+        [HttpGet("full-blog-post/{id}")]
+        public async Task<IActionResult> FullBlogPost([FromRoute] int id)
         {
             try
             {
