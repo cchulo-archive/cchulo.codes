@@ -11,6 +11,8 @@ export class BlogBannerComponent implements OnInit {
 
   @Input() blogPost: BlogPost;
 
+  root = '/api/Blog'
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -18,8 +20,6 @@ export class BlogBannerComponent implements OnInit {
   }
 
   async redirect() {
-    const result = await this.router.navigate(['blog', 'detail']);
-    console.log(result);
+    await this.router.navigate(['blog', 'post', this.blogPost.id]);
   }
-
 }

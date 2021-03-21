@@ -6,7 +6,7 @@ import { ClientWindowService } from 'src/app/core/services/client-window.service
 import * as _ from 'lodash-es';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
-import { fadeInUp, fadeIn, fadeOutUp, fadeOut, bounceIn, bounceOut, bounce } from 'ng-animate'
+import { fadeInUp, fadeIn, fadeOutUp, fadeOut, bounceIn, bounceOut, bounce, zoomIn } from 'ng-animate'
 import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
 
 interface ITileOrdering {
@@ -24,7 +24,7 @@ interface ITileOrdering {
       transition(':enter', [
         query(':enter', [
           style({opacity: 0 }),
-          stagger('50ms', [useAnimation(fadeInUp)])
+          stagger('50ms', [useAnimation(zoomIn)])
         ], { optional: true })
       ])
     ])

@@ -1,3 +1,4 @@
+using cchulo.App.PortfolioBlog.Middleware;
 using cchulo.App.PortfolioBlog.Models;
 using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
@@ -40,7 +41,7 @@ namespace cchulo.App.PortfolioBlog
             services.AddScoped<IGraphQLClient>(_ =>
                 new GraphQLHttpClient($"{config.StrapiUrl}/graphql", new NewtonsoftJsonSerializer())
             );
-
+            
             services.AddSingleton(config);
 
             services.AddHttpClient();
@@ -62,7 +63,11 @@ namespace cchulo.App.PortfolioBlog
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            app.UseMiddleware<ReverseProxyMiddleware>();
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();

@@ -1,9 +1,29 @@
-.blog-entry {
-    padding: 10px;
-}
-
 .blog-entry:hover {
     cursor: pointer;
+}
+
+.blog-entry {
+    display: flex;
+    border: 1px solid;
+    border-radius: 4px;
+    .push {
+        margin-left: auto;
+    }
+    .detail {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        
+    }
+    img {
+        display: block;
+        max-width:150px;
+        max-height:150px;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
 }
 
 mat-card-content {

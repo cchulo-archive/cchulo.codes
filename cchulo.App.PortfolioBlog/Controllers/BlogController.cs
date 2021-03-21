@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Client.Abstractions;
 using System.Collections.Generic;
+using System.IO;
 
 namespace cchulo.App.PortfolioBlog.Controllers
 {
@@ -138,6 +139,25 @@ namespace cchulo.App.PortfolioBlog.Controllers
                 HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/articles/{id}");
 
                 return Ok();
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("uploads/{file}")]
+        public async Task<IActionResult> GetUploadFromStrapi([FromRoute] string file)
+        {
+            try
+            {
+                HttpClient httpClient = _httpClientFactoryRef.CreateClient();
+
+                HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/uploads/{file}");
+
+                Stream stream = await response.Content.ReadAsStreamAsync();
+
+                return File(stream, response.Content.Headers.ContentType.MediaType);
             } catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
