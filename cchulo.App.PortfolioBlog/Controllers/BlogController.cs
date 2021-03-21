@@ -40,7 +40,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
             {
                 GraphQLRequest query = new GraphQLRequest(@"
                     query {
-                      posts(limit: 10, sort: ""published_at:desc"") {
+                      blogPosts(limit: 10, sort: ""published_at:desc"") {
                         id
                         title
                         published_at
@@ -72,7 +72,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
             {
                 GraphQLRequest query = new GraphQLRequest(@"
                     query {
-                        posts(sort: ""published_at:desc"") {
+                        blogPosts(sort: ""published_at:desc"") {
                             id
                             title
                             published_at
