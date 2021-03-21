@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "articles",
+  "collectionName": "blogs",
   "info": {
-    "name": "article",
+    "name": "blog",
     "description": ""
   },
   "options": {
@@ -35,10 +35,6 @@
       "type": "richtext",
       "required": true
     },
-    "tags": {
-      "collection": "tag",
-      "via": "articles"
-    },
     "banner": {
       "model": "file",
       "via": "related",
@@ -56,6 +52,10 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "tags": {
+      "via": "blogs",
+      "collection": "tag"
     }
   }
 }
