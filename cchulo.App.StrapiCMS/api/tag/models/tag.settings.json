@@ -15,11 +15,6 @@
       "type": "string",
       "required": true,
       "unique": true
-    },
-    "blogs": {
-      "collection": "article",
-      "via": "tags",
-      "dominant": true
     }
   }
 }
