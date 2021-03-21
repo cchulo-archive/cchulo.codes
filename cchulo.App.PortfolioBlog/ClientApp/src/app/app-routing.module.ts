@@ -8,6 +8,7 @@ import { ContactComponent } from './pages/components/contact/contact.component';
 import { BlogComponent } from './pages/components/blog/blog.component';
 import { BlogDetailComponent } from './pages/components/blog/components/blog-detail/blog-detail.component';
 import { BlogContentsComponent } from './pages/components/blog/components/blog-contents/blog-contents.component';
+import { EAnimationRouteLabels } from './core/shared/e-animation-route-labels';
 
 class ExtRoute {
   data?: ILink;
@@ -23,11 +24,11 @@ type ExtRoutes = Array<Route | ExtRoute>;
 export const routes: ExtRoutes = [
   {
     path: '', component: HomeComponent,
-    data: { label: 'Home' }
+    data: { label: EAnimationRouteLabels.Home.toString() }
   },
   {
     path: 'blog', component: BlogComponent,
-    data: { label: 'Blog' },
+    data: { label: EAnimationRouteLabels.Blog.toString() },
     children: [
       {
         path: '',
@@ -37,26 +38,26 @@ export const routes: ExtRoutes = [
       {
         path: 'contents',
         component: BlogContentsComponent,
-        data: { label: 'BlogContents' }
+        data: { label: EAnimationRouteLabels.BlogContents.toString() }
       },
       {
         path: 'detail',
         component: BlogDetailComponent,
-        data: { label: 'BlogDetail' }
+        data: { label: EAnimationRouteLabels.BlogDetail.toString() }
       }
     ]
   },
   {
     path: 'projects', component: ProjectsComponent,
-    data: { label: 'Projects' }
+    data: { label: EAnimationRouteLabels.Projects.toString() }
   },
   {
     path: 'about', component: AboutComponent,
-    data: { label: 'About' }
+    data: { label: EAnimationRouteLabels.About.toString() }
   },
   {
     path: 'contact', component: ContactComponent,
-    data: { label: 'Contact' }
+    data: { label: EAnimationRouteLabels.Contact.toString() }
   }
 ];
 

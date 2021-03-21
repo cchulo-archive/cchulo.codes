@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ClientWindowService } from 'src/app/core/services/client-window.service';
 import { ClientSettingsService } from 'src/app/core/services/client-settings.service';
 import { Unsubscribable } from 'rxjs';
-import { EWindow, ETheme, ILink } from './core/shared/common';
+import { EWindow, ETheme, ILink, prepareRoute } from './core/shared/common';
 import { NavService } from './core/services/nav.service';
 import { RouterOutlet } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
@@ -17,7 +17,7 @@ import { fadeAnimation } from './core/shared/shared-animations';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  links = this._navService.links;
+  
 
   private _clientWindowSub: Unsubscribable;
   private _clientSettingSub: Unsubscribable;
@@ -30,8 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly _darkThemeClass = 'dark-theme';
   private readonly _lightThemeClass = 'light-theme';
   
+  links = this._navService.links;
   isMobileSize = false;
   isDarkTheme = false;
+  prepareRoute = prepareRoute;
 
   constructor(
     private _clientWindowService: ClientWindowService,
@@ -94,9 +96,5 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this._clientSettingService.setTheme(ETheme.dark);
     }
-  }
-
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['label'];
   }
 }

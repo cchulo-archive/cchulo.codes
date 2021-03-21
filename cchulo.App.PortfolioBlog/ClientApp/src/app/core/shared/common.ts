@@ -1,3 +1,4 @@
+import { RouterOutlet } from '@angular/router';
 import * as _ from 'lodash-es';
 
 /**
@@ -24,4 +25,8 @@ export interface ILink {
 
 export function getValuesFromStringEnum<T>(e: T): Array<string> {
     return _.filter(_.map(_.keys(e), key => e[key]), value => _.isString(value));
+}
+
+export function prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['label'];
 }
