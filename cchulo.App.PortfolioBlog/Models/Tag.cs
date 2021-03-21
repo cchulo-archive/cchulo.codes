@@ -11,7 +11,7 @@ namespace cchulo.App.PortfolioBlog.Models
 
         public string Name { get; set; }
 
-        public List<Article> Articles { get; set; }
+        public List<BlogPost> BlogPosts { get; set; }
     }
 
     public class TagsType

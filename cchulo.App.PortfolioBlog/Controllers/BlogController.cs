@@ -55,7 +55,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
 
                 GraphQLResponse<ArticlesType> response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
 
-                return Ok(response.Data.Articles ?? new List<Article>());
+                return Ok(response.Data.Articles ?? new List<BlogPost>());
 
             }
             catch (Exception ex)

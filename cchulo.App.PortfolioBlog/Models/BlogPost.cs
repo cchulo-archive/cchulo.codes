@@ -6,7 +6,7 @@ namespace cchulo.App.PortfolioBlog.Models
 {
     
     [ExportTsClass]
-    public class Article
+    public class BlogPost
     {
         public int Id { get; set; }
 
@@ -30,6 +30,6 @@ namespace cchulo.App.PortfolioBlog.Models
 
     public class ArticlesType
     {
-        public List<Article> Articles { get; set; }
+        public List<BlogPost> Articles { get; set; }
     }
 }
