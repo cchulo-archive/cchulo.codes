@@ -3,6 +3,7 @@
  * Any changes made to this file can be lost when this file is regenerated.
  */
 
+import { UploadFile } from "./upload-file";
 import { Tag } from "./tag";
 
 export class BlogPost {
@@ -11,8 +12,8 @@ export class BlogPost {
     publishedAt: string;
     description: string;
     contents: string;
-    banner: string;
-    resources: string[];
-    downloadable: string[];
+    banner: UploadFile;
+    resources: UploadFile[];
+    downloadable: UploadFile[];
     tags: Tag[];
 }

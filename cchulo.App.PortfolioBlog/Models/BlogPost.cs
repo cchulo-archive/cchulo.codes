@@ -19,11 +19,11 @@ namespace cchulo.App.PortfolioBlog.Models
 
         public string Contents { get; set; }
 
-        public string Banner { get; set; }
+        public UploadFile Banner { get; set; }
 
-        public List<string> Resources { get; set; }
+        public List<UploadFile> Resources { get; set; }
 
-        public List<string> Downloadable { get; set; }
+        public List<UploadFile> Downloadable { get; set; }
 
         public List<Tag> Tags { get; set; }
     }

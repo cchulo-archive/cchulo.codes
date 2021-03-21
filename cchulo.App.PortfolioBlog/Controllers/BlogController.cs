@@ -45,7 +45,9 @@ namespace cchulo.App.PortfolioBlog.Controllers
                         title
                         published_at
                         description
-                        banner
+                        banner {
+                          url
+                        }
                         tags {
                           id
                           name
@@ -78,7 +80,9 @@ namespace cchulo.App.PortfolioBlog.Controllers
                             title
                             published_at
                             description
-                            banner
+                            banner {
+                              url
+                            }
                             tags {
                               id
                               name
