@@ -9,6 +9,8 @@ import { CoreModule } from '../core/core.module';
 import { BlogEntryComponent } from './components/shared/blog-entry/blog-entry.component';
 import { BlogFilterPipe } from './components/blog/pipes/blog-filter.pipe';
 import { BlogDetailComponent } from './components/blog/components/blog-detail/blog-detail.component';
+import { BlogContentsComponent } from './components/blog/components/blog-contents/blog-contents.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,10 +23,12 @@ import { BlogDetailComponent } from './components/blog/components/blog-detail/bl
     BlogComponent,
     BlogEntryComponent,
     BlogFilterPipe,
-    BlogDetailComponent
+    BlogDetailComponent,
+    BlogContentsComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     CoreModule
   ]
 })

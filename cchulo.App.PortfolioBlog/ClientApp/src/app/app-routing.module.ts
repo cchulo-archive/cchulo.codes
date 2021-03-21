@@ -7,6 +7,7 @@ import { ProjectsComponent } from './pages/components/projects/projects.componen
 import { ContactComponent } from './pages/components/contact/contact.component';
 import { BlogComponent } from './pages/components/blog/blog.component';
 import { BlogDetailComponent } from './pages/components/blog/components/blog-detail/blog-detail.component';
+import { BlogContentsComponent } from './pages/components/blog/components/blog-contents/blog-contents.component';
 
 class ExtRoute {
   data?: ILink;
@@ -28,6 +29,16 @@ export const routes: ExtRoutes = [
     path: 'blog', component: BlogComponent,
     data: { label: 'Blog' },
     children: [
+      {
+        path: '',
+        redirectTo: 'contents',
+        pathMatch: 'full'
+      },
+      {
+        path: 'contents',
+        component: BlogContentsComponent,
+        data: { label: 'BlogContents' }
+      },
       {
         path: 'detail',
         component: BlogDetailComponent,

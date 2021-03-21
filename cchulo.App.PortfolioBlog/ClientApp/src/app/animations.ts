@@ -1,5 +1,6 @@
 import { animateChild, group, query, style, transition, trigger, useAnimation } from "@angular/animations";
 import { bounceIn, zoomOut } from "ng-animate";
+import * as _ from 'lodash-es';
 
 let animation = [
     style({position: 'relative'}), // per the docs, the host view needs to be relative
@@ -27,7 +28,12 @@ trigger('routeAnimation', [
     transition('Home <=> *', animation),
     transition('Blog <=> *', animation),
     transition('BlogDetail <=> *', animation),
+    transition('BlogContents <=> *', animation),
     transition('Projects <=> *', animation),
     transition('Abount <=> *', animation),
     transition('Contact <=> *', animation),
 ]);
+
+export const constructFadeAnimation = (details: Array<string>) => {
+    return trigger('routeAnimation', _.map(details, str => transition(`${str} <=> *`, animation)))
+}

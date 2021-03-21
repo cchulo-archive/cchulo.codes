@@ -1,0 +1,42 @@
+<div style="padding-top: 50px; width: 100%; margin: auto;">
+    <h1 class="mat-h1">Blog Entries</h1>
+    <mat-divider></mat-divider>
+
+    <ng-container *ngIf="ready; else notReady">
+        <mat-form-field style="width: 100%; margin: 10px;" @fadeIn>
+            <mat-label>Filter</mat-label>
+            <input matInput #input>
+        </mat-form-field>
+
+
+        <mat-chip-list
+            class="tags-list"
+            @fadeInTags
+            [selectable]="true"
+            [multiple]="true"
+        >
+            <mat-chip
+                class="no-select"
+                style="text-align: center;"
+                *ngFor="let tag of tags"
+                [selectable]="true"
+                (click)="select(tag.name)"
+                [selected]="filterTags[tag.name] ? filterTags[tag.name] : false"
+            >
+                {{tag.name}}
+            </mat-chip>
+        </mat-chip-list>
+
+        <div @fadeInUpBlogs>
+            <div  *ngFor="let article of articlesToShow; let i = index">
+                <app-blog-entry
+                    [blogEntry]="article"
+                ></app-blog-entry>
+            </div>
+        </div>
+
+    </ng-container>
+    <ng-template #notReady>
+        <mat-spinner style="margin: auto;"></mat-spinner>
+    </ng-template>
+</div>

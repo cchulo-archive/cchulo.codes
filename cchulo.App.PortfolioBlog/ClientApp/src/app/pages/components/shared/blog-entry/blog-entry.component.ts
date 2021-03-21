@@ -16,8 +16,9 @@ export class BlogEntryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  redirect() {
-    this.router.navigate(['blog', 'detail']);
+  async redirect() {
+    const result = await this.router.navigate(['blog', 'detail']);
+    console.log(result);
   }
 
 }
