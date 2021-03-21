@@ -40,7 +40,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
             {
                 GraphQLRequest query = new GraphQLRequest(@"
                     query {
-                      articles(limit: 10, sort: ""published_at:desc"") {
+                      posts(limit: 10, sort: ""published_at:desc"") {
                         id
                         title
                         published_at
@@ -53,9 +53,9 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                GraphQLResponse<PostsType> response = await _graphQLClientRef.SendQueryAsync<PostsType>(query);
+                GraphQLResponse<BlogPostsType> response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
 
-                return Ok(response.Data.Posts ?? new List<Post>());
+                return Ok(response.Data.BlogPosts ?? new List<BlogPost>());
 
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
             {
                 GraphQLRequest query = new GraphQLRequest(@"
                     query {
-                        articles(sort: ""published_at:desc"") {
+                        posts(sort: ""published_at:desc"") {
                             id
                             title
                             published_at
@@ -85,9 +85,9 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                GraphQLResponse<PostsType> response = await _graphQLClientRef.SendQueryAsync<PostsType>(query);
+                GraphQLResponse<BlogPostsType> response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
 
-                return Ok(response.Data.Posts);
+                return Ok(response.Data.BlogPosts);
 
             } catch (Exception ex)
             {

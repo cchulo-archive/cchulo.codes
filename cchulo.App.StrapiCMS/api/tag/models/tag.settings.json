@@ -16,8 +16,8 @@
       "required": true,
       "unique": true
     },
-    "posts": {
-      "collection": "post",
+    "blog_posts": {
+      "collection": "blog-post",
       "via": "tags",
       "dominant": true
     }

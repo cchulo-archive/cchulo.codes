@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Article } from 'src/models/article';
+import { BlogPost } from 'src/models/blog-post';
 import { Tag } from 'src/models/tag';
 
 @Injectable({
@@ -14,11 +13,11 @@ export class BlogService {
   constructor(private _httpClient: HttpClient) {}
 
   public async latestArticles() {
-    return this._httpClient.get<Array<Article>>(`${this._url}/latest`).toPromise();
+    return this._httpClient.get<Array<BlogPost>>(`${this._url}/latest`).toPromise();
   }
 
   public async allArticles() {
-    return this._httpClient.get<Array<Article>>(this._url).toPromise();
+    return this._httpClient.get<Array<BlogPost>>(this._url).toPromise();
   }
 
   public async tags() {
@@ -26,6 +25,6 @@ export class BlogService {
   }
 
   public async fullArticle(id: number) {
-    return this._httpClient.get<Article>(`${this._url}/article/${id}}`).toPromise();
+    return this._httpClient.get<BlogPost>(`${this._url}/article/${id}}`).toPromise();
   }
 }

@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "posts",
+  "collectionName": "blog_posts",
   "info": {
-    "name": "post"
+    "name": "BlogPost"
   },
   "options": {
     "increments": true,
@@ -54,7 +54,7 @@
       "required": false
     },
     "tags": {
-      "via": "posts",
+      "via": "blog_posts",
       "collection": "tag"
     }
   }
