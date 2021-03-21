@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { Article } from 'src/models/article';
 
 @Component({
-  selector: 'app-blog-entry',
-  templateUrl: './blog-entry.component.html',
-  styleUrls: ['./blog-entry.component.scss']
+  selector: 'app-blog-banner',
+  templateUrl: './blog-banner.component.html',
+  styleUrls: ['./blog-banner.component.scss']
 })
-export class BlogEntryComponent implements OnInit {
+export class BlogBannerComponent implements OnInit {
 
-  @Input() blogEntry: Article;
+  @Input() blogPost: Article;
 
   constructor(private router: Router) { }
 

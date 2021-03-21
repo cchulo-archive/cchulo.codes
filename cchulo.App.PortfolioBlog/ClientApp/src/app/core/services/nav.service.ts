@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { routes } from 'src/app/app-routing.module';
 import { ILink } from '../shared/common';
-import { Route, Router, RouteConfigLoadStart, RouteConfigLoadEnd, NavigationStart, NavigationEnd } from '@angular/router';
+import { Route, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subscribable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -25,6 +25,7 @@ export class NavService {
 
     for(let routeIndex = 0; routeIndex < routes.length; routeIndex++) {
       const curr = routes[routeIndex];
+      if (curr.navServiceSkip) { continue; }
       const link = curr.data as ILink;
       if (link === null || link == undefined) { continue; }
       const route = curr as Route;

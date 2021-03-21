@@ -29,9 +29,9 @@
 
         <div @fadeInUpBlogs>
             <div  *ngFor="let article of articlesToShow; let i = index">
-                <app-blog-entry
-                    [blogEntry]="article"
-                ></app-blog-entry>
+                <app-blog-banner
+                    [blogPost]="article"
+                ></app-blog-banner>
             </div>
         </div>
 

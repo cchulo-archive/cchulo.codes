@@ -25,9 +25,9 @@
     <ng-container *ngIf="blogEntriesComplete; else waitingForBlogs">
         <div @fadeInUp *ngIf="blogUpdates !== null && blogUpdates.length !== 0; else noBlogs">
             <div *ngFor="let blogUpdate of blogUpdates">
-                <app-blog-entry
-                    [blogEntry]="blogUpdate"
-                ></app-blog-entry>
+                <app-blog-banner
+                    [blogPost]="blogUpdate"
+                ></app-blog-banner>
             </div>
         </div>
         <ng-template #noBlogs>

@@ -4,10 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { BlogComponent } from './components/blog/blog.component';
 import { CoreModule } from '../core/core.module';
-import { BlogEntryComponent } from './components/shared/blog-entry/blog-entry.component';
-import { BlogFilterPipe } from './components/blog/pipes/blog-filter.pipe';
+import { BlogBannerComponent } from './components/shared/blog-banner/blog-banner.component';
 import { BlogDetailComponent } from './components/blog/components/blog-detail/blog-detail.component';
 import { BlogContentsComponent } from './components/blog/components/blog-contents/blog-contents.component';
 import { RouterModule } from '@angular/router';
@@ -20,9 +18,7 @@ import { RouterModule } from '@angular/router';
     AboutComponent,
     ProjectsComponent,
     ContactComponent,
-    BlogComponent,
-    BlogEntryComponent,
-    BlogFilterPipe,
+    BlogBannerComponent,
     BlogDetailComponent,
     BlogContentsComponent
   ],
