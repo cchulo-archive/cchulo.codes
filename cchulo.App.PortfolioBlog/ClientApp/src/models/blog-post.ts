@@ -5,7 +5,7 @@
 
 import { Tag } from "./tag";
 
-export class Post {
+export class BlogPost {
     id: number;
     title: string;
     publishedAt: string;
