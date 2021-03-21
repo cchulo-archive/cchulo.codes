@@ -7,7 +7,7 @@ import { NavService } from './core/services/nav.service';
 import { RouterOutlet } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { fadeAnimation } from './animations';
+import { fadeAnimation } from './core/shared/shared-animations';
 
 @Component({
   selector: 'app-root',

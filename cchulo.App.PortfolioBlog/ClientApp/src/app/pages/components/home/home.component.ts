@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
     });
 
     try {
-      await this.getBlogUpdates();
+      await this._getBlogUpdates();
       this.blogEntriesComplete = true;
     } catch (err) {
       console.error(err);
@@ -99,17 +99,13 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
     }
   }
 
-  async getBlogUpdates() {
+  private async _getBlogUpdates() {
     try {
       this.blogUpdates = await this._blogService.latestArticles();
     } catch (err) {
       console.error(err);
-      this.blogUpdates = [];
+      this.blogUpdates = null;
     }
-  }
-
-  goToBlogArticle(article: Article) {
-    console.log('going to blog', article);
   }
 
 }

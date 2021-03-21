@@ -1,3 +1,5 @@
+import * as _ from 'lodash-es';
+
 /**
  * This type will be used in client-window.service to
  * notify the UI what the current window width is
@@ -18,4 +20,8 @@ export enum ETheme {
 export interface ILink {
     label: string;
     path?: string;
+}
+
+export function getValuesFromStringEnum<T>(e: T): Array<string> {
+    return _.filter(_.map(_.keys(e), key => e[key]), value => _.isString(value));
 }

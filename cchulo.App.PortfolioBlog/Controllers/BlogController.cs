@@ -1,14 +1,12 @@
 ﻿using cchulo.App.PortfolioBlog.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using GraphQL.Client.Http;
-using GraphQL.Client.Serializer.Newtonsoft;
 using GraphQL;
 using GraphQL.Client.Abstractions;
+using System.Collections.Generic;
 
 namespace cchulo.App.PortfolioBlog.Controllers
 {
@@ -57,7 +55,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
 
                 GraphQLResponse<ArticlesType> response = await _graphQLClientRef.SendQueryAsync<ArticlesType>(query);
 
-                return Ok(response.Data.Articles);
+                return Ok(response.Data.Articles ?? new List<Article>());
 
             }
             catch (Exception ex)

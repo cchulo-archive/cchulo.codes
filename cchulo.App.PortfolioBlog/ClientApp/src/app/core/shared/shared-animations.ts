@@ -1,6 +1,8 @@
 import { animateChild, group, query, style, transition, trigger, useAnimation } from "@angular/animations";
 import { bounceIn, zoomOut } from "ng-animate";
 import * as _ from 'lodash-es';
+import { EAnimationRouteLabels } from "./e-animation-route-labels";
+import { getValuesFromStringEnum } from "./common";
 
 let animation = [
     style({position: 'relative'}), // per the docs, the host view needs to be relative
@@ -23,17 +25,8 @@ let animation = [
     query(':enter', query('@*', animateChild(), { optional: true }),) // play animations for the new view
 ];
 
-export const fadeAnimation = 
-trigger('routeAnimation', [
-    transition('Home <=> *', animation),
-    transition('Blog <=> *', animation),
-    transition('BlogDetail <=> *', animation),
-    transition('BlogContents <=> *', animation),
-    transition('Projects <=> *', animation),
-    transition('Abount <=> *', animation),
-    transition('Contact <=> *', animation),
-]);
-
-export const constructFadeAnimation = (details: Array<string>) => {
+const constructFadeAnimation = (details: Array<string>) => {
     return trigger('routeAnimation', _.map(details, str => transition(`${str} <=> *`, animation)))
 }
+
+export const fadeAnimation = constructFadeAnimation(getValuesFromStringEnum(EAnimationRouteLabels));
