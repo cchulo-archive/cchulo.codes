@@ -4,5 +4,7 @@
         <h2 class="mat-h2">{{post.description}}</h2>
         <h3 class="mat-h3">{{post.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</h3>
     </div>
-    <mat-divider></mat-divider>
+    
+    <markdown [data]="post.contents">
+    </markdown>
 </ng-container>

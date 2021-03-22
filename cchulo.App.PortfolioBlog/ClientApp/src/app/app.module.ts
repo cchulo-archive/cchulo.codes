@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     NgScrollbarModule,
     CoreModule,
-    PagesModule
+    PagesModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

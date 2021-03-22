@@ -9,6 +9,7 @@ import { BlogBannerComponent } from './components/shared/blog-banner/blog-banner
 import { BlogDetailComponent } from './components/blog/components/blog-detail/blog-detail.component';
 import { BlogContentsComponent } from './components/blog/components/blog-contents/blog-contents.component';
 import { RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 
@@ -25,7 +26,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-    CoreModule
+    CoreModule,
+    MarkdownModule.forChild()
   ]
 })
 export class PagesModule { }
