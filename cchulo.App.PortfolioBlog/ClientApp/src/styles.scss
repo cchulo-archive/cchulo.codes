@@ -9,7 +9,7 @@
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, monospace',
   $headline: mat-typography-level(26px, 42px, 700),
-  $body-1: mat-typography-level(18px, 24px, 500)
+  $body-1: mat-typography-level(16px, 22px, 500)
 );
 
 @include mat-core($custom-typography);
@@ -47,7 +47,7 @@ markdown {
   display: flex;
   flex-direction: column;
   pre {
-    width: 90%;
+    width: 70%;
     align-self: center;
     font-size: 14px !important;
   }
