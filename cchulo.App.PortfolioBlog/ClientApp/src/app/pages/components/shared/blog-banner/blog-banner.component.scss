@@ -14,15 +14,21 @@
         display: flex;
         flex-direction: column;
         text-align: center;
+        margin-right: 20px;
         
     }
-    img {
-        display: block;
-        max-width:150px;
-        max-height:150px;
-        width: 100%;
-        height: 100%;
+    .circle-wrapper {
+        min-height: 100px;
+        min-width: 100px;
+        height: 100px;
+        width: 100px;
+        overflow: hidden;
         border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        align-self: center;
+        margin-left: 20px;
     }
 }
 

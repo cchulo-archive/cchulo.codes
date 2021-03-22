@@ -1,7 +1,5 @@
 <div class="blog-entry" (click)="redirect()">
-    <div style="align-self: center; height: 100%;">
-        <img src="{{blogPost.banner.url}}" alt="">
-    </div>
+    <div class="circle-wrapper" [ngStyle]="{'background-image': 'url(\'' + blogPost.banner.url + '\')'}">.</div>
     <div class="detail">
         <h2 class="mat-h2">{{blogPost.title}}</h2>
         <h2 class="mat-h2">{{blogPost.description}}</h2>
