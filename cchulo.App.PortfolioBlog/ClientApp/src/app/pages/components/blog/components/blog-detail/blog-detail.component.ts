@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Unsubscribable } from 'rxjs';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
+import { MarkdownService } from 'ngx-markdown'
 
 @Component({
   selector: 'app-blog-detail',
@@ -19,14 +20,18 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private _route: ActivatedRoute,
-    private _blogService: BlogService) { }
+    private _blogService: BlogService,
+    private _markdownService: MarkdownService) { }
 
   ngOnInit(): void {
+
+    this._markdownService.renderer.image = (href: string, title: string, text: string) => {
+      return `<img class="img-helper" src="${href}" alt="${text}" />`;
+    }
     this.paramSub = this._route.paramMap.subscribe(async params => {
       const id = params.get('id');
       try {
         this.post = await this._blogService.fullBlogPost(Number.parseInt(id));
-        console.log(this.post);
         this.ready = true;
       } catch (err) {
         console.error(err);

@@ -1,6 +1,9 @@
 <ng-container *ngIf="ready">
-    <div class="header" [ngStyle]="{ 'background': 'url(\'' + post.banner.url + '\')'}">
-        <div>
+    <div class="header" [ngStyle]="{
+        'background': 'linear-gradient(to right, transparent, black), url(\'' + post.banner.url + '\') center center no-repeat'
+    }">
+    <!-- <div class="header"> -->
+        <div class="header-info">
             <h1 class="mat-h1">{{post.title}}</h1>
             <h2 class="mat-h2">{{post.description}}</h2>
             <h3 class="mat-h3">{{post.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</h3>
@@ -8,7 +11,7 @@
     </div>
     
     <div class="content">
-        <markdown [data]="post.contents">
+        <markdown class="override" [data]="post.contents">
         </markdown>
     </div>
 </ng-container>
