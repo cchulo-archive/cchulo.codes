@@ -38,3 +38,6 @@ $custom-typography: mat-typography-config(
 
 html, body { height: 100%; }
 body { margin: 0; }
+.ng-scroll-content {
+  height: 100% !important;
+}

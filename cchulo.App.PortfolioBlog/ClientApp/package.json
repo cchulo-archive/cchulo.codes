@@ -24,6 +24,7 @@
     "@angular/service-worker": "~11.2.1",
     "lodash-es": "^4.17.20",
     "ng-animate": "^1.0.0",
+    "ngx-markdown": "^11.1.2",
     "ngx-scrollbar": "^7.5.4",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.6.3",

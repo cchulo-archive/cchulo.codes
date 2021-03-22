@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Unsubscribable } from 'rxjs';
 import { BlogService } from 'src/app/core/services/blog.service';
+import { BlogPost } from 'src/models/blog-post';
 
 @Component({
   selector: 'app-blog-detail',
@@ -14,6 +15,8 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 
   paramSub: Unsubscribable;
 
+  post: BlogPost;
+
   constructor(
     private _route: ActivatedRoute,
     private _blogService: BlogService) { }
@@ -22,8 +25,8 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
     this.paramSub = this._route.paramMap.subscribe(async params => {
       const id = params.get('id');
       try {
-        const post = await this._blogService.fullBlogPost(Number.parseInt(id));
-        console.log(post);
+        this.post = await this._blogService.fullBlogPost(Number.parseInt(id));
+        console.log(this.post);
         this.ready = true;
       } catch (err) {
         console.error(err);

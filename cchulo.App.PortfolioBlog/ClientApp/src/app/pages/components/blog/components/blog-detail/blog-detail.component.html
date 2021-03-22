@@ -1,1 +1,7 @@
-<p>blog-detail works!</p>
+<ng-container *ngIf="ready">
+    <div>
+        <h1>{{post.title}}</h1>
+        <h2>{{post.description}}</h2>
+        <h6>{{post.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</h6>
+    </div>
+</ng-container>
