@@ -8,8 +8,8 @@
 
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, monospace',
-  $headline: mat-typography-level(36px, 52px, 700),
-  $body-1: mat-typography-level(20px, 28px, 500)
+  $headline: mat-typography-level(26px, 42px, 700),
+  $body-1: mat-typography-level(18px, 24px, 500)
 );
 
 @include mat-core($custom-typography);
@@ -42,11 +42,17 @@ body { margin: 0; }
   height: 100% !important;
 }
 
-.img-helper {
-  width: 100%;
-  height: auto;
-}
 
-pre {
-  width: 50%;
+markdown {
+  display: flex;
+  flex-direction: column;
+  pre {
+    width: 100%;
+    align-self: center;
+    font-size: 14px !important;
+  }
+  .img-helper {
+    width: 100%;
+    height: auto;
+  }
 }
