@@ -1,10 +1,14 @@
 <ng-container *ngIf="ready">
-    <div style="width: 100%; text-align: center; padding-top: 25px;">
-        <h1 class="mat-h1">{{post.title}}</h1>
-        <h2 class="mat-h2">{{post.description}}</h2>
-        <h3 class="mat-h3">{{post.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</h3>
+    <div class="header" [ngStyle]="{ 'background': 'url(\'' + post.banner.url + '\')'}">
+        <div>
+            <h1 class="mat-h1">{{post.title}}</h1>
+            <h2 class="mat-h2">{{post.description}}</h2>
+            <h3 class="mat-h3">{{post.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</h3>
+        </div>
     </div>
     
-    <markdown [data]="post.contents">
-    </markdown>
+    <div class="content">
+        <markdown [data]="post.contents">
+        </markdown>
+    </div>
 </ng-container>
