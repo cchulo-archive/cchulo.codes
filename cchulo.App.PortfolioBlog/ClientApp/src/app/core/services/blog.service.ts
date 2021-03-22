@@ -25,6 +25,6 @@ export class BlogService {
   }
 
   public async fullBlogPost(id: number) {
-    return this._httpClient.get<BlogPost>(`${this._url}/full-blog-post/${id}}`).toPromise();
+    return this._httpClient.get<BlogPost>(`${this._url}/full-blog-post/${id}`).toPromise();
   }
 }

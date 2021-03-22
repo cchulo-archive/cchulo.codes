@@ -8,6 +8,7 @@ using GraphQL;
 using GraphQL.Client.Abstractions;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace cchulo.App.PortfolioBlog.Controllers
 {
@@ -136,28 +137,17 @@ namespace cchulo.App.PortfolioBlog.Controllers
             {
                 HttpClient httpClient = _httpClientFactoryRef.CreateClient();
 
-                HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/articles/{id}");
+                HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/blog-posts/{id}");
 
-                return Ok();
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-                return BadRequest();
-            }
-        }
-
-        [HttpGet("uploads/{file}")]
-        public async Task<IActionResult> GetUploadFromStrapi([FromRoute] string file)
-        {
-            try
-            {
-                HttpClient httpClient = _httpClientFactoryRef.CreateClient();
-
-                HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/uploads/{file}");
-
-                Stream stream = await response.Content.ReadAsStreamAsync();
-
-                return File(stream, response.Content.Headers.ContentType.MediaType);
+                if (response != null)
+                {
+                    string jsonStr = await response.Content.ReadAsStringAsync();
+                    BlogPost post = JsonConvert.DeserializeObject<BlogPost>(jsonStr);
+                    return Ok(post);
+                } else
+                {
+                    return NotFound();
+                }
             } catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
