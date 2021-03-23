@@ -38,19 +38,17 @@ $custom-typography: mat-typography-config(
 
 html, body { height: 100%; }
 body { margin: 0; }
+
 .ng-scroll-content {
   height: 100% !important;
+  width: 100% !important;
 }
 
 
-markdown {
+.override {
   display: flex;
   flex-direction: column;
-  pre {
-    width: 70%;
-    align-self: center;
-    font-size: 14px !important;
-  }
+  margin: 20px;
   .img-helper {
     width: 100%;
     height: auto;
