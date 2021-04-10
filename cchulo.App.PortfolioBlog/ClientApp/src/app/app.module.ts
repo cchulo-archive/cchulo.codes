@@ -10,6 +10,9 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MarkdownModule } from 'ngx-markdown';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faLinkedin, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +26,20 @@ import { MarkdownModule } from 'ngx-markdown';
     NgScrollbarModule,
     CoreModule,
     PagesModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private _library: FaIconLibrary) {
+    _library.addIcons(
+      faLinkedin,
+      faInstagram,
+      faGithub
+    );
+  }
+
+}
