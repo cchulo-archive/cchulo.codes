@@ -3,8 +3,6 @@ import { RouterModule, Route } from '@angular/router';
 import { HomeComponent } from './pages/components/home/home.component';
 import { AboutComponent } from './pages/components/about/about.component';
 import { ILink } from './core/shared/common';
-import { ProjectsComponent } from './pages/components/projects/projects.component';
-import { ContactComponent } from './pages/components/contact/contact.component';
 import { BlogDetailComponent } from './pages/components/blog/components/blog-detail/blog-detail.component';
 import { BlogContentsComponent } from './pages/components/blog/components/blog-contents/blog-contents.component';
 import { ERouteLabels } from './core/shared/e-route-labels';
@@ -38,16 +36,8 @@ export const routes: ExtRoutes = [
     navServiceSkip: true
   },
   {
-    path: 'projects', component: ProjectsComponent,
-    data: { label: ERouteLabels.Projects.toString() }
-  },
-  {
     path: 'about', component: AboutComponent,
     data: { label: ERouteLabels.About.toString() }
-  },
-  {
-    path: 'contact', component: ContactComponent,
-    data: { label: ERouteLabels.Contact.toString() }
   }
 ];
 
