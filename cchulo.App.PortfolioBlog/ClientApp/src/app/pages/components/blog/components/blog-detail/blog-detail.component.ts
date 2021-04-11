@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Unsubscribable } from 'rxjs';
+import { timer, Unsubscribable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
 import { MarkdownService } from 'ngx-markdown';
@@ -9,6 +10,7 @@ import { transition, trigger, useAnimation } from '@angular/animations';
 import { saveAs } from 'file-saver';
 import * as _ from 'lodash-es';
 import { FileSavingService } from 'src/app/core/services/file-saving.service';
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 @Component({
   selector: 'app-blog-detail',
@@ -28,6 +30,7 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
   ready = false;
 
   paramSub: Unsubscribable;
+  ccSub: Unsubscribable;
 
   post: BlogPost;
 
@@ -37,15 +40,26 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _blogService: BlogService,
     private _markdownService: MarkdownService,
-    private _fileSavingService: FileSavingService) { }
+    private _fileSavingService: FileSavingService,
+    private _ccService: NgcCookieConsentService) { }
 
   ngOnInit(): void {
+
+    
 
     this._markdownService.renderer.image = (href: string, title: string, text: string) => {
       return `<img class="img-helper" src="${href}" alt="${text}" />`;
     };
 
     this._markdownService.renderer.html = (html: string) => {
+      if (!this._ccService.hasConsented()) {
+        return `
+        <div style="width: 100%; border-color: red; border-style: solid; height: 315px; display: flex; justify-content: center;">
+          <h3 class="mat-h3" style="align-self: center">Third party iframes disabled until you accept cookies (if accepted you may need to refresh the page)</h3>
+        </div>
+        `;
+      }
+
       return html;
     };
 
@@ -54,6 +68,7 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
       try {
         this.post = await this._blogService.fullBlogPost(Number.parseInt(id));
         this.ready = true;
+        this.initCCCheck();
       } catch (err) {
         console.error(err);
       }
@@ -61,9 +76,8 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.paramSub) {
-      this.paramSub.unsubscribe();
-    }
+    this.paramSub?.unsubscribe();
+    this.ccSub?.unsubscribe();
   }
 
   async downloadFile(url: string) {
@@ -76,4 +90,12 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
     this.busy = false;
   }
 
+  initCCCheck() {
+    this.ccSub = this._ccService.statusChange$.subscribe(() => {
+      this.ready = false;
+      timer(5000).pipe(take(1)).subscribe(() => this.ready = true);
+    });
+  }
+
 }
+

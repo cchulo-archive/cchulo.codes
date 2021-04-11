@@ -9,6 +9,7 @@ import { BlogContentsComponent } from './components/blog/components/blog-content
 import { RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgcCookieConsentModule } from 'ngx-cookieconsent';
 
 
 
@@ -25,7 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RouterModule,
     CoreModule,
     FontAwesomeModule,
-    MarkdownModule.forChild()
+    MarkdownModule.forChild(),
+    NgcCookieConsentModule
   ]
 })
 export class PagesModule { }
