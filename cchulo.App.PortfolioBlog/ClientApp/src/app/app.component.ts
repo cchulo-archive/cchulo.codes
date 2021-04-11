@@ -6,17 +6,17 @@ import { EWindow, ETheme, prepareRoute } from './core/shared/common';
 import { NavService } from './core/services/nav.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { fadeAnimation } from './core/shared/shared-animations';
+import { routingFadeAnimation } from './core/shared/shared-animations';
+
+type TMode = 'determinate' | 'indeterminate';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fadeAnimation]
+  animations: [routingFadeAnimation]
 })
 export class AppComponent implements OnInit, OnDestroy {
-
-  
 
   private _clientWindowSub: Unsubscribable;
   private _clientSettingSub: Unsubscribable;
@@ -33,6 +33,8 @@ export class AppComponent implements OnInit, OnDestroy {
   isMobileSize = false;
   isDarkTheme = false;
   prepareRoute = prepareRoute;
+
+  mode: TMode = 'determinate';
 
   constructor(
     private _clientWindowService: ClientWindowService,
@@ -80,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private initIcons() {
+  private initIcons(): void {
     for (let index = 0; index < this._svgIcons.length; index++) {
       const name = this._svgIcons[index];
       if (!name) { continue; }
@@ -89,7 +91,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleTheme() {
+  toggleTheme(): void {
     if (this.isDarkTheme) {
       this._clientSettingService.setTheme(ETheme.light);
     } else {

@@ -1,5 +1,5 @@
-<ng-container *ngIf="ready">
-    <div class="header" [ngStyle]="{
+<ng-container *ngIf="ready; else notReady">
+    <div @fadeInBanner class="header" [ngStyle]="{
         'background': 'linear-gradient(to right, transparent, black), url(\'' + post.banner.url + '\') center center no-repeat'
     }">
         <div class="header-info">
@@ -19,3 +19,9 @@
         </div>
     </div>
 </ng-container>
+
+<ng-template #notReady>
+    <div style="margin-top: 20px;">
+        <mat-spinner style="margin: auto;"></mat-spinner>
+    </div>
+</ng-template>

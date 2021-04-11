@@ -3,12 +3,19 @@ import { ActivatedRoute } from '@angular/router';
 import { Unsubscribable } from 'rxjs';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
-import { MarkdownService } from 'ngx-markdown'
+import { MarkdownService } from 'ngx-markdown';
+import { fadeIn } from 'ng-animate';
+import { transition, trigger, useAnimation } from '@angular/animations';
 
 @Component({
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
-  styleUrls: ['./blog-detail.component.scss']
+  styleUrls: ['./blog-detail.component.scss'],
+  animations: [
+    trigger('fadeInBanner', [
+      transition(':enter', useAnimation(fadeIn))
+    ])
+  ]
 })
 export class BlogDetailComponent implements OnInit, OnDestroy {
 

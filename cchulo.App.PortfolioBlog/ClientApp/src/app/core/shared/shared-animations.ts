@@ -29,4 +29,4 @@ const constructFadeAnimation = (details: Array<string>) => {
     return trigger('routeAnimation', _.map(details, str => transition(`${str} <=> *`, animation)))
 }
 
-export const fadeAnimation = constructFadeAnimation(getValuesFromStringEnum(ERouteLabels));
+export const routingFadeAnimation = constructFadeAnimation(getValuesFromStringEnum(ERouteLabels));
