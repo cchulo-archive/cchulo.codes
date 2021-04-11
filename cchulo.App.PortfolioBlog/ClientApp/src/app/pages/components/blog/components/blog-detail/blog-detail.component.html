@@ -14,10 +14,23 @@
         </div>
     </div>
     
-    <div class="content">
+    <div class="content" @fadeInContent>
         <div markdown class="override" lineNumbers [data]="post.contents">
         </div>
+
+        <ng-container *ngIf="post.downloadable && post.downloadable.length > 0">
+            <mat-divider></mat-divider>
+            <mat-list>
+                <mat-list-item class="link-item" *ngFor="let download of post.downloadable">
+                    <mat-icon mat-list-icon>download</mat-icon>
+                    <div mat-line>{{download.url}}</div>
+                </mat-list-item>
+            </mat-list>
+        </ng-container>
     </div>
+
+    
+    
 </ng-container>
 
 <ng-template #notReady>

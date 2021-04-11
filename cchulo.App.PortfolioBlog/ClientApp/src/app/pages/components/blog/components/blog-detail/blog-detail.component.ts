@@ -4,7 +4,7 @@ import { Unsubscribable } from 'rxjs';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
 import { MarkdownService } from 'ngx-markdown';
-import { fadeIn } from 'ng-animate';
+import { fadeIn, fadeInUp } from 'ng-animate';
 import { transition, trigger, useAnimation } from '@angular/animations';
 
 @Component({
@@ -13,6 +13,9 @@ import { transition, trigger, useAnimation } from '@angular/animations';
   styleUrls: ['./blog-detail.component.scss'],
   animations: [
     trigger('fadeInBanner', [
+      transition(':enter', useAnimation(fadeIn))
+    ]),
+    trigger('fadeInContent', [
       transition(':enter', useAnimation(fadeIn))
     ])
   ]
