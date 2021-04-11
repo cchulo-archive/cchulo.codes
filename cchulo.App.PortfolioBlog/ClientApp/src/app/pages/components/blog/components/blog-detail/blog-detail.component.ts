@@ -8,6 +8,7 @@ import { fadeIn } from 'ng-animate';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { saveAs } from 'file-saver';
 import * as _ from 'lodash-es';
+import { FileSavingService } from 'src/app/core/services/file-saving.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -30,12 +31,14 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 
   post: BlogPost;
 
-  downloadMap: { [url: string]: boolean } = {}
+  downloadMap: { [url: string]: boolean } = {};
+  busy = false;
 
   constructor(
     private _route: ActivatedRoute,
     private _blogService: BlogService,
-    private _markdownService: MarkdownService) { }
+    private _markdownService: MarkdownService,
+    private _fileSavingService: FileSavingService) { }
 
   ngOnInit(): void {
 
@@ -61,20 +64,12 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 
   async downloadFile(url: string) {
     const filename = _.last(url.split('/'));
-    this.downloadMap[filename] = true;
-    
-    await new Promise<void>((res, rej) => {
-      try {
-        saveAs(url, filename);
-        res();
-      } catch (err) {
-        console.error(err);
-        rej();
-      }
-    });
-
-    this.downloadMap[filename] = false;
-    
+    this.busy = true;
+    const blob = await this._fileSavingService.download(url);
+    if (blob != null) {
+      saveAs(blob, filename);
+    }
+    this.busy = false;
   }
 
 }

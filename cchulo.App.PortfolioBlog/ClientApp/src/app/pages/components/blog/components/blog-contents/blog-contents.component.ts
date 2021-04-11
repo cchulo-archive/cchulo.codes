@@ -1,6 +1,6 @@
 import { trigger, transition, useAnimation, query, style, stagger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { fadeIn, fadeInUp } from 'ng-animate';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
