@@ -4,12 +4,14 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { ToStringPipe } from './pipes/to-string.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { UtcToLocalPipe } from './pipes/utc-to-local.pipe';
+import { FilenameFromUrlPipe } from './pipes/filename-from-url.pipe';
 
 
 @NgModule({
   declarations: [
     ToStringPipe,
-    UtcToLocalPipe
+    UtcToLocalPipe,
+    FilenameFromUrlPipe
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { UtcToLocalPipe } from './pipes/utc-to-local.pipe';
   exports: [
     AngularMaterialModule,
     ToStringPipe,
-    UtcToLocalPipe
+    UtcToLocalPipe,
+    FilenameFromUrlPipe
   ]
 })
 export class CoreModule { }

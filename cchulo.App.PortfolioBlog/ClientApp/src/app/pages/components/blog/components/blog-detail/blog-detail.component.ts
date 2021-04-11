@@ -55,4 +55,8 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+  downloadFile(url: string) {
+    console.log(url);
+  }
+
 }

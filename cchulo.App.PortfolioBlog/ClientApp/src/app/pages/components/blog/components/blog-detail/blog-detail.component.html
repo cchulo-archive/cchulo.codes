@@ -21,16 +21,16 @@
         <ng-container *ngIf="post.downloadable && post.downloadable.length > 0">
             <mat-divider></mat-divider>
             <mat-list>
-                <mat-list-item class="link-item" *ngFor="let download of post.downloadable">
-                    <mat-icon mat-list-icon>download</mat-icon>
-                    <div mat-line>{{download.url}}</div>
-                </mat-list-item>
+                <ng-container *ngFor="let download of post.downloadable" >
+                    <mat-list-item class="link-item" (click)="downloadFile(download.url)">
+                        <mat-icon mat-list-icon>download</mat-icon>
+                        <div mat-line>{{ download.url | filenameFromUrl }}</div>
+                    </mat-list-item>
+                </ng-container>
             </mat-list>
         </ng-container>
     </div>
 
-    
-    
 </ng-container>
 
 <ng-template #notReady>
