@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule, SecurityContext } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faLinkedin, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { MatIconRegistry } from '@angular/material/icon';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -54,12 +55,33 @@ const cookieConfig: NgcCookieConsentConfig = {
 })
 export class AppModule {
 
-  constructor(private _library: FaIconLibrary) {
-    _library.addIcons(
+  private readonly _svgIcons: Array<string> = [
+    'logo-styled',
+    'logo-styled-gradient'
+  ];
+
+  constructor(
+    
+    private _iconRegistry: MatIconRegistry,
+    private _sanitizer: DomSanitizer,
+    private _faLibrary: FaIconLibrary, 
+  ) {
+    this.initIcons();
+
+    _faLibrary.addIcons(
       faLinkedin,
       faInstagram,
       faGithub
     );
+  }
+
+  private initIcons(): void {
+    for (let index = 0; index < this._svgIcons.length; index++) {
+      const name = this._svgIcons[index];
+      if (!name) { continue; }
+      const sanitizedUrl = this._sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-icons/${name}.svg`);
+      this._iconRegistry.addSvgIcon(name, sanitizedUrl);
+    }
   }
 
 }
