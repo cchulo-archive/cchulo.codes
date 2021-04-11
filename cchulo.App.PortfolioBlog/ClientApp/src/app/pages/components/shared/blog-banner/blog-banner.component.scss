@@ -1,3 +1,5 @@
+$iconSize: 100px;
+
 .blog-entry:hover {
     cursor: pointer;
 }
@@ -18,10 +20,10 @@
         
     }
     .circle-wrapper {
-        min-height: 100px;
-        min-width: 100px;
-        height: 100px;
-        width: 100px;
+        min-height: $iconSize;
+        min-width: $iconSize;
+        height: $iconSize;
+        width: $iconSize;
         overflow: hidden;
         border-radius: 50%;
         background-position: center;

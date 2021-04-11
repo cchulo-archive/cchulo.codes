@@ -11,7 +11,6 @@ export class ToThumbnailPipe implements PipeTransform {
     console.log(elements);
     elements[elements.length - 1] = 'thumbnail_' + elements[elements.length - 1];
     const newUrl = _.join(elements, '/');
-    console.log(newUrl);
     return newUrl;
   }
 

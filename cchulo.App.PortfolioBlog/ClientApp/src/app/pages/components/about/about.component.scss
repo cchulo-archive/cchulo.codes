@@ -1,0 +1,27 @@
+$pictureSize: 200px;
+
+.bio-container {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+
+    .intro-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .circle-wrapper {
+        min-height: $pictureSize;
+        min-width: $pictureSize;
+        height: $pictureSize;
+        width: $pictureSize;
+        overflow: hidden;
+        border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        align-self: center;
+        margin-left: 20px;
+    }
+}
