@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,9 @@ import { faLinkedin, faInstagram, faGithub } from '@fortawesome/free-brands-svg-
     NgScrollbarModule,
     CoreModule,
     PagesModule,
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE
+    }),
     FontAwesomeModule
   ],
   providers: [],
