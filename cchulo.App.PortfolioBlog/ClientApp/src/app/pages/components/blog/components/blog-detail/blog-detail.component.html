@@ -24,13 +24,14 @@
                 <ng-container *ngFor="let download of post.downloadable" >
                     <mat-list-item class="link-item"
                         (click)="downloadFile(download.url)"
-                        [disabled]="this.downloadMap[download.url]"
+                        [disabled]="busy"
                     >
                         <mat-icon mat-list-icon>download</mat-icon>
                         <div mat-line>{{ download.url | filenameFromUrl }}</div>
                     </mat-list-item>
                 </ng-container>
             </mat-list>
+            <mat-progress-bar mode="indeterminate" *ngIf="busy"></mat-progress-bar>
         </ng-container>
     </div>
 
