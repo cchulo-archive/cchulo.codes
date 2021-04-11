@@ -22,7 +22,10 @@
             <mat-divider></mat-divider>
             <mat-list>
                 <ng-container *ngFor="let download of post.downloadable" >
-                    <mat-list-item class="link-item" (click)="downloadFile(download.url)">
+                    <mat-list-item class="link-item"
+                        (click)="downloadFile(download.url)"
+                        [disabled]="downloadMap[download.url] ? downloadMap[download.url] : false"
+                    >
                         <mat-icon mat-list-icon>download</mat-icon>
                         <div mat-line>{{ download.url | filenameFromUrl }}</div>
                     </mat-list-item>

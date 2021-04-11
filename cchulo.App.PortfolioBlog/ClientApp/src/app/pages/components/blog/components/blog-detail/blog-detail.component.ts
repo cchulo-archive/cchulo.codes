@@ -4,8 +4,10 @@ import { Unsubscribable } from 'rxjs';
 import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
 import { MarkdownService } from 'ngx-markdown';
-import { fadeIn, fadeInUp } from 'ng-animate';
+import { fadeIn } from 'ng-animate';
 import { transition, trigger, useAnimation } from '@angular/animations';
+import { saveAs } from 'file-saver';
+import * as _ from 'lodash-es';
 
 @Component({
   selector: 'app-blog-detail',
@@ -27,6 +29,8 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
   paramSub: Unsubscribable;
 
   post: BlogPost;
+
+  downloadMap: { [url: string]: boolean } = {}
 
   constructor(
     private _route: ActivatedRoute,
@@ -55,8 +59,22 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  downloadFile(url: string) {
-    console.log(url);
+  async downloadFile(url: string) {
+    const filename = _.last(url.split('/'));
+    this.downloadMap[filename] = true;
+    
+    await new Promise<void>((res, rej) => {
+      try {
+        saveAs(url, filename);
+        res();
+      } catch (err) {
+        console.error(err);
+        rej();
+      }
+    });
+
+    this.downloadMap[filename] = false;
+    
   }
 
 }
