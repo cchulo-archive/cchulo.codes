@@ -7,6 +7,7 @@ import { NavService } from './core/services/nav.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { routingFadeAnimation } from './core/shared/shared-animations';
+import { NgcCookieConsentService, NgcInitializeEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 
 type TMode = 'determinate' | 'indeterminate';
 
@@ -35,6 +36,12 @@ export class AppComponent implements OnInit, OnDestroy {
   prepareRoute = prepareRoute;
 
   mode: TMode = 'determinate';
+  popupOpenSubscription: Unsubscribable;
+  popupCloseSubscription: Unsubscribable;
+  initializeSubscription: Unsubscribable;
+  statusChangeSubscription: Unsubscribable;
+  revokeChoiceSubscription: Unsubscribable;
+  noCookieLawSubscription: Unsubscribable;
 
   constructor(
     private _clientWindowService: ClientWindowService,
@@ -42,7 +49,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private _element: ElementRef<HTMLElement>,
     private _navService: NavService,
     private _iconRegistry: MatIconRegistry,
-    private _sanitizer: DomSanitizer) {}
+    private _sanitizer: DomSanitizer,
+    private ccService: NgcCookieConsentService
+  ) {}
 
   ngOnInit(): void {
     
@@ -97,5 +106,47 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this._clientSettingService.setTheme(ETheme.dark);
     }
+  }
+
+  initCookieConsent() {
+    // subscribe to cookieconsent observables to react to main events
+    this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
+      () => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+    this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
+      () => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+    this.initializeSubscription = this.ccService.initialize$.subscribe(
+      (event: NgcInitializeEvent) => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+    this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+    this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
+      () => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+      this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+      (event: NgcNoCookieLawEvent) => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+  }
+
+  destroyCookieConsent() {
+    if (this.popupOpenSubscription) { this.popupOpenSubscription.unsubscribe(); }
+    if (this.popupCloseSubscription) { this.popupCloseSubscription.unsubscribe(); }
+    if (this.initializeSubscription) { this.initializeSubscription.unsubscribe(); }
+    if (this.statusChangeSubscription) { this.statusChangeSubscription.unsubscribe(); }
+    if (this.revokeChoiceSubscription) { this.revokeChoiceSubscription.unsubscribe(); }
+    if (this.noCookieLawSubscription) { this.noCookieLawSubscription.unsubscribe(); }
   }
 }

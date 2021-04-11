@@ -43,7 +43,12 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 
     this._markdownService.renderer.image = (href: string, title: string, text: string) => {
       return `<img class="img-helper" src="${href}" alt="${text}" />`;
-    }
+    };
+
+    this._markdownService.renderer.html = (html: string) => {
+      return html;
+    };
+
     this.paramSub = this._route.paramMap.subscribe(async params => {
       const id = params.get('id');
       try {
