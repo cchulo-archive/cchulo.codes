@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UtcToLocalPipe } from './pipes/utc-to-local.pipe';
 import { FilenameFromUrlPipe } from './pipes/filename-from-url.pipe';
 import { CheckPipe } from './pipes/check.pipe';
+import { ToThumbnailPipe } from './pipes/to-thumbnail.pipe';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CheckPipe } from './pipes/check.pipe';
     ToStringPipe,
     UtcToLocalPipe,
     FilenameFromUrlPipe,
-    CheckPipe
+    CheckPipe,
+    ToThumbnailPipe
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { CheckPipe } from './pipes/check.pipe';
     ToStringPipe,
     UtcToLocalPipe,
     FilenameFromUrlPipe,
-    CheckPipe
+    CheckPipe,
+    ToThumbnailPipe
   ]
 })
 export class CoreModule { }
