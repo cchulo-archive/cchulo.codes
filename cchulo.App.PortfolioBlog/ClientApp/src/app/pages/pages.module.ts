@@ -8,6 +8,7 @@ import { BlogDetailComponent } from './components/blog/components/blog-detail/bl
 import { BlogContentsComponent } from './components/blog/components/blog-contents/blog-contents.component';
 import { RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -23,6 +24,7 @@ import { MarkdownModule } from 'ngx-markdown';
     CommonModule,
     RouterModule,
     CoreModule,
+    FontAwesomeModule,
     MarkdownModule.forChild()
   ]
 })

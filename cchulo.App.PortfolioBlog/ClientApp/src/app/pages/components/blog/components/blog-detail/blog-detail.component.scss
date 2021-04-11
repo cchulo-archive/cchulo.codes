@@ -34,6 +34,14 @@ markdown ::deep img {
         width: 100%;
         background-color: rgba(68, 68, 68, 0.719)
     }
+
+    .tags {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px;
+    }
 }
 
 .img-helper {

@@ -53,3 +53,19 @@
     width: 100px;
     text-align: center;
 }
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
+
+.link-bar {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    margin:auto;
+    padding-bottom: 10px;
+    
+    a {
+        padding-right: 50px;
+    }
+}
