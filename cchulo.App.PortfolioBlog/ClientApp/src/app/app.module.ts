@@ -12,6 +12,23 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MarkdownModule } from 'ngx-markdown';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faLinkedin, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: environment.production ? 'cchulo.codes' : 'localhost',
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+}
 
 
 @NgModule({
@@ -29,7 +46,8 @@ import { faLinkedin, faInstagram, faGithub } from '@fortawesome/free-brands-svg-
     MarkdownModule.forRoot({
       sanitize: SecurityContext.NONE
     }),
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgcCookieConsentModule.forRoot(cookieConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
