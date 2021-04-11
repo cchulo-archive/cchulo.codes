@@ -5,13 +5,15 @@ import { ToStringPipe } from './pipes/to-string.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { UtcToLocalPipe } from './pipes/utc-to-local.pipe';
 import { FilenameFromUrlPipe } from './pipes/filename-from-url.pipe';
+import { CheckPipe } from './pipes/check.pipe';
 
 
 @NgModule({
   declarations: [
     ToStringPipe,
     UtcToLocalPipe,
-    FilenameFromUrlPipe
+    FilenameFromUrlPipe,
+    CheckPipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { FilenameFromUrlPipe } from './pipes/filename-from-url.pipe';
     AngularMaterialModule,
     ToStringPipe,
     UtcToLocalPipe,
-    FilenameFromUrlPipe
+    FilenameFromUrlPipe,
+    CheckPipe
   ]
 })
 export class CoreModule { }

@@ -24,7 +24,7 @@
                 <ng-container *ngFor="let download of post.downloadable" >
                     <mat-list-item class="link-item"
                         (click)="downloadFile(download.url)"
-                        [disabled]="busy"
+                        [disabled]="this.downloadMap[download.url]"
                     >
                         <mat-icon mat-list-icon>download</mat-icon>
                         <div mat-line>{{ download.url | filenameFromUrl }}</div>

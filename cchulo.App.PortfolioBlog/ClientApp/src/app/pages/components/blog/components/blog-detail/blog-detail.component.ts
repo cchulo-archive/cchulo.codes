@@ -32,7 +32,7 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
   post: BlogPost;
 
   downloadMap: { [url: string]: boolean } = {};
-  busy = false;
+  reload = {};
 
   constructor(
     private _route: ActivatedRoute,
@@ -64,12 +64,14 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 
   async downloadFile(url: string) {
     const filename = _.last(url.split('/'));
-    this.busy = true;
+    this.downloadMap[filename] = true;
+    this.reload = {};
     const blob = await this._fileSavingService.download(url);
     if (blob != null) {
       saveAs(blob, filename);
     }
-    this.busy = false;
+    this.downloadMap[filename] = false;
+    this.reload = {};
   }
 
 }
