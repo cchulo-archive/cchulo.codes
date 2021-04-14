@@ -34,7 +34,7 @@ navigate to https://localhost:44301 to visit the page
 
 You will also need to run strapi server:
 
-`npm start` from within the cchulo.App.StrapiCMS folder
+`npm run develop` from within the cchulo.App.StrapiCMS folder
 
 ### About Strapi
 
