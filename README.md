@@ -14,19 +14,21 @@ This is a .NET Core 3.1 based Web App with Angular 11 frontend. The blog is powe
 
 ---
 
-## Instructions to run
+## Requirements
 
 To compile you will need at minimum:
 
 - .NET Core SDK 3.1 +
 - NodeJS 14+ LTS
 
-Run npm install in the following directories:
+## Instructions to compile and run
+
+1. Run `npm install` in the following directories:
 
 - cchulo.App.PortfolioBlog/ClientApp
 - cchulo.App.StrapiCMS
 
-You will then need to launch both .NET Core app (which is set up to compile and run the Client App)
+2. You will then need to launch both .NET Core app (which is set up to compile and run the Client App)
 
 `dotnet run --project cchulo.App.PortfolioBlog` from the root of the project
 
@@ -34,7 +36,7 @@ navigate to https://localhost:44301 to visit the page
 
 You will also need to run strapi server:
 
-`npm run develop` from within the cchulo.App.StrapiCMS folder
+`npm start` from within the cchulo.App.StrapiCMS folder
 
 ### About Strapi
 
