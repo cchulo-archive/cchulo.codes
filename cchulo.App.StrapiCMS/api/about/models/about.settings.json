@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "abouts",
+  "info": {
+    "name": "About"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Content": {
+      "type": "richtext"
+    }
+  }
+}

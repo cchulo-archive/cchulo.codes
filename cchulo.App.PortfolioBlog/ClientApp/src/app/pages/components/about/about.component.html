@@ -1,27 +1,11 @@
-<div class="bio-container">
+<div class="bio-container" *ngIf="about else notReady">
     <div class="intro-container">
         <div class="circle-wrapper" style="background-image: url('assets/images/profile-pic.jpg');"></div>
-        <div style="max-width: 500px">
-            <h1 class="mat-h1 greeting">Hi! I'm Carlos, Software Engineer</h1>
-            <p>
-                Based in San Diego, I specialize in full stack development,
-                building highly scalable applications. 
-                Welcome to my techblog, I will post my latest projects, tutorials, 
-                and thoughts on current tech-related news / events / trends.
-            </p>
-        </div>
     </div>
+    <h1 class="mat-h1 greeting" style="text-align: center;">Hi! I'm Carlos, Software Engineer</h1>
+
+    <div markdown class="override" [data]="about.content"></div>
 </div>
-
-<p>
-    As a UCSD alumni, graduating from Sixth College with a BS in Computer Science, I strive to be the best Engineer
-    I can possibly be. As an old professor once told me we must "shoot for the stars" and to
-    "never give in and never give up".
-
-    My interests are not only in Software Engineering, but also include 3D Printing, CPU Architecture, Artificial Intelligence
-    Game Development, and Virtual Reality. Recently I started looking into the world of Crypto, DeFi, and DApps.
-
-    The purpose of this site is to not only share the knowledge I have gained over the years and give back to the community, it also
-    serves as a way to improve myself as an Engineer. 
-
-</p>
+<ng-template #notReady>
+    <mat-spinner></mat-spinner>
+</ng-template>

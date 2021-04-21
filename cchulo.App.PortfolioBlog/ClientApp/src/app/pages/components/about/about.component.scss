@@ -3,6 +3,7 @@ $pictureSize: 200px;
 .bio-container {
     padding-top: 100px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
     .intro-container {

@@ -101,6 +101,11 @@ namespace cchulo.App.PortfolioBlog.Middleware
                 targetUri = new Uri($"http://localhost:1337/uploads{remainingPath}");
             }
 
+            if (request.Path.StartsWithSegments("/strapi-about"))
+            {
+                targetUri = new Uri("http://localhost:1337/about");
+            }
+
             return targetUri;
         }
     }
