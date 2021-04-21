@@ -98,7 +98,7 @@ namespace cchulo.App.PortfolioBlog.Middleware
 
             if (request.Path.StartsWithSegments("/uploads", out var remainingPath))
             {
-                targetUri = new Uri("http://localhost:1337/uploads" + remainingPath);
+                targetUri = new Uri($"http://localhost:1337/uploads{remainingPath}");
             }
 
             return targetUri;
