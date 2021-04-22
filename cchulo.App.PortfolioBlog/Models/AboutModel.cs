@@ -10,5 +10,7 @@ namespace cchulo.App.PortfolioBlog.Models
         public int Id { get; set; }
 
         public string Content { get; set; }
+
+        public string TechStack { get; set; }
     }
 }
