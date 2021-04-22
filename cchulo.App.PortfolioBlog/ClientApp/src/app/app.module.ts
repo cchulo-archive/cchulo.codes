@@ -56,6 +56,10 @@ const cookieConfig: NgcCookieConsentConfig = {
 export class AppModule {
 
   private readonly _svgIcons: Array<string> = [
+    'angular',
+    'postgres',
+    'net-core',
+    'strapi',
     'logo-styled',
     'logo-styled-gradient'
   ];

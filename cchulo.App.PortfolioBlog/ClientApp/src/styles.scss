@@ -38,6 +38,10 @@ $custom-typography: mat-typography-config(
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
 html, body { height: 100%; }
 body { margin: 0; }
 
