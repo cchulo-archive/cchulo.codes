@@ -25,7 +25,6 @@ export class AppComponent implements OnInit, OnDestroy {
   
 
   private readonly _darkThemeClass = 'dark-theme';
-  private readonly _lightThemeClass = 'light-theme';
   
   links = this._navService.links;
   isMobileSize = false;
@@ -59,12 +58,10 @@ export class AppComponent implements OnInit, OnDestroy {
         
         if (theme == ETheme.dark) {
           this.isDarkTheme = true;
-          this._element.nativeElement.classList.remove(this._lightThemeClass);
           this._element.nativeElement.classList.add(this._darkThemeClass);
         } else {
           this.isDarkTheme = false;
           this._element.nativeElement.classList.remove(this._darkThemeClass);
-          this._element.nativeElement.classList.add(this._lightThemeClass);
         }
       });
 

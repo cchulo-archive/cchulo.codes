@@ -4,7 +4,7 @@
 @import 'themes/dark-theme.scss';
 @import 'themes/light-theme.scss';
 
-@include mat-core();
+
 
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, monospace',
@@ -12,19 +12,16 @@ $custom-typography: mat-typography-config(
   $body-1: mat-typography-level(18px, 24px, 500)
 );
 
-
 @include mat-core($custom-typography);
+
+@include theme-color-grabber($light-theme);
+@include angular-material-theme($light-theme);
 
 .dark-theme {
   @include theme-color-grabber($dark-theme);
   @include angular-material-theme($dark-theme);
 }
 
-
-.light-theme {
-  @include theme-color-grabber($light-theme);
-  @include angular-material-theme($light-theme);
-}
 
 /* You can add global styles to this file, and also import other style files */
 
