@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using cchulo.App.PortfolioBlog.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace cchulo.App.PortfolioBlog.Middleware
     {
         private static readonly HttpClient _httpClient = new HttpClient();
         private readonly RequestDelegate _nextMiddleware;
+        private readonly IServerConfig _serverConfig;
 
-        public ReverseProxyMiddleware(RequestDelegate nextMiddleware)
+        public ReverseProxyMiddleware(RequestDelegate nextMiddleware, IServerConfig serverConfig)
         {
             _nextMiddleware = nextMiddleware;
+            _serverConfig = serverConfig;
         }
 
         public async Task Invoke(HttpContext context)
@@ -98,12 +101,7 @@ namespace cchulo.App.PortfolioBlog.Middleware
 
             if (request.Path.StartsWithSegments("/uploads", out var remainingPath))
             {
-                targetUri = new Uri($"http://localhost:1337/uploads{remainingPath}");
-            }
-
-            if (request.Path.StartsWithSegments("/strapi-about"))
-            {
-                targetUri = new Uri("http://localhost:1337/about");
+                targetUri = new Uri($"{_serverConfig.StrapiUrl}/uploads{remainingPath}");
             }
 
             return targetUri;

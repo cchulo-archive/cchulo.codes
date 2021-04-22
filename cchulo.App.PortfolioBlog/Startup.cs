@@ -5,7 +5,6 @@ using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,14 +13,26 @@ namespace cchulo.App.PortfolioBlog
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private IServerConfig _serverConfig;
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+            InitServerConfig();
+        }
+
+        private void InitServerConfig()
+        {
+            string port = System.Environment.GetEnvironmentVariable("STRAPI_PORT");
+
+            _serverConfig = new ServerConfig
+            {
+                StrapiUrl = $"http://localhost:{port}"
+            };
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
@@ -31,18 +42,11 @@ namespace cchulo.App.PortfolioBlog
 
             services.AddSingleton(Configuration);
 
-            string port = System.Environment.GetEnvironmentVariable("STRAPI_PORT");
-
-            IServerConfig config = new ServerConfig
-            {
-                StrapiUrl = $"http://localhost:{port}"
-            };
-
             services.AddScoped<IGraphQLClient>(_ =>
-                new GraphQLHttpClient($"{config.StrapiUrl}/graphql", new NewtonsoftJsonSerializer())
+                new GraphQLHttpClient($"{_serverConfig.StrapiUrl}/graphql", new NewtonsoftJsonSerializer())
             );
             
-            services.AddSingleton(config);
+            services.AddSingleton(_serverConfig);
 
             services.AddHttpClient();
 
@@ -54,7 +58,6 @@ namespace cchulo.App.PortfolioBlog
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -66,7 +69,7 @@ namespace cchulo.App.PortfolioBlog
 
             app.UseStaticFiles();
 
-            app.UseMiddleware<ReverseProxyMiddleware>();
+            app.UseMiddleware<ReverseProxyMiddleware>(_serverConfig);
 
             if (!env.IsDevelopment())
             {

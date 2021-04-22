@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Client.Abstractions;
 using System.Collections.Generic;
-using System.IO;
 using Newtonsoft.Json;
 
 namespace cchulo.App.PortfolioBlog.Controllers
