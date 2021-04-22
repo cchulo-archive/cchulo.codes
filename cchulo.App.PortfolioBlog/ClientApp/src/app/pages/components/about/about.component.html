@@ -3,9 +3,14 @@
         <div class="circle-wrapper" style="background-image: url('assets/images/profile-pic.jpg');"></div>
     </div>
     <h1 class="mat-h1 greeting" style="text-align: center;">Hi! I'm Carlos, Software Engineer</h1>
+    <app-link-banner></app-link-banner>
 
     <div markdown class="override" [data]="about.content"></div>
 </div>
+
 <ng-template #notReady>
-    <mat-spinner></mat-spinner>
+    <div style="margin-top: 20px">
+        <mat-spinner style="margin: auto;"></mat-spinner>
+    </div>
 </ng-template>
+

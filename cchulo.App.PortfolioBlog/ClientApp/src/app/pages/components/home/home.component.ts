@@ -8,17 +8,14 @@ import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
 import { zoomIn } from 'ng-animate'
 import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
+
 
 interface ITileOrdering {
   label: string;
   order: number;
 }
 
-interface IMediaLink {
-  url: string;
-  faIcon: IconName
-}
+
 
 @Component({
   selector: 'app-home',
@@ -48,12 +45,6 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
   orderTiles: Array<ITileOrdering> = [
     { label: 'greeting', order: 0 },
     { label: 'logo', order: 1 }
-  ];
-
-  links: Array<IMediaLink> = [
-    { url: 'https://www.linkedin.com/in/carlos-chulo-150753b6/', faIcon: 'linkedin' },
-    { url: 'https://github.com/cchulo', faIcon: 'github' },
-    { url: 'https://www.instagram.com/cchulo.codes/', faIcon: 'instagram' },
   ];
 
   private _clientSettingsSub: Unsubscribable;

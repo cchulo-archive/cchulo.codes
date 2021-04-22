@@ -56,21 +56,4 @@
     text-align: center;
 }
 
-a, a:visited, a:hover, a:active {
-    color: inherit;
-}
 
-.link-bar {
-    font-size: 30px;
-    margin:auto;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    justify-self: center;
-    
-    .link-icon-container {
-        min-width: 300px;
-        display: flex;
-        justify-content: space-evenly;
-    }
-}

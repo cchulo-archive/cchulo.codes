@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { LinkBannerComponent } from './components/shared/link-banner/link-banner.component';
 
 
 
@@ -19,7 +20,8 @@ import { NgcCookieConsentModule } from 'ngx-cookieconsent';
     AboutComponent,
     BlogBannerComponent,
     BlogDetailComponent,
-    BlogContentsComponent
+    BlogContentsComponent,
+    LinkBannerComponent
   ],
   imports: [
     CommonModule,

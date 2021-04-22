@@ -9,7 +9,7 @@ import { AboutModel } from 'src/models/about-model';
 })
 export class AboutComponent implements OnInit {
 
-  private aboutUrl = '/strapi-about'
+  private aboutUrl = '/api/about'
 
   about: AboutModel;
 
