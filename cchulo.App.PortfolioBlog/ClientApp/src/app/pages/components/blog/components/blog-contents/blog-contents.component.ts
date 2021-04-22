@@ -39,6 +39,7 @@ export class BlogContentsComponent implements OnInit {
   tags: Array<Tag> = [];
   articles: Array<BlogPost> = [];
   articlesToShow: Array<BlogPost> = [];
+  paginatedArticles: Array<BlogPost> = [];
   
   inputControl = new FormControl();
 
@@ -47,6 +48,9 @@ export class BlogContentsComponent implements OnInit {
   ready = false;
 
   filterValue: string;
+
+  pageIndex = 0;
+  pageSize = 5;
 
   constructor(private _blogService: BlogService) { }
 
@@ -69,8 +73,10 @@ export class BlogContentsComponent implements OnInit {
     this.filterArticles();
   }
 
-  filterArticles() {
+  private filterArticles() {
     this.articlesToShow = this.filterArticlesBySelectedTags(this.filterBySearch(this.articles));
+
+    this.paginatedArticles = this.paginateArticles(this.articlesToShow);
   }
 
   selectTag(name: string) {
@@ -85,7 +91,31 @@ export class BlogContentsComponent implements OnInit {
   }
 
   onPageChange(pageEvent: PageEvent) {
-    console.log(pageEvent);
+    this.pageIndex = pageEvent.pageIndex;
+    this.pageSize = pageEvent.pageSize;
+    this.filterArticles();
+  }
+
+  private paginateArticles(input: Array<BlogPost>): Array<BlogPost> {
+    if (!input || input.length === 0) {
+      return [];
+    }
+
+    // pageSize 5, index 0: 0,1,2,3,4
+    // pageSize 5, index 1: 5,6,7,8,9
+
+    const result: Array<BlogPost> = [];
+    const startIndex = this.pageSize * this.pageIndex;
+
+    for(let index = startIndex; index < startIndex + this.pageSize; index++) {
+
+      if (index >= input.length) { break; }
+
+      result.push(input[index]);
+    }
+
+    return result;
+    
   }
 
   private filterArticlesBySelectedTags(input: Array<BlogPost>): Array<BlogPost> {
@@ -119,7 +149,7 @@ export class BlogContentsComponent implements OnInit {
     return _.filter(input,
       article => article.title
         .toLocaleLowerCase()
-        .includes(this.filterValue));
+        .includes(this.filterValue.toLocaleLowerCase()));
   }
 
 }

@@ -29,14 +29,14 @@
 
         <mat-paginator
             [length]="articlesToShow.length"
-            [pageIndex]="0"
-            [pageSize]="5"
+            [pageIndex]="pageIndex"
+            [pageSize]="pageSize"
             [pageSizeOptions]="[5, 10, 15, 20]"
             (page)="onPageChange($event)"
         ></mat-paginator>
 
         <div @fadeInUpBlogs>
-            <div class="blog-banner" *ngFor="let article of articlesToShow; let i = index">
+            <div class="blog-banner" *ngFor="let article of paginatedArticles; let i = index">
                 <app-blog-banner
                     [blogPost]="article"
                 ></app-blog-banner>
