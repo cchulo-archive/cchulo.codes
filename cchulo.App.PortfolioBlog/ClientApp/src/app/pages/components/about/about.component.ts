@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-interface IAbout {
-  id: number;
-  content: string;
-}
+import { AboutModel } from 'src/models/about-model';
 
 @Component({
   selector: 'app-about',
@@ -15,12 +11,12 @@ export class AboutComponent implements OnInit {
 
   private aboutUrl = '/strapi-about'
 
-  about: IAbout;
+  about: AboutModel;
 
   constructor(private httpClient: HttpClient) { }
 
   async ngOnInit() {
-    this.about = await this.httpClient.get<IAbout>(this.aboutUrl).toPromise();
+    this.about = await this.httpClient.get<AboutModel>(this.aboutUrl).toPromise();
 
     console.log(this.about);
   }
