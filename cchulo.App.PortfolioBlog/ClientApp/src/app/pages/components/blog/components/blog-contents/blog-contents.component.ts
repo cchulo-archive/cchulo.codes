@@ -101,9 +101,6 @@ export class BlogContentsComponent implements OnInit {
       return [];
     }
 
-    // pageSize 5, index 0: 0,1,2,3,4
-    // pageSize 5, index 1: 5,6,7,8,9
-
     const result: Array<BlogPost> = [];
     const startIndex = this.pageSize * this.pageIndex;
 
