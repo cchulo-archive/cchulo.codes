@@ -17,8 +17,6 @@ export class AboutComponent implements OnInit {
 
   async ngOnInit() {
     this.about = await this.httpClient.get<AboutModel>(this.aboutUrl).toPromise();
-
-    console.log(this.about);
   }
 
 }

@@ -74,7 +74,6 @@ export class BlogContentsComponent implements OnInit {
   }
 
   selectTag(name: string) {
-    console.log(`${name} clicked`);
     if (!name) { return; }
     if (!this.filterTags[name]) {
       this.filterTags[name] = true;
