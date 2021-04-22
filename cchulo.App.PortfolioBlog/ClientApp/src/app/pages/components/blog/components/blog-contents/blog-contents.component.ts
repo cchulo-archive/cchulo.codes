@@ -1,5 +1,7 @@
 import { trigger, transition, useAnimation, query, style, stagger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import * as _ from 'lodash-es';
 import { fadeIn, fadeInUp } from 'ng-animate';
 import { BlogService } from 'src/app/core/services/blog.service';
@@ -37,10 +39,14 @@ export class BlogContentsComponent implements OnInit {
   tags: Array<Tag> = [];
   articles: Array<BlogPost> = [];
   articlesToShow: Array<BlogPost> = [];
+  
+  inputControl = new FormControl();
 
   filterTags: { [name: string]: boolean } = {};
 
   ready = false;
+
+  filterValue: string;
 
   constructor(private _blogService: BlogService) { }
 
@@ -58,7 +64,16 @@ export class BlogContentsComponent implements OnInit {
     }
   }
 
-  select(name: string) {
+  applyFilter(event: Event) {
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.filterArticles();
+  }
+
+  filterArticles() {
+    this.articlesToShow = this.filterArticlesBySelectedTags(this.filterBySearch(this.articles));
+  }
+
+  selectTag(name: string) {
     console.log(`${name} clicked`);
     if (!name) { return; }
     if (!this.filterTags[name]) {
@@ -67,30 +82,45 @@ export class BlogContentsComponent implements OnInit {
       this.filterTags[name] = !this.filterTags[name];
     }
 
-    this.articlesToShow = this.filterArticles();
+    this.filterArticles();
   }
 
-  filterArticles(): Array<BlogPost> {
+  onPageChange(pageEvent: PageEvent) {
+    console.log(pageEvent);
+  }
+
+  private filterArticlesBySelectedTags(input: Array<BlogPost>): Array<BlogPost> {
 
     // match article with selected tag(s)
 
     // if only one tag selected, article needs to have at least that one match
 
     if (!this.filterTags) {
-      return this.articles;
+      return input;
     }
     
     const keys = _.keys(this.filterTags);
     
     if (keys.length === 0 || _.every(keys, key => this.filterTags[key] === false)) {
-      return this.articles;
+      return input;
     }
 
     const filtered = _.filter(
-      this.articles, article => _.some(
+      input, article => _.some(
         article.tags, tag => !!this.filterTags[tag.name]));
 
     return filtered;
+  }
+
+  private filterBySearch(input: Array<BlogPost>): Array<BlogPost> {
+    if (!this.filterValue) {
+      return input;
+    }
+
+    return _.filter(input,
+      article => article.title
+        .toLocaleLowerCase()
+        .includes(this.filterValue));
   }
 
 }

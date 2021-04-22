@@ -20,6 +20,7 @@ export enum ETheme {
 
 export interface ILink {
     label: string;
+    icon: string;
     path?: string;
 }
 

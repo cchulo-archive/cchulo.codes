@@ -22,22 +22,22 @@ type ExtRoutes = Array<Route & ExtRoute>;
 export const routes: ExtRoutes = [
   {
     path: '', component: HomeComponent,
-    data: { label: ERouteLabels.Home.toString() }
+    data: { label: ERouteLabels.Home.toString(), icon: 'home' }
   },
   {
     path: 'blog',
     component: BlogContentsComponent,
-    data: { label: ERouteLabels.Blogs.toString() }
+    data: { label: ERouteLabels.Blogs.toString(), icon: 'lightbulb' }
   },
   {
     path: 'blog/post/:id',
     component: BlogDetailComponent,
-    data: { label: ERouteLabels.BlogPost.toString() },
+    data: { label: ERouteLabels.BlogPost.toString(), icon: 'lightbulb' },
     navServiceSkip: true
   },
   {
     path: 'about', component: AboutComponent,
-    data: { label: ERouteLabels.About.toString() }
+    data: { label: ERouteLabels.About.toString(),  icon: 'info' }
   }
 ];
 

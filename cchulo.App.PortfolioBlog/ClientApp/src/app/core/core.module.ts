@@ -7,6 +7,7 @@ import { UtcToLocalPipe } from './pipes/utc-to-local.pipe';
 import { FilenameFromUrlPipe } from './pipes/filename-from-url.pipe';
 import { CheckPipe } from './pipes/check.pipe';
 import { ToThumbnailPipe } from './pipes/to-thumbnail.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ToThumbnailPipe } from './pipes/to-thumbnail.pipe';
   imports: [
     CommonModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   exports: [
     AngularMaterialModule,
@@ -28,7 +30,8 @@ import { ToThumbnailPipe } from './pipes/to-thumbnail.pipe';
     UtcToLocalPipe,
     FilenameFromUrlPipe,
     CheckPipe,
-    ToThumbnailPipe
+    ToThumbnailPipe,
+    ReactiveFormsModule
   ]
 })
 export class CoreModule { }
