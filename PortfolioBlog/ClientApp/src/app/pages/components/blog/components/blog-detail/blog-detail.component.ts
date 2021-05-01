@@ -17,9 +17,6 @@ import { NgcCookieConsentService } from 'ngx-cookieconsent';
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss'],
   animations: [
-    trigger('fadeInBanner', [
-      transition(':enter', useAnimation(fadeIn))
-    ]),
     trigger('fadeInContent', [
       transition(':enter', useAnimation(fadeIn))
     ])

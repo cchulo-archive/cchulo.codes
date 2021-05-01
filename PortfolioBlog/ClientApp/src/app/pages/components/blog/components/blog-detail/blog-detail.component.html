@@ -1,38 +1,40 @@
 <ng-container *ngIf="ready; else notReady">
-    <div @fadeInBanner class="header" [ngStyle]="{
-        'background': 'linear-gradient(to right, transparent, black), url(\'' + post.banner.url + '\') center center no-repeat'
-    }">
-        <div class="header-info">
-            <h1 class="mat-h1">{{post.title}}</h1>
-            <h2 class="mat-h2">{{post.description}}</h2>
-            <h3 class="mat-h3">{{post.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</h3>
-            <div class="tags">
-                <mat-chip-list>
-                    <mat-chip *ngFor="let tag of post.tags">{{tag.name}}</mat-chip>
-                </mat-chip-list>
+    <div  @fadeInContent class="post-container">
+        <div class="header" [ngStyle]="{
+            'background': 'linear-gradient(to right, transparent, black), url(\'' + post.banner.url + '\') center center no-repeat'
+        }">
+            <div class="header-info">
+                <h1 class="mat-h1">{{post.title}}</h1>
+                <h2 class="mat-h2">{{post.description}}</h2>
+                <h3 class="mat-h3">{{post.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}</h3>
+                <div class="tags">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let tag of post.tags">{{tag.name}}</mat-chip>
+                    </mat-chip-list>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div class="content" @fadeInContent>
-        <div markdown class="override" lineNumbers [data]="post.contents">
-        </div>
+        
+        <div class="content">
+            <div markdown class="override" lineNumbers [data]="post.contents">
+            </div>
 
-        <ng-container *ngIf="post.downloadable && post.downloadable.length > 0">
-            <mat-divider></mat-divider>
-            <mat-list>
-                <ng-container *ngFor="let download of post.downloadable" >
-                    <mat-list-item class="link-item"
-                        (click)="downloadFile(download.url)"
-                        [disabled]="busy"
-                    >
-                        <mat-icon mat-list-icon>download</mat-icon>
-                        <div mat-line>{{ download.url | filenameFromUrl }}</div>
-                    </mat-list-item>
-                </ng-container>
-            </mat-list>
-            <mat-progress-bar mode="indeterminate" *ngIf="busy"></mat-progress-bar>
-        </ng-container>
+            <ng-container *ngIf="post.downloadable && post.downloadable.length > 0">
+                <mat-divider></mat-divider>
+                <mat-list>
+                    <ng-container *ngFor="let download of post.downloadable" >
+                        <mat-list-item class="link-item"
+                            (click)="downloadFile(download.url)"
+                            [disabled]="busy"
+                        >
+                            <mat-icon mat-list-icon>download</mat-icon>
+                            <div mat-line>{{ download.url | filenameFromUrl }}</div>
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
+                <mat-progress-bar mode="indeterminate" *ngIf="busy"></mat-progress-bar>
+            </ng-container>
+        </div>
     </div>
 
 </ng-container>

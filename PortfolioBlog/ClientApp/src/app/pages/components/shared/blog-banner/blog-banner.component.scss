@@ -1,4 +1,7 @@
 $iconSize: 100px;
+::ng-deep .mat-chip-list-wrapper {
+    justify-content: center !important;
+}
 
 .blog-entry:hover {
     cursor: pointer;
@@ -16,8 +19,9 @@ $iconSize: 100px;
         display: flex;
         flex-direction: column;
         text-align: center;
+        justify-content: center;
         margin-right: 20px;
-        
+        margin-bottom: 10px;
     }
     .circle-wrapper {
         min-height: $iconSize;

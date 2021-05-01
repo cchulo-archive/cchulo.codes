@@ -4,7 +4,13 @@
         <h2 class="mat-h2">{{blogPost.title}}</h2>
         <h2 class="mat-h2">{{blogPost.description}}</h2>
         <h6 class="mat-h6">
-            {{blogPost.publishedAt | utcToLocal | date: 'yyyy-MM-dd hh:mm:ss aa OOOO' }}
+            {{blogPost.publishedAt | utcToLocal | date: 'yyyy-MM-dd' }}
         </h6>
+        <div class="tags">
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of blogPost.tags">{{tag.name}}</mat-chip>
+            </mat-chip-list>
+        </div>
     </div>
+    
 </div>
