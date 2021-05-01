@@ -32,11 +32,22 @@
   ],
   "dataGroups": [
     {
-      "name": "blog",
+      "name": "blog-desc",
       "urls": [
         "/api/Blog",
         "/api/Blog/latest",
-        "/api/Blog/tags",
+        "/api/Blog/tags"
+      ],
+      "cacheConfig": {
+        "maxSize": 50,
+        "maxAge": "3d",
+        "timeout": "5s30u",
+        "strategy": "performance"
+      }
+    },
+    {
+      "name": "blog-post",
+      "urls": [
         "/api/Blog/full-blog-post/*"
       ],
       "cacheConfig": {
