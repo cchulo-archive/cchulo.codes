@@ -23,7 +23,27 @@
         "files": [
           "/assets/**",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ],
+        "urls": [
+          "/uploads/**"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "blog",
+      "urls": [
+        "/api/Blog",
+        "/api/Blog/latest",
+        "/api/Blog/tags",
+        "/api/Blog/full-blog-post/*"
+      ],
+      "cacheConfig": {
+        "maxSize": 50,
+        "maxAge": "15d",
+        "timeout": "5s30u",
+        "strategy": "freshness"
       }
     }
   ]
