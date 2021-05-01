@@ -62,6 +62,8 @@ export class BlogContentsComponent implements OnInit {
       this.articles = await this._blogService.allBlogPosts();
       this.articlesToShow = _.cloneDeep(this.articles);
 
+      this.filterArticles();
+
       this.ready = true;
     } catch (err) {
       console.error(err);
