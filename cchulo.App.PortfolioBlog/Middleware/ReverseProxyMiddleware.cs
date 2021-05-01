@@ -83,6 +83,7 @@ namespace cchulo.App.PortfolioBlog.Middleware
             }
             context.Response.Headers.Remove("transfer-encoding");
         }
+
         private static HttpMethod GetMethod(string method)
         {
             if (HttpMethods.IsDelete(method)) return HttpMethod.Delete;
