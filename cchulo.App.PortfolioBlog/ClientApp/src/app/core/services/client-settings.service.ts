@@ -19,7 +19,7 @@ import { ETheme } from '../shared/common';
 export class ClientSettingsService {
 
   /** We initialize theme to be light */
-  private _theme = new BehaviorSubject<ETheme>(ETheme.light);
+  private _theme = new BehaviorSubject<ETheme>(ETheme.dark);
 
   /** public property used to subscribe to changes in theme */
   get theme(): Subscribable<ETheme> {
