@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="cchulo.App.PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100" />
+  <img src="cchulo.App.PortfolioBlog/ClientApp/src/.assets/svg-icons/logo-styled-gradient.svg" width="100" />
 </p>
 
 <center>
