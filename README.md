@@ -57,4 +57,3 @@ you will need to create an account, this account will only be local to your comp
 
 - Visual Studio 2019
 - Visual Code
-- Angular CLI
