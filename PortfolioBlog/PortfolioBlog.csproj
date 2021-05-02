@@ -10,7 +10,6 @@
     <UserSecretsId>f3e713b6-298c-4a80-b91a-d616006804b9</UserSecretsId>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
-    <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
 
   <ItemGroup>
