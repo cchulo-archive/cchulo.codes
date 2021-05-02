@@ -4,8 +4,6 @@ import { ClientSettingsService } from 'src/app/core/services/client-settings.ser
 import { Unsubscribable } from 'rxjs';
 import { EWindow, ETheme, prepareRoute } from './core/shared/common';
 import { NavService } from './core/services/nav.service';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { routingFadeAnimation } from './core/shared/shared-animations';
 import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
@@ -28,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   
   links = this._navService.links;
   isMobileSize = false;
-  isDarkTheme = false;
+  isDarkTheme = true;
   prepareRoute = prepareRoute;
 
   mode: TMode = 'determinate';
@@ -55,8 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._clientSettingSub = this._clientSettingService.theme
       .subscribe(theme => {
-        
-        if (theme == ETheme.dark) {
+        if (theme === ETheme.dark || theme === undefined) {
           this.isDarkTheme = true;
           this._element.nativeElement.classList.add(this._darkThemeClass);
         } else {

@@ -1,5 +1,5 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription, Subscribable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subscribable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { EWindow } from '../shared/common';
 

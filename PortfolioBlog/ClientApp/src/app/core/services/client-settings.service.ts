@@ -18,6 +18,8 @@ import { ETheme } from '../shared/common';
 })
 export class ClientSettingsService {
 
+  
+
   /** We initialize theme to be light */
   private _theme = new BehaviorSubject<ETheme>(ETheme.dark);
 
@@ -31,7 +33,7 @@ export class ClientSettingsService {
 
   constructor(private _swUpdate: SwUpdate) {
 
-    this.setTheme((<ETheme>localStorage[this._themeStore]));
+    this.setTheme((<ETheme>localStorage[this._themeStore] ?? ETheme.dark));
 
     // TODO:
     // may need to move this to the app.component directly
@@ -49,7 +51,7 @@ export class ClientSettingsService {
    */
   setTheme(theme: ETheme) {
     if (theme === null || theme === undefined) {
-      localStorage[this._themeStore] = ETheme.light;
+      localStorage[this._themeStore] = ETheme.dark;
     } else {
       localStorage[this._themeStore] = theme;
     }
