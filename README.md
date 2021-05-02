@@ -20,33 +20,36 @@ To compile you will need at minimum:
 
 - .NET Core SDK 3.1 +
 - NodeJS 14+ LTS
+- Angular CLI 11+
 
 ## Instructions to compile and run
 
 1. Run `npm install` in the following directories:
 
-- cchulo.App.PortfolioBlog/ClientApp
-- cchulo.App.StrapiCMS
+- `PortfolioBlog/ClientApp`
+- `StrapiCMS`
 
 2. You will then need to launch both .NET Core app (which is set up to compile and run the Client App)
 
-`dotnet run --project cchulo.App.PortfolioBlog` from the root of the project
+`dotnet run --project PortfolioBlog` from the root of the project
 
-navigate to https://localhost:44301 to visit the page
+3. Open a terminal in `PortfolioBlog/ClientApp` context and run `npm start`, leave it running
 
-You will also need to run strapi server:
+4. Open a terminal in `StrapiCMS` context and run `npm run develop`, leave it running
 
-`npm start` from within the cchulo.App.StrapiCMS folder
+5. navigate to https://localhost:44301 to visit the page
 
-### About Strapi
+6. To create blog posts/tags and fill out other content, go to strapi admin panel: http://localhost:1337/admin,
+you will need to create an account, this account will only be local to your computer
 
-Login to strapi at http://localhost:1337/admin, create an account. It will be local to your project only.
 
-Create articles using the "Articles" collection type.
+    - Create articles using the "Blog" collection type.
 
-Create tags in "Tags" collection type to associate with articles.
+    - Create tags in "Tags" collection type to associate with articles.
 
-You will need to refresh the client app (.NET/Angular) by hitting F5 on web browser for it to pull latest blog posts
+    - Fill out "About" page by filling out information in the "About" single collection type
+    
+    NOTE: you may need to use a browser that does not redirect http to visit strapi admin panel, currently chrome automatically redirects http localhost to https if you previously visited https://localhost:anything
 
 ---
 

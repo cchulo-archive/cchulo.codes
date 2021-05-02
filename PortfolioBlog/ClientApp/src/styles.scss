@@ -42,15 +42,10 @@ a, a:visited, a:hover, a:active {
 html, body { height: 100%; }
 body { margin: 0; }
 
-.ng-scroll-content {
+.ng-scroll-content, .ng-scroll-viewport {
   height: 100% !important;
   width: 100% !important;
 }
-
-.ng-scroll-viewport {
-  width: 100% !important;
-}
-
 
 .override {
   display: flex;
