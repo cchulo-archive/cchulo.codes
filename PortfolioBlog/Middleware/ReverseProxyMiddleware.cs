@@ -1,7 +1,6 @@
 ﻿using cchulo.App.PortfolioBlog.Models;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ namespace cchulo.App.PortfolioBlog.Middleware
 {
     public class ReverseProxyMiddleware
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
+        private static readonly HttpClient HttpClient = new HttpClient();
         private readonly RequestDelegate _nextMiddleware;
         private readonly IServerConfig _serverConfig;
 
@@ -28,7 +27,7 @@ namespace cchulo.App.PortfolioBlog.Middleware
             {
                 var targetRequestMessage = CreateTargetMessage(context, targetUri);
 
-                using (var responseMessage = await _httpClient.SendAsync(targetRequestMessage, HttpCompletionOption.ResponseHeadersRead, context.RequestAborted))
+                using (var responseMessage = await HttpClient.SendAsync(targetRequestMessage, HttpCompletionOption.ResponseHeadersRead, context.RequestAborted))
                 {
                     context.Response.StatusCode = (int)responseMessage.StatusCode;
                     CopyFromTargetResponseHeaders(context, responseMessage);

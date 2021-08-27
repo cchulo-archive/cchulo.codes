@@ -15,11 +15,10 @@ namespace cchulo.App.PortfolioBlog.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-
-        IGraphQLClient _graphQLClientRef;
-        ILogger<BlogController> _logger;
-        IHttpClientFactory _httpClientFactoryRef;
-        IServerConfig _serverConfigRef;
+        private readonly IGraphQLClient _graphQLClientRef;
+        private readonly ILogger<BlogController> _logger;
+        private readonly IHttpClientFactory _httpClientFactoryRef;
+        private readonly IServerConfig _serverConfigRef;
 
         public BlogController(IGraphQLClient graphQLClient, ILogger<BlogController> logger,
             IHttpClientFactory httpClientFactory, IServerConfig serverConfig)
@@ -39,7 +38,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
         {
             try
             {
-                GraphQLRequest query = new GraphQLRequest(@"
+                var query = new GraphQLRequest(@"
                     query {
                       blogPosts(limit: 10, sort: ""published_at:desc"") {
                         id
@@ -57,7 +56,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                GraphQLResponse<BlogPostsType> response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
+                var response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
 
                 return Ok(response.Data.BlogPosts ?? new List<BlogPost>());
 
@@ -74,7 +73,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
         {
             try
             {
-                GraphQLRequest query = new GraphQLRequest(@"
+                var query = new GraphQLRequest(@"
                     query {
                         blogPosts(sort: ""published_at:desc"") {
                             id
@@ -92,7 +91,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                GraphQLResponse<BlogPostsType> response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
+                var response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
 
                 return Ok(response.Data.BlogPosts);
 
@@ -109,7 +108,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
         {
             try
             {
-                GraphQLRequest query = new GraphQLRequest(@"
+                var query = new GraphQLRequest(@"
                     query {
                       tags {
                         id
@@ -118,7 +117,7 @@ namespace cchulo.App.PortfolioBlog.Controllers
                     }
                 ");
 
-                GraphQLResponse<TagsType> response = await _graphQLClientRef.SendQueryAsync<TagsType>(query);
+                var response = await _graphQLClientRef.SendQueryAsync<TagsType>(query);
 
                 return Ok(response.Data.Tags);
             }
@@ -129,24 +128,18 @@ namespace cchulo.App.PortfolioBlog.Controllers
             }
         }
 
-        [HttpGet("full-blog-post/{id}")]
+        [HttpGet("full-blog-post/{id:int}")]
         public async Task<IActionResult> FullBlogPost([FromRoute] int id)
         {
             try
             {
-                HttpClient httpClient = _httpClientFactoryRef.CreateClient();
+                var httpClient = _httpClientFactoryRef.CreateClient();
 
-                HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/blog-posts/{id}");
+                var response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/blog-posts/{id}");
 
-                if (response != null)
-                {
-                    string jsonStr = await response.Content.ReadAsStringAsync();
-                    BlogPost post = JsonConvert.DeserializeObject<BlogPost>(jsonStr);
-                    return Ok(post);
-                } else
-                {
-                    return NotFound();
-                }
+                var jsonStr = await response.Content.ReadAsStringAsync();
+                var post = JsonConvert.DeserializeObject<BlogPost>(jsonStr);
+                return Ok(post);
             } catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
