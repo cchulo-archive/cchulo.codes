@@ -12,9 +12,9 @@ namespace cchulo.App.PortfolioBlog.Controllers
     [ApiController]
     public class AboutController : ControllerBase
     {
-        private IHttpClientFactory _httpClientFactory;
-        private IServerConfig _serverConfig;
-        private ILogger<AboutController> _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IServerConfig _serverConfig;
+        private readonly ILogger<AboutController> _logger;
 
         public AboutController(IHttpClientFactory httpClientFactory,
             IServerConfig serverConfig, ILogger<AboutController> logger)
@@ -29,19 +29,15 @@ namespace cchulo.App.PortfolioBlog.Controllers
         {
             try
             {
-                HttpClient httpClient = _httpClientFactory.CreateClient();
+                var httpClient = _httpClientFactory.CreateClient();
 
-                HttpResponseMessage response = await httpClient.GetAsync($"{_serverConfig.StrapiUrl}/about");
-                if (response != null)
-                {
-                    string jsonStr = await response.Content.ReadAsStringAsync();
-                    AboutModel about = JsonConvert.DeserializeObject<AboutModel>(jsonStr);
-                    return Ok(about);
-                } else
-                {
-                    return NotFound();
-                }
-            } catch (Exception ex)
+                var response = await httpClient.GetAsync($"{_serverConfig.StrapiUrl}/about");
+
+                var jsonStr = await response.Content.ReadAsStringAsync();
+                var about = JsonConvert.DeserializeObject<AboutModel>(jsonStr);
+                return Ok(about);
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
                 return BadRequest();

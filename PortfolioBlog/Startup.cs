@@ -15,7 +15,7 @@ namespace cchulo.App.PortfolioBlog
     {
         private IServerConfig _serverConfig;
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
@@ -25,7 +25,7 @@ namespace cchulo.App.PortfolioBlog
 
         private void InitServerConfig()
         {
-            string port = System.Environment.GetEnvironmentVariable("STRAPI_PORT");
+            var port = System.Environment.GetEnvironmentVariable("STRAPI_PORT");
 
             _serverConfig = new ServerConfig
             {
