@@ -2,15 +2,14 @@
   <img src="PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100" />
 </p>
 
-<div style="text-align: center;">
+<center>
  <h1>CChulo's Portfolio/Blog App</h1>
-</div>
+</center>
 
 ---
 ## Description
 
 This is a .NET Core 3.1 based Web App with Angular 11 frontend. The blog is powered by headless CMS, [strapi](https://strapi.io).
-
 
 ---
 
