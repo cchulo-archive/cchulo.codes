@@ -1,10 +1,10 @@
-<div style="text-align: center;">
-  <img src="PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100"  alt="logo"/>
-</div>
+<p align="center">
+  <img src="PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100" />
+</p>
 
-<div style="text-align: center;">
+<center>
  <h1>CChulo's Portfolio/Blog App</h1>
-</div>
+</center>
 
 ---
 ## Description
