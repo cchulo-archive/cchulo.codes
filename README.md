@@ -2,9 +2,9 @@
   <img src="PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100" />
 </p>
 
-<center>
+<p align="center">
  <h1>CChulo's Portfolio/Blog App</h1>
-</center>
+</p>
 
 ---
 ## Description
