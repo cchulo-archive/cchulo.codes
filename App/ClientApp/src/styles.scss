@@ -1,6 +1,6 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @import '~normalize.css';
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 @import 'themes/theme-color-grabber.scss';
 @import 'themes/dark-theme.scss';
 @import 'themes/light-theme.scss';

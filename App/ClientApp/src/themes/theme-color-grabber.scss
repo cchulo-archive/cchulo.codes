@@ -1,6 +1,6 @@
 
 // source: https://stackoverflow.com/a/46760925
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 
 // Define a custom mixin that takes in the current theme
 @mixin theme-color-grabber($theme) {
