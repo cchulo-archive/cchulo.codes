@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace cchulo.App.PortfolioBlog
+namespace cchulo.codes.App
 {
     public static class Program
     {

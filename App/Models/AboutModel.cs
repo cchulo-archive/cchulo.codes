@@ -2,7 +2,7 @@
 
 using TypeGen.Core.TypeAnnotations;
 
-namespace cchulo.App.PortfolioBlog.Models
+namespace cchulo.codes.App.Models
 {
     [ExportTsClass]
     public class AboutModel

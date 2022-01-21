@@ -1,15 +1,15 @@
-﻿using cchulo.App.PortfolioBlog.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using cchulo.codes.App.Models;
 using GraphQL;
 using GraphQL.Client.Abstractions;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace cchulo.App.PortfolioBlog.Controllers
+namespace cchulo.codes.App.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

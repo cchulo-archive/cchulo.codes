@@ -1,5 +1,5 @@
-using cchulo.App.PortfolioBlog.Middleware;
-using cchulo.App.PortfolioBlog.Models;
+using cchulo.codes.App.Middleware;
+using cchulo.codes.App.Models;
 using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace cchulo.App.PortfolioBlog
+namespace cchulo.codes.App
 {
     public class Startup
     {

@@ -1,11 +1,11 @@
-﻿using cchulo.App.PortfolioBlog.Models;
-using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using cchulo.codes.App.Models;
+using Microsoft.AspNetCore.Http;
 
-namespace cchulo.App.PortfolioBlog.Middleware
+namespace cchulo.codes.App.Middleware
 {
     public class ReverseProxyMiddleware
     {

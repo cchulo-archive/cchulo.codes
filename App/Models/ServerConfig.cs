@@ -1,5 +1,5 @@
 ﻿
-namespace cchulo.App.PortfolioBlog.Models
+namespace cchulo.codes.App.Models
 {
 
     public interface IServerConfig

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace cchulo.App.PortfolioBlog.Models
+namespace cchulo.codes.App.Models
 {
     public class Tag
     {
