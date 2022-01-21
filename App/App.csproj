@@ -7,10 +7,6 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <UserSecretsId>f3e713b6-298c-4a80-b91a-d616006804b9</UserSecretsId>
-    <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <RootNamespace>cchulo.codes.App</RootNamespace>
   </PropertyGroup>
 
