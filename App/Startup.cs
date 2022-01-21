@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using cchulo.codes.App.Middleware;
 using cchulo.codes.App.Models;
 using GraphQL.Client.Abstractions;
@@ -37,7 +38,7 @@ namespace cchulo.codes.App
         {
             services.AddMvc()
                 .AddJsonOptions(options => {
-                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                 });
 
             services.AddSingleton(Configuration);
