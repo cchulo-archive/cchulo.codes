@@ -9,8 +9,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <ng-scrollbar>
+
       <div class="main">
+        <ng-scrollbar [visibility]="!isMobileSize ? 'hover' : 'native'" [autoHeightDisabled]="false">
 
         <div class="inner-main primaryColorBG">
 
@@ -43,10 +44,10 @@
               <router-outlet #outlet="outlet"></router-outlet>
           </div>
 
-
+        </ng-scrollbar>
       </div>
 
-    </ng-scrollbar>
+
 
   </mat-sidenav-content>
 
