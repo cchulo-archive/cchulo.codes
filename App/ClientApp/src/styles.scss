@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import '~normalize.css';
 @import '~@angular/material/theming';
 @import 'themes/theme-color-grabber.scss';
@@ -6,20 +7,20 @@
 
 
 
-$custom-typography: mat-typography-config(
+$custom-typography: mat.define-typography-config(
   $font-family: 'Roboto, monospace',
-  $headline: mat-typography-level(26px, 42px, 700),
-  $body-1: mat-typography-level(18px, 24px, 500)
+  $headline: mat.define-typography-level(26px, 42px, 700),
+  $body-1: mat.define-typography-level(18px, 24px, 500)
 );
 
-@include mat-core($custom-typography);
+@include mat.core($custom-typography);
 
 @include theme-color-grabber($light-theme);
-@include angular-material-theme($light-theme);
+@include mat.all-component-themes($light-theme);
 
 .dark-theme {
   @include theme-color-grabber($dark-theme);
-  @include angular-material-theme($dark-theme);
+  @include mat.all-component-themes($dark-theme);
 }
 
 

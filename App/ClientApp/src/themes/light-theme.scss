@@ -1,8 +1,9 @@
-$light-primary: mat-palette($mat-blue-grey);
-$light-accent: mat-palette($mat-light-blue, A200, A100, A400);
-$light-warn: mat-palette($mat-red);
+@use '~@angular/material' as mat;
+$light-primary: mat.define-palette(mat.$blue-grey-palette);
+$light-accent: mat.define-palette(mat.$light-blue-palette, A200, A100, A400);
+$light-warn: mat.define-palette(mat.$red-palette);
 
-$light-theme: mat-light-theme((
+$light-theme: mat.define-light-theme((
   color: (
     primary: $light-primary,
     accent: $light-accent,

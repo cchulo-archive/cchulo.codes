@@ -9,7 +9,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <ng-scrollbar [visibility]="!isMobileSize ? 'hover' : 'native'">
+    <ng-scrollbar>
       <div class="main">
 
         <div class="inner-main primaryColorBG">
@@ -26,7 +26,7 @@
             <div class="nav-container">
 
               <nav mat-tab-nav-bar *ngIf="!isMobileSize">
-                <a mat-tab-link *ngFor="let link of links" [routerLink]="link.path" routerLinkActive>{{link.label}}</a>
+                <a mat-tab-link *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="true">{{link.label}}</a>
               </nav>
 
               <button mat-icon-button (click)="toggleTheme()" [color]="!isDarkTheme ? undefined : 'accent'">
@@ -38,11 +38,11 @@
         </div>
         <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
 
-        
+
           <div class="content" [@routeAnimation]="prepareRoute(outlet)">
               <router-outlet #outlet="outlet"></router-outlet>
           </div>
-        
+
 
       </div>
 

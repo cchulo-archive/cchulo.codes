@@ -1,5 +1,6 @@
 
 // source: https://stackoverflow.com/a/46760925
+@use '~@angular/material' as mat;
 
 // Define a custom mixin that takes in the current theme
 @mixin theme-color-grabber($theme) {
@@ -9,12 +10,12 @@
     $warn: map-get($theme, warn);
     // Create theme specfic styles
     .primaryColorBG {
-      background-color: mat-color($primary);
+      background-color: mat.get-color-from-palette($primary);
     }
     .accentColorBG {
-      background-color: mat-color($accent);
+      background-color: mat.get-color-from-palette($accent);
     }
     .warnColorBG {
-      background-color: mat-color($warn);
+      background-color: mat.get-color-from-palette($warn);
     }
 }
