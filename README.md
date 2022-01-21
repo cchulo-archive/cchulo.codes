@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100" />
+  <img src="PortfolioBlog/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100"  alt="icon"/>
 </p>
 
 <center>
