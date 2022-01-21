@@ -17,7 +17,7 @@
       },
       "ancmHostingModel": "OutOfProcess"
     },
-    "cchulo.App": {
+    "cchulo.codes": {
       "commandName": "Project",
       "launchBrowser": false,
       "environmentVariables": {

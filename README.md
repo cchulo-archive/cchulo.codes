@@ -25,7 +25,7 @@ To compile you will need at minimum:
 
 1. Run `npm install` in the following directories:
 
-- `PortfolioBlog/ClientApp`
+- `App/ClientApp`
 - `StrapiCMS`
 
 2. You will then need to launch both .NET Core app (which is set up to compile and run the Client App)
