@@ -1,18 +1,30 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import * as _ from 'lodash-es';
+import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
+import { Component } from '@angular/core';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { zoomIn } from 'ng-animate';
 import { IMediaLink, LinkService } from 'src/app/core/services/link.service';
 
 @Component({
   selector: 'app-link-banner',
   templateUrl: './link-banner.component.html',
-  styleUrls: ['./link-banner.component.scss']
+  styleUrls: ['./link-banner.component.scss'],
+  animations: [
+    trigger('fadeInLeft', [
+      transition(':enter', [
+        query(':enter', [
+          style({opacity: 0 }),
+          stagger('50ms', [useAnimation(zoomIn)])
+        ], { optional: true })
+      ])
+    ])
+  ]
 })
 export class LinkBannerComponent {
 
-  links: Promise<Array<IMediaLink>>;
+  links: Promise<Array<IMediaLink>> = Promise.resolve([]);
 
-  constructor(private _linkService: LinkService) {
-    this.links = _linkService.getLinks();
+  constructor(linkService: LinkService) {
+    this.links = linkService.getLinks();
   }
   
 

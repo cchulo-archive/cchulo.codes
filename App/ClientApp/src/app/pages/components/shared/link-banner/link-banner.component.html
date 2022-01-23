@@ -1,5 +1,5 @@
 <div class="link-bar">
-    <div class="link-icon-container">
+    <div class="link-icon-container" @fadeInLeft>
         <ng-container *ngFor="let link of (links | async)">
             <a [href]="link.url" target="_blank" class="noselect">
                 <fa-icon [icon]="['fab', link.faIcon ]"></fa-icon>

@@ -11,7 +11,7 @@ import { PagesModule } from './pages/pages.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MarkdownModule } from 'ngx-markdown';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faLinkedin, faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
 import { MatIconRegistry } from '@angular/material/icon';
 
@@ -72,11 +72,7 @@ export class AppModule {
   ) {
     this.initIcons();
 
-    _faLibrary.addIcons(
-      faLinkedin,
-      faInstagram,
-      faGithub
-    );
+    _faLibrary.addIconPacks(fab);
   }
 
   private initIcons(): void {
