@@ -19,16 +19,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private _clientWindowSub: Unsubscribable;
   private _clientSettingSub: Unsubscribable;
-
-
-
   private readonly _darkThemeClass = 'dark-theme';
 
   links = this._navService.links;
   isMobileSize = false;
   isDarkTheme = true;
-  prepareRoute = prepareRoute;
-
   mode: TMode = 'determinate';
   popupOpenSubscription: Unsubscribable;
   popupCloseSubscription: Unsubscribable;
@@ -36,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   statusChangeSubscription: Unsubscribable;
   revokeChoiceSubscription: Unsubscribable;
   noCookieLawSubscription: Unsubscribable;
+  prepareRoute = prepareRoute;
 
   constructor(
     private _clientWindowService: ClientWindowService,
@@ -46,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    
+
     if (!this._ccService.hasAnswered()) {
       this._ccService.open();
     }
@@ -77,8 +73,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this._clientSettingSub?.unsubscribe();
   }
-
-
 
   toggleTheme(): void {
     if (this.isDarkTheme) {

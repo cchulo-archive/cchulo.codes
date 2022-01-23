@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "social_medias",
+  "info": {
+    "name": "SocialMedia"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "links": {
+      "type": "json"
+    }
+  }
+}
