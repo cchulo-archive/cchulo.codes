@@ -9,36 +9,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace cchulo.codes.App.Controllers
+namespace cchulo.codes.App.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class BlogController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BlogController : ControllerBase
+    private readonly IGraphQLClient _graphQLClientRef;
+    private readonly ILogger<BlogController> _logger;
+    private readonly IHttpClientFactory _httpClientFactoryRef;
+    private readonly IServerConfig _serverConfigRef;
+
+    public BlogController(IGraphQLClient graphQLClient, ILogger<BlogController> logger,
+        IHttpClientFactory httpClientFactory, IServerConfig serverConfig)
     {
-        private readonly IGraphQLClient _graphQLClientRef;
-        private readonly ILogger<BlogController> _logger;
-        private readonly IHttpClientFactory _httpClientFactoryRef;
-        private readonly IServerConfig _serverConfigRef;
+        _graphQLClientRef = graphQLClient;
 
-        public BlogController(IGraphQLClient graphQLClient, ILogger<BlogController> logger,
-            IHttpClientFactory httpClientFactory, IServerConfig serverConfig)
+        _logger = logger;
+
+        _httpClientFactoryRef = httpClientFactory;
+
+        _serverConfigRef = serverConfig;
+    }
+
+    [HttpGet("latest")]
+    public async Task<IActionResult> LatestBlogPosts()
+    {
+        try
         {
-
-            _graphQLClientRef = graphQLClient;
-            
-            _logger = logger;
-
-            _httpClientFactoryRef = httpClientFactory;
-
-            _serverConfigRef = serverConfig;
-        }
-
-        [HttpGet("latest")]
-        public async Task<IActionResult> LatestBlogPosts()
-        {
-            try
-            {
-                var query = new GraphQLRequest(@"
+            var query = new GraphQLRequest(@"
                     query {
                       blogPosts(limit: 10, sort: ""published_at:desc"") {
                         id
@@ -56,24 +55,23 @@ namespace cchulo.codes.App.Controllers
                     }
                 ");
 
-                var response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
+            var response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
 
-                return Ok(response.Data.BlogPosts ?? new List<BlogPost>());
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-                return BadRequest();
-            }
+            return Ok(response.Data.BlogPosts ?? new List<BlogPost>());
         }
-
-        [HttpGet]
-        public async Task<IActionResult> AllBlogPosts()
+        catch (Exception ex)
         {
-            try
-            {
-                var query = new GraphQLRequest(@"
+            _logger.LogError("{exception}", ex);
+            return BadRequest();
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> AllBlogPosts()
+    {
+        try
+        {
+            var query = new GraphQLRequest(@"
                     query {
                         blogPosts(sort: ""published_at:desc"") {
                             id
@@ -91,24 +89,23 @@ namespace cchulo.codes.App.Controllers
                     }
                 ");
 
-                var response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
+            var response = await _graphQLClientRef.SendQueryAsync<BlogPostsType>(query);
 
-                return Ok(response.Data.BlogPosts);
-
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-
-                return BadRequest();
-            }
+            return Ok(response.Data.BlogPosts);
         }
-
-        [HttpGet("tags")]
-        public async Task<IActionResult> Tags()
+        catch (Exception ex)
         {
-            try
-            {
-                var query = new GraphQLRequest(@"
+            _logger.LogError("{exception}", ex);
+            return BadRequest();
+        }
+    }
+
+    [HttpGet("tags")]
+    public async Task<IActionResult> Tags()
+    {
+        try
+        {
+            var query = new GraphQLRequest(@"
                     query {
                       tags {
                         id
@@ -117,35 +114,34 @@ namespace cchulo.codes.App.Controllers
                     }
                 ");
 
-                var response = await _graphQLClientRef.SendQueryAsync<TagsType>(query);
+            var response = await _graphQLClientRef.SendQueryAsync<TagsType>(query);
 
-                return Ok(response.Data.Tags);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-                return BadRequest();
-            }
+            return Ok(response.Data.Tags);
         }
-
-        [HttpGet("full-blog-post/{id:int}")]
-        public async Task<IActionResult> FullBlogPost([FromRoute] int id)
+        catch (Exception ex)
         {
-            try
-            {
-                var httpClient = _httpClientFactoryRef.CreateClient();
-
-                var response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/blog-posts/{id}");
-
-                var jsonStr = await response.Content.ReadAsStringAsync();
-                var post = JsonConvert.DeserializeObject<BlogPost>(jsonStr);
-                return Ok(post);
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-                return BadRequest();
-            }
+            _logger.LogError("{exception}", ex);
+            return BadRequest();
         }
+    }
 
+    [HttpGet("full-blog-post/{id:int}")]
+    public async Task<IActionResult> FullBlogPost([FromRoute] int id)
+    {
+        try
+        {
+            var httpClient = _httpClientFactoryRef.CreateClient();
+
+            var response = await httpClient.GetAsync($"{_serverConfigRef.StrapiUrl}/blog-posts/{id}");
+
+            var jsonStr = await response.Content.ReadAsStringAsync();
+            var post = JsonConvert.DeserializeObject<BlogPost>(jsonStr);
+            return Ok(post);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("{exception}", ex);
+            return BadRequest();
+        }
     }
 }

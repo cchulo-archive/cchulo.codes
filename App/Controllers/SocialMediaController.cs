@@ -10,14 +10,16 @@ namespace cchulo.codes.App.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AboutController : ControllerBase
+public class SocialMediaController : ControllerBase
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IServerConfig _serverConfig;
-    private readonly ILogger<AboutController> _logger;
+    private readonly ILogger<SocialMediaController> _logger;
 
-    public AboutController(IHttpClientFactory httpClientFactory,
-        IServerConfig serverConfig, ILogger<AboutController> logger)
+    public SocialMediaController(
+        IHttpClientFactory httpClientFactory,
+        IServerConfig serverConfig,
+        ILogger<SocialMediaController> logger)
     {
         _httpClientFactory = httpClientFactory;
         _serverConfig = serverConfig;
@@ -25,7 +27,7 @@ public class AboutController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAbout()
+    public async Task<IActionResult> GetLinks()
     {
         try
         {
@@ -34,8 +36,8 @@ public class AboutController : ControllerBase
             var response = await httpClient.GetAsync($"{_serverConfig.StrapiUrl}/about");
 
             var jsonStr = await response.Content.ReadAsStringAsync();
-            var about = JsonConvert.DeserializeObject<AboutModel>(jsonStr);
-            return Ok(about);
+            var links = JsonConvert.DeserializeObject<SocialMediaModel>(jsonStr);
+            return Ok(links);
         }
         catch (Exception ex)
         {

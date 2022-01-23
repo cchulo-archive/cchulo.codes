@@ -1,7 +1,6 @@
-﻿namespace cchulo.codes.App.Models
+﻿namespace cchulo.codes.App.Models;
+
+public class UploadFile
 {
-    public class UploadFile
-    {
-        public string Url { get; set; }
-    }
+    public string Url { get; set; }
 }

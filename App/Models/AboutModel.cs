@@ -1,16 +1,13 @@
-﻿
+﻿using TypeGen.Core.TypeAnnotations;
 
-using TypeGen.Core.TypeAnnotations;
+namespace cchulo.codes.App.Models;
 
-namespace cchulo.codes.App.Models
+[ExportTsClass]
+public class AboutModel
 {
-    [ExportTsClass]
-    public class AboutModel
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string Content { get; set; }
+    public string Content { get; set; }
 
-        public string TechStack { get; set; }
-    }
+    public string TechStack { get; set; }
 }
