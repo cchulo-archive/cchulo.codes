@@ -1,8 +1,5 @@
-﻿using TypeGen.Core.TypeAnnotations;
+﻿namespace cchulo.codes.App.Models;
 
-namespace cchulo.codes.App.Models;
-
-[ExportTsClass]
 public class AboutModel
 {
     public int Id { get; set; }

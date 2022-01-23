@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using TypeGen.Core.TypeAnnotations;
 
 namespace cchulo.codes.App.Models;
 
-[ExportTsClass]
 public class BlogPost
 {
     public int Id { get; set; }
