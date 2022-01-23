@@ -8,14 +8,14 @@ import { BlogService } from 'src/app/core/services/blog.service';
 import { BlogPost } from 'src/models/blog-post';
 import { zoomIn } from 'ng-animate'
 import { query, stagger, style, transition, trigger, useAnimation } from '@angular/animations';
+import { MediaLink } from 'src/models/media-link';
+import { LinkService } from 'src/app/core/services/link.service';
 
 
 interface ITileOrdering {
   label: string;
   order: number;
 }
-
-
 
 @Component({
   selector: 'app-home',
@@ -36,11 +36,10 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
 
   isMobileSize = false;
   isReady = false;
-
   screenCheckComplete = false;
   blogEntriesComplete = false;
-
   blogUpdates: Array<BlogPost> = [];
+  links: Array<MediaLink> = [];
 
   orderTiles: Array<ITileOrdering> = [
     { label: 'greeting', order: 0 },
@@ -53,10 +52,14 @@ export class HomeComponent implements OnInit, AfterContentInit, OnDestroy {
   constructor(
     private _clientSettingsService: ClientSettingsService,
     private _clientWindowService: ClientWindowService,
-    private _blogService: BlogService
+    private _blogService: BlogService,
+    private _linkService: LinkService
     ) { }
 
   async ngOnInit() {
+
+    this.links = await this._linkService.getLinks();
+    console.log(this.links);
 
     this._clientSettingsSub = this._clientSettingsService.theme.subscribe(theme => {
     });

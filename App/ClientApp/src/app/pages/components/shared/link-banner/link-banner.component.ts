@@ -1,10 +1,6 @@
-import { Component } from '@angular/core';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
-
-interface IMediaLink {
-  url: string;
-  faIcon: IconName
-}
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import * as _ from 'lodash-es';
+import { IMediaLink, LinkService } from 'src/app/core/services/link.service';
 
 @Component({
   selector: 'app-link-banner',
@@ -13,11 +9,11 @@ interface IMediaLink {
 })
 export class LinkBannerComponent {
 
-  links: Array<IMediaLink> = [
-    { url: 'https://www.linkedin.com/in/carlos-chulo-150753b6/', faIcon: 'linkedin' },
-    { url: 'https://github.com/cchulo', faIcon: 'github' },
-    { url: 'https://www.instagram.com/cchulo.codes/', faIcon: 'instagram' },
-  ];
+  links: Promise<Array<IMediaLink>>;
+
+  constructor(private _linkService: LinkService) {
+    this.links = _linkService.getLinks();
+  }
   
 
 }
