@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace cchulo.codes.App.Models;
 

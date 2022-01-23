@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using cchulo.codes.App.Models;
@@ -10,16 +11,16 @@ namespace cchulo.codes.App.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class SocialMediaController : ControllerBase
+public class LinksController : ControllerBase
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IServerConfig _serverConfig;
-    private readonly ILogger<SocialMediaController> _logger;
+    private readonly ILogger<LinksController> _logger;
 
-    public SocialMediaController(
+    public LinksController(
         IHttpClientFactory httpClientFactory,
         IServerConfig serverConfig,
-        ILogger<SocialMediaController> logger)
+        ILogger<LinksController> logger)
     {
         _httpClientFactory = httpClientFactory;
         _serverConfig = serverConfig;
@@ -33,10 +34,10 @@ public class SocialMediaController : ControllerBase
         {
             var httpClient = _httpClientFactory.CreateClient();
 
-            var response = await httpClient.GetAsync($"{_serverConfig.StrapiUrl}/social-media");
+            var response = await httpClient.GetAsync($"{_serverConfig.StrapiUrl}/links");
 
             var jsonStr = await response.Content.ReadAsStringAsync();
-            var links = JsonConvert.DeserializeObject<SocialMediaModel>(jsonStr);
+            var links = JsonConvert.DeserializeObject<List<MediaLink>>(jsonStr);
             return Ok(links);
         }
         catch (Exception ex)
