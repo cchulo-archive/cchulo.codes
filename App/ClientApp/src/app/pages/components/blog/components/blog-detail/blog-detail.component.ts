@@ -24,14 +24,12 @@ import { NgcCookieConsentService } from 'ngx-cookieconsent';
 })
 export class BlogDetailComponent implements OnInit, OnDestroy {
 
-  ready = false;
-
-  paramSub: Unsubscribable;
-  ccSub: Unsubscribable;
-
+  private _paramSub: Unsubscribable;
+  private _ccSub: Unsubscribable;
   post: BlogPost;
 
   busy = false;
+  ready = false;
 
   constructor(
     private _route: ActivatedRoute,
@@ -41,8 +39,6 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
     private _ccService: NgcCookieConsentService) { }
 
   ngOnInit(): void {
-
-    
 
     this._markdownService.renderer.image = (href: string, title: string, text: string) => {
       return `<img class="img-helper" src="${href}" alt="${text}" />`;
@@ -60,7 +56,7 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
       return html;
     };
 
-    this.paramSub = this._route.paramMap.subscribe(async params => {
+    this._paramSub = this._route.paramMap.subscribe(async params => {
       const id = params.get('id');
       try {
         this.post = await this._blogService.fullBlogPost(Number.parseInt(id));
@@ -73,8 +69,8 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.paramSub?.unsubscribe();
-    this.ccSub?.unsubscribe();
+    this._paramSub?.unsubscribe();
+    this._ccSub?.unsubscribe();
   }
 
   async downloadFile(url: string) {
@@ -88,7 +84,7 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
   }
 
   initCCCheck() {
-    this.ccSub = this._ccService.statusChange$.subscribe(() => {
+    this._ccSub = this._ccService.statusChange$.subscribe(() => {
       this.ready = false;
       timer(5000).pipe(take(1)).subscribe(() => this.ready = true);
     });

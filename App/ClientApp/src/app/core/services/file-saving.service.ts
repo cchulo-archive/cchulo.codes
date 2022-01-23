@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,7 @@ export class FileSavingService {
   async download(url: string) {
 
     try {
-      const blob = await this._httpClient.get(url, { responseType: 'blob' }).toPromise();
-      return blob;
+      return await this._httpClient.get(url, {responseType: 'blob'}).toPromise();
     } catch (err) {
       console.error(err);
       return null;

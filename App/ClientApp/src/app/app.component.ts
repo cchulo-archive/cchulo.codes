@@ -20,10 +20,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private _clientWindowSub: Unsubscribable;
   private _clientSettingSub: Unsubscribable;
 
-  
+
 
   private readonly _darkThemeClass = 'dark-theme';
-  
+
   links = this._navService.links;
   isMobileSize = false;
   isDarkTheme = true;
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-
+    
     if (!this._ccService.hasAnswered()) {
       this._ccService.open();
     }
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._clientSettingSub?.unsubscribe();
   }
 
-  
+
 
   toggleTheme(): void {
     if (this.isDarkTheme) {
