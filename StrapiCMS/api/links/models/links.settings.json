@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "links",
+  "info": {
+    "name": "Links"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Url": {
+      "type": "string"
+    },
+    "FaIcon": {
+      "type": "string"
+    }
+  }
+}

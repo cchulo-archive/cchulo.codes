@@ -33,7 +33,7 @@ public class SocialMediaController : ControllerBase
         {
             var httpClient = _httpClientFactory.CreateClient();
 
-            var response = await httpClient.GetAsync($"{_serverConfig.StrapiUrl}/about");
+            var response = await httpClient.GetAsync($"{_serverConfig.StrapiUrl}/social-media");
 
             var jsonStr = await response.Content.ReadAsStringAsync();
             var links = JsonConvert.DeserializeObject<SocialMediaModel>(jsonStr);
