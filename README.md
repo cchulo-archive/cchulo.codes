@@ -3,13 +3,13 @@
 </p>
 
 <center>
- <h1>CChulo's Portfolio/Blog App</h1>
+ <h1>cchulo.codes web app</h1>
 </center>
 
 ---
 ## Description
 
-This is a .NET Core 3.1 based Web App with Angular 11 frontend. The blog is powered by headless CMS, [strapi](https://strapi.io).
+This is a .NET based Web App with an Angular frontend. The blog is powered by headless CMS, [strapi](https://strapi.io).
 
 ---
 
@@ -17,9 +17,9 @@ This is a .NET Core 3.1 based Web App with Angular 11 frontend. The blog is powe
 
 To compile you will need at minimum:
 
-- .NET Core SDK 3.1 +
-- NodeJS 14+ LTS
-- Angular CLI 11+
+- .NET SDK 6.0 +
+- NodeJS 16+ LTS
+- Angular CLI 13+
 
 ## Instructions to compile and run
 
@@ -36,7 +36,9 @@ To compile you will need at minimum:
 
 4. Open a terminal in `StrapiCMS` context and run `npm run develop`, leave it running
 
-5. navigate to https://localhost:44301 to visit the page
+5. navigate to https://localhost:5001 to visit the page
+   1. If certificate is invalid, run `dotnet dev-certs https --trust`, or you can ignore the
+   warning and proceed, a dev certificate is required for debugging service worker mostly
 
 6. To create blog posts/tags and fill out other content, go to strapi admin panel: http://localhost:1337/admin,
 you will need to create an account, this account will only be local to your computer
@@ -54,5 +56,5 @@ you will need to create an account, this account will only be local to your comp
 
 ## Recommended for development
 
-- Visual Studio 2019
+- Jetbrains Rider
 - Visual Code
