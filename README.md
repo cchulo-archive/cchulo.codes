@@ -1,3 +1,7 @@
+# Archived
+
+This repo is now archived as of Jan 13th 2024, keeping it to serve as inspiration for other devs looking to create angular apps
+---
 <p align="center">
   <img src="App/ClientApp/src/assets/svg-icons/logo-styled-gradient.svg" width="100"  alt="icon"/>
 </p>
@@ -9,8 +13,7 @@
 ---
 ## Description
 
-This is a .NET based Web App with an Angular frontend. The blog is powered by headless CMS, [strapi](https://strapi.io).
-
+This is a .NET based PWA/SPA Web App with an Angular frontend. The blog is powered by headless CMS, [strapi](https://strapi.io).
 ---
 
 ## Requirements
